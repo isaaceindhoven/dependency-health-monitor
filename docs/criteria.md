@@ -19,6 +19,7 @@ Divides the total income of the project by the team size to get the average inco
 
 Data required to score this criterion:
 - Yearly revenue: Retrieved from OpenCollective
+- Funding goal: Retrieved from OpenCollective
 - Total cost of core contributors/maintainers
   - Requires the data:
     - Team size: Retrieved from OpenCollective
@@ -26,7 +27,7 @@ Data required to score this criterion:
       - If not available, the average Senior Software Engineer salary will be used
     - Regional salary: Retrieved from both [PayScale](https://developers.payscale.com/) and [Glassdoor](https://www.glassdoor.com/developer/index.htm)
 
-Score will be calculated by dividing the total costs of core contributors/maintainers by the yearly revenue: costs / yearly revenue.
+The score is calculated in one of two ways. The first is by dividing the yearly revenue by the funding goal (yearly revenue / funding goal), as the funding goal indicates how much funding is needed to sustain the project. The second way is used whenever the first way is not applicable. The sustainability is then calculated by dividing the yearly revenue by the total costs of core contributors/maintainers (yearly revenue / costs).
 
 ## Organisational activity
 Priority: `High`, as it directly relates with the financial sustainability of a project because it indicates how much of the project relies on funding.
