@@ -5,10 +5,10 @@ This page describes the criteria used in the Dependency Health Monitor, how they
 | Criteria                                         | Description                                                                                                                | Priority   |
 | ------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------- | ---------- |
 | [Sustainability of core contributors/maintainers](#sustainability-of-core-contributorsmaintainers)  | Describes how the income (received funding) compares with the costs of the project (cost of core contributors/maintainers) | High       |
-| [Organisational activity](#organisational-activity)                          | Indicates how many percent of all contributions come from contributors which are part of an organisation                   | High       |
 | [Acceptance of funding](#acceptance-of-funding)                            | Shows if the project is accepting funding on either their GitHub or NPM page                                               | Medium     |
 | [License type](#license-type)                                     | Describes how reliant the project is on funding by using the license of the project                                        | Medium-low |
 | [Transparency on current financial sustainability](#transparency-on-current-financial-sustainability) | Indicates if the project has set any funding goals                                                                         | Low        |
+| [Organisational activity](#organisational-activity)                          | Indicates how many percent of all contributions come from contributors which are part of an organisation                   | Low       |
 
 ## Sustainability of core contributors/maintainers
 Priority: `High`, as it directly impacts the financial health of the project.
@@ -28,18 +28,6 @@ Data required to score this criterion:
     - Regional salary: Retrieved from both [PayScale](https://developers.payscale.com/) and [Glassdoor](https://www.glassdoor.com/developer/index.htm)
 
 The score is calculated in one of two ways. The first is by dividing the yearly revenue by the funding goal (yearly revenue / funding goal), as the funding goal indicates how much funding is needed to sustain the project. The second way is used whenever the first way is not applicable. The sustainability is then calculated by dividing the yearly revenue by the total costs of core contributors/maintainers (yearly revenue / costs).
-
-## Organisational activity
-Priority: `High`, as it directly relates with the financial sustainability of a project because it indicates how much of the project relies on funding.
-
-The higher the organisational activity, the less contributors/maintainers are dependent on funding, the better the financial health of the project.
-
-Determines how many percent of total contributions made to the project are from contributors who are part of an organisation.
-
-Data required to score this criterion:
-- Top 100 contributor's account data: Retrieved from GitHub
-
-The score is calculated by the percentage of the organisational activity inside the project.
 
 ## Acceptance of funding
 Priority: `Medium`, as it does not directly impact the financial health of a repository but is a step to improve or sustain the financial health of a project.
@@ -87,3 +75,15 @@ Checklist to score this criterion:
 - Check if the project has defined funding goals on their OpenCollective page.
 
 This criterion's score is either a 100 or 0 points. If a project has defined their funding goals, the project will receive 100 points for this criterion, if not, it will receive 0 points.
+
+## Organisational activity
+Priority: `Low`, by using GitHub data it cannot be guaranteed that every organisation in GitHub's database is in fact an organisation like META or Google, as GitHub also sees communities as organisations. Therefore, the organisational activity is not always right in the fact that a project is backed by an organisation, it might also be backed by a community. Because the Dependency Health Monitor also views communities as a valuable asset to the financial health (a community is less likely to stop maintaining a project due to lack of resources as there are more people, the [bus factor](https://en.wikipedia.org/wiki/Bus_factor) is a lot higher), the organisational health is still taken into consideration with a lower priority.
+
+The higher the organisational activity, the less contributors/maintainers are dependent on funding, the better the financial health of the project.
+
+Determines how many percent of total contributions made to the project are from contributors who are part of an organisation.
+
+Data required to score this criterion:
+- Top 100 contributor's account data: Retrieved from GitHub
+
+The score is calculated by the percentage of the organisational activity inside the project.
