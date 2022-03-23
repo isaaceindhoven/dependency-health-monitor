@@ -7,7 +7,7 @@ This page describes the criteria used in the Dependency Health Monitor, how they
 | [Sustainability of core contributors/maintainers](#sustainability-of-core-contributorsmaintainers)  | Describes how the income (received funding) compares with the costs of the project (cost of core contributors/maintainers) | High       |
 | [Acceptance of funding](#acceptance-of-funding)                            | Shows if the project is accepting funding on either their GitHub or NPM page                                               | Medium     |
 | [License type](#license-type)                                     | Describes how reliant the project is on funding by using the license of the project                                        | Medium-low |
-| [Transparency on current financial sustainability](#transparency-on-current-financial-sustainability) | Indicates if the project has set any funding goals                                                                         | Low        |
+| [Financial roadmap](#financial-roadmap) | Indicates if the project has set any funding goals                                                                         | Low        |
 | [Organisational activity](#organisational-activity)                          | Indicates how many percent of all contributions come from contributors which are part of an organisation                   | Low       |
 
 ## Sustainability of core contributors/maintainers
@@ -64,7 +64,7 @@ The score is calculated by giving the license the following scores:
 | Non-commercial use license | 50 |
 | Free to use license | 0 |
 
-## Transparency on current financial sustainability
+## Financial roadmap
 Priority: `Low`, as it does not directly impact the financial health of the project. It is just a method to trigger funders to fund the project.
 
 The higher the score, the better the future of the financial health.
