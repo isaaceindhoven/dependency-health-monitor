@@ -7,7 +7,9 @@ module.exports = {
     "plugin:vue/vue3-essential",
     "eslint:recommended",
     "@vue/eslint-config-typescript/recommended",
-    "@vue/eslint-config-prettier"
+    "@vue/eslint-config-prettier",
+    "airbnb-base",
+    "airbnb-typescript/base"
   ],
   "env": {
     "vue/setup-compiler-macros": true
