@@ -1,3 +1,4 @@
+@import "/node_modules/primeflex/primeflex.css"; 
 /* color palette from <https://github.com/vuejs/theme> */
 :root {
   --vt-c-white: #ffffff;
