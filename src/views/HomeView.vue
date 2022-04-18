@@ -66,7 +66,3 @@
     </div>
   </main>
 </template>
-
-<style>
-@import 'primeicons/primeicons.css';
-</style>
