@@ -99,5 +99,11 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Download build artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: build
+          path: dist
+
       - name: Run unit tests
         run: npm run test:e2e:ci
