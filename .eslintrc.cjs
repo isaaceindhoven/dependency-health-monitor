@@ -11,14 +11,17 @@ module.exports = {
   ],
   env: {
     'vue/setup-compiler-macros': true,
-    browser: true,
-    amd: true,
-    node: true,
   },
   overrides: [
     {
       files: ['cypress/integration/**.spec.{js,ts,jsx,tsx}'],
       extends: ['plugin:cypress/recommended'],
+    },
+    {
+      files: ['commitlint.config.cjs'],
+      env: {
+        node: true,
+      },
     },
   ],
 };
