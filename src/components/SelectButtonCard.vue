@@ -8,8 +8,6 @@ const props = defineProps({
 const emit = defineEmits(['update:modelValue']);
 
 const emitNewValue = (event) => {
-  console.log(event);
-
   emit('update:modelValue', event.target.value);
 };
 </script>
