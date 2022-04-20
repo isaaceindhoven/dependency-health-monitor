@@ -1,5 +1,12 @@
+<script setup lang="ts">
+import Navbar from './components/NavBar.vue';
+</script>
+
 <template>
-  <RouterView />
+  <Navbar />
+  <div class="p-container pt-4">
+    <router-view></router-view>
+  </div>
 </template>
 
 <style>
