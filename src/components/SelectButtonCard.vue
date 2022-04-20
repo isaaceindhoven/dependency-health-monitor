@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import RadioButton from 'primevue/radiobutton';
+
 const props = defineProps({
   name: String,
   text: String,
@@ -8,36 +10,34 @@ const props = defineProps({
 const emit = defineEmits(['update:modelValue']);
 
 const emitNewValue = (event) => {
-  emit('update:modelValue', event.target.value);
+  emit('update:modelValue', event);
 };
 </script>
 
 <template>
   <div
     @click="emit('update:modelValue', props.name)"
-    class="p-4 p-component border-round bg-primary text-center cursor-pointer grow"
+    class="py-4 px-8 surface-card border-round text-center cursor-pointer grow"
   >
     <div class="floating-checkbox">
-      <input
-        class="border-round cursor-pointer"
-        type="radio"
-        :aria-label="text"
-        :checked="modelValue == name"
-        :name="name"
+      <RadioButton
         :value="name"
-        @input="emitNewValue"
+        :name="name"
+        :aria-label="text"
+        :modelValue="modelValue"
+        @update:modelValue="emitNewValue"
       />
     </div>
-    <span> {{ text }} </span>
+    <span class="text-white"> {{ text }} </span>
   </div>
 </template>
 
 <style scoped lang="scss">
 .grow {
-  transition: all 0.2s ease-in-out;
+  transition: all 0.1s ease-in-out;
 
   &:hover {
-    transform: scale(105%);
+    transform: scale(100%);
   }
 }
 .floating-checkbox {
