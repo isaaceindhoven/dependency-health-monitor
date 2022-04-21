@@ -5,11 +5,11 @@ import { MenuItem } from 'primevue/menuitem';
 let items: MenuItem[] = [
   {
     label: 'Run report',
-    to: '#',
+    to: '/',
   },
   {
     label: 'About us',
-    to: '#',
+    to: '/about',
   },
 ];
 </script>
@@ -17,7 +17,7 @@ let items: MenuItem[] = [
 <template>
   <Menubar class="border-noround" :model="items">
     <template #start>
-      <a class="text-900 no-underline mr-7" href="#"> DPM </a>
+      <a class="text-900 no-underline pl-3 pr-8" href="#"> DPM </a>
     </template>
     <template #end> Log in / log out </template>
   </Menubar>
