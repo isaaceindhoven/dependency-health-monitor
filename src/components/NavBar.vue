@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import Menubar from 'primevue/menubar';
-import { MenuItem } from 'primevue/menuitem';
+import type { MenuItem } from 'primevue/menuitem';
 
 let items: MenuItem[] = [
   {
     label: 'Run report',
-    to: '/run-report',
+    to: '/run-report/select',
   },
   {
     label: 'About us',

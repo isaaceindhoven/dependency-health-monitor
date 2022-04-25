@@ -12,7 +12,7 @@ import SelectButtonCard from '@/components/SelectButtonCard.vue';
 import { ref, watch } from 'vue';
 import { useFinancialReportStore } from '@/stores/financial-report';
 import { executionOptions } from '@/helpers/execution-options';
-import { ExecutionMethod } from '@/helpers/types';
+import type { ExecutionMethod } from '@/helpers/types';
 
 const store = useFinancialReportStore();
 

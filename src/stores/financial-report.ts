@@ -12,7 +12,7 @@ const defaultStore: FinancialReportStore = {
 
 export const useFinancialReportStore = defineStore({
   id: 'steps',
-  state: (): FinancialReportStore => defaultStore,
+  state: () => defaultStore,
   getters: {
     getSteps: (state) => state.steps,
     getExecutionMethod: (state) => state.executionMethod,
@@ -26,7 +26,9 @@ export const useFinancialReportStore = defineStore({
       this.setSteps(newSteps as MenuItem[]);
     },
     nextStep() {
-      this.activeStepIndex++;
+      if (this.activeStepIndex < this.steps.length - 1) {
+        this.activeStepIndex++;
+      }
 
       return this.steps[this.activeStepIndex];
     },

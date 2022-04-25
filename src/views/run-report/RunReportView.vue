@@ -1,10 +1,6 @@
 <template>
   <ExecutionSteps class="mb-8" />
-  <router-view v-slot="{ Component }" @prevPage="prevPage($event)" @nextPage="nextPage($event)">
-    <keep-alive>
-      <component :is="Component" />
-    </keep-alive>
-  </router-view>
+  <router-view @prevPage="prevPage()" @nextPage="nextPage()"></router-view>
   <div class="grid grid-nogutter justify-content-end pt-4">
     <Button v-if="store.getActiveStepIndex > 0" label="Back" @click="prevPage()" icon="pi pi-angle-left" />
     <Button
@@ -18,7 +14,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import Button from 'primevue/button';
 import ExecutionSteps from '@/components/ExecutionSteps.vue';
 import { useFinancialReportStore } from '@/stores/financial-report';
@@ -29,12 +25,12 @@ const router = useRouter();
 
 const nextPage = () => {
   const nextStep = store.nextStep();
-  router.push(nextStep.to);
+  router.push(nextStep.to || '/');
 };
 
 const prevPage = () => {
   const prevStep = store.previousStep();
-  router.push(prevStep.to);
+  router.push(prevStep.to || '/');
 };
 </script>
 

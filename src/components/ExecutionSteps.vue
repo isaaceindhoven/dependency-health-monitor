@@ -1,5 +1,5 @@
 <template>
-  <Steps :model="store.getSteps" :readonly="false" />
+  <Steps :model="store.getSteps" />
 </template>
 
 <script setup lang="ts">
