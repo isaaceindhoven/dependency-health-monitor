@@ -1,70 +1,72 @@
 import type { MenuItem } from 'primevue/menuitem';
 import type { ExecutionMethod } from './types';
 
+const pathPrefix = '/run-report';
+
 const gitHubSteps: MenuItem[] = [
   {
     label: 'Select an execution method',
-    to: '/',
+    to: pathPrefix + '/select',
   },
   {
     label: 'Log in',
-    to: '/',
+    to: pathPrefix + '/',
   },
   {
     label: 'Select repository',
-    to: '/',
+    to: pathPrefix + '/',
   },
   {
     label: 'Confirm & Execute',
-    to: '/',
+    to: pathPrefix + '/',
   },
   {
     label: 'View results',
-    to: '/',
+    to: pathPrefix + '/',
   },
 ];
 
-const uploadOrPasteSteps: MenuItem[] = [
+const pasteOrUploadSteps: MenuItem[] = [
   {
     label: 'Select an execution method',
-    to: '/',
+    to: pathPrefix + '/select',
   },
   {
     label: 'Paste or upload file',
-    to: '/',
+    to: pathPrefix + '/paste-or-upload',
   },
   {
     label: 'Confirm & Execute',
-    to: '/',
+    to: pathPrefix + '/',
   },
   {
     label: 'View results',
-    to: '/',
+    to: pathPrefix + '/',
   },
 ];
 
 const publicURLSteps: MenuItem[] = [
   {
     label: 'Select an execution method',
-    to: '/',
+    to: pathPrefix + '/select',
   },
   {
     label: 'Insert public repository URL',
-    to: '/',
+    to: pathPrefix + '/',
   },
   {
     label: 'Confirm & Execute',
-    to: '/',
+    to: pathPrefix + '/',
   },
   {
     label: 'View results',
-    to: '/',
+    to: pathPrefix + '/',
   },
 ];
 
 const stepsPerExecutionMethod: Record<ExecutionMethod, MenuItem[]> = {
   GitHub: gitHubSteps,
-  Upload: uploadOrPasteSteps,
+  Upload: pasteOrUploadSteps,
   'Public URL': publicURLSteps,
 };
 
