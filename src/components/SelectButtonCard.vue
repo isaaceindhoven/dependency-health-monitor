@@ -28,7 +28,7 @@ const emitNewValue = (event: Event) => {
         @update:modelValue="emitNewValue"
       />
     </div>
-    <span class="text-white"> {{ text }} </span>
+    <span> {{ text }} </span>
   </div>
 </template>
 

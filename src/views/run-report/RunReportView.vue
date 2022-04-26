@@ -1,5 +1,5 @@
 <template>
-  <ExecutionSteps class="mb-8" />
+  <ExecutionSteps class="mb-6" />
   <router-view @prevPage="prevPage()" @nextPage="nextPage()"></router-view>
   <div class="grid grid-nogutter justify-content-end pt-4">
     <Button v-if="store.getActiveStepIndex > 0" label="Back" @click="prevPage()" icon="pi pi-angle-left" />
@@ -34,4 +34,8 @@ const prevPage = () => {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss">
+.p-menuitem-link {
+  padding: 1rem;
+}
+</style>
