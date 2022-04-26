@@ -2,12 +2,14 @@ import { defineStore } from 'pinia';
 import { getStepsForExecutionMethod } from '@/helpers/steps-per-execution-method';
 
 import type { MenuItem } from 'primevue/menuitem';
-import type { FinancialReportStore, ExecutionMethod } from '@/helpers/types';
+import type { ExecutionMethod, StepsStore } from '@/helpers/types';
 
-const defaultStore: FinancialReportStore = {
+const defaultStore: StepsStore = {
   executionMethod: 'Upload',
   steps: getStepsForExecutionMethod('Upload') as MenuItem[],
   activeStepIndex: 0,
+  maxAllowedStepIndex: 0,
+  allowAdvance: true,
 };
 
 export const useStepperStore = defineStore({
@@ -17,6 +19,8 @@ export const useStepperStore = defineStore({
     getSteps: (state) => state.steps,
     getExecutionMethod: (state) => state.executionMethod,
     getActiveStepIndex: (state) => state.activeStepIndex,
+    getAllowAdvance: (state) => state.allowAdvance,
+    getMaxAllowedStepIndex: (state) => state.maxAllowedStepIndex,
   },
   actions: {
     setExecutionMethod(executionMethod: ExecutionMethod) {
@@ -28,6 +32,10 @@ export const useStepperStore = defineStore({
     nextStep() {
       if (this.activeStepIndex < this.steps.length - 1) {
         this.activeStepIndex++;
+
+        if (this.activeStepIndex > this.maxAllowedStepIndex) {
+          this.maxAllowedStepIndex = this.activeStepIndex;
+        }
       }
 
       return this.steps[this.activeStepIndex];
@@ -46,6 +54,9 @@ export const useStepperStore = defineStore({
       if (activeStepIndex) {
         this.activeStepIndex = activeStepIndex;
       }
+    },
+    setAllowAdvance(newState: boolean) {
+      this.allowAdvance = newState;
     },
   },
 });

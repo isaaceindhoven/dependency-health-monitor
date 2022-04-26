@@ -2,10 +2,17 @@ import type { MenuItem } from 'primevue/menuitem';
 
 type ExecutionMethod = 'GitHub' | 'Upload' | 'Public URL';
 
-interface FinancialReportStore {
+interface StepsStore {
   executionMethod: ExecutionMethod;
   steps: MenuItem[];
   activeStepIndex: number;
+  maxAllowedStepIndex: number;
+  allowAdvance: boolean;
 }
 
-export type { ExecutionMethod, FinancialReportStore };
+interface FinancialReportStore {
+  packageJSON: Record<string, unknown>;
+  reportResults: Record<string, unknown>;
+}
+
+export type { ExecutionMethod, StepsStore, FinancialReportStore };
