@@ -1,7 +1,13 @@
 <template>
   <div class="grid">
     <div class="col-6">
-      <TextArea class="package-json-input" v-model="inputValue" placeholder="Paste your package.json here" />
+      <TextArea
+        @blur="onBlur"
+        class="package-json-input"
+        v-model="inputValue"
+        placeholder="Paste your package.json here"
+      />
+      <span class="p-error" v-if="textInputError">{{ textInputError }}</span>
     </div>
     <div class="col-1 text-center flex align-items-center justify-content-center">
       <p class="text-2xl">or</p>
@@ -14,15 +20,34 @@
           </p>
         </template>
       </FileUpload>
+      <span class="p-error" v-if="uploadError">{{ uploadError }}</span>
     </div>
   </div>
 </template>
 
-<script setup lang="ts">
+<script setup type="module" lang="ts">
+import { ref, onMounted } from 'vue';
+import type { FileUploadUploaderEvent } from 'primevue/fileupload';
+
 import TextArea from 'primevue/textarea';
 import FileUpload from 'primevue/fileupload';
 
-import type { FileUploadUploaderEvent } from 'primevue/fileupload';
+import { useStepperStore } from '@/stores/stepper';
+import { useFinancialReportStore } from '@/stores/financial-report';
+import { parsePackageJSONStringToObject } from '@/helpers/json-parser';
+
+const stepStore = useStepperStore();
+const financialReportStore = useFinancialReportStore();
+
+let inputValue = ref(JSON.stringify(financialReportStore.getPackageJSON));
+let textInputError = ref('');
+let uploadError = ref('');
+
+onMounted(() => {
+  if (financialReportStore.getPackageJSON) {
+    stepStore.setAllowAdvance(true);
+  }
+});
 
 const fileUploaded = (uploadEvent: FileUploadUploaderEvent) => {
   let file: File;
@@ -36,12 +61,32 @@ const fileUploaded = (uploadEvent: FileUploadUploaderEvent) => {
   file
     .text()
     .then((value) => {
-      console.log(value);
+      const result = parsePackageJSONStringToObject(value);
+
+      if (result.status === 'Success') {
+        uploadError.value = '';
+
+        financialReportStore.setPackageJSON(result.value);
+        stepStore.setAllowAdvance(true);
+      } else {
+        uploadError.value = result.value;
+      }
     })
     .catch((err) => console.error(err));
 };
 
-let inputValue = '';
+const onBlur = () => {
+  const result = parsePackageJSONStringToObject(inputValue.value);
+
+  if (result.status === 'Success') {
+    textInputError.value = '';
+
+    financialReportStore.setPackageJSON(result.value);
+    stepStore.setAllowAdvance(true);
+  } else {
+    textInputError.value = result.value;
+  }
+};
 </script>
 
 <style lang="scss" scoped>
