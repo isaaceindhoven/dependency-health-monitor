@@ -4,9 +4,9 @@
 
 <script setup lang="ts">
 import Steps from 'primevue/steps';
-import { useFinancialReportStore } from '@/stores/financial-report';
+import { useStepperStore } from '@/stores/stepper';
 
-const store = useFinancialReportStore();
+const store = useStepperStore();
 </script>
 
 <style lang="scss" scoped></style>

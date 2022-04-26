@@ -10,11 +10,11 @@
 import SelectButtonCard from '@/components/SelectButtonCard.vue';
 
 import { ref, watch } from 'vue';
-import { useFinancialReportStore } from '@/stores/financial-report';
+import { useStepperStore } from '@/stores/stepper';
 import { executionOptions } from '@/helpers/execution-options';
 import type { ExecutionMethod } from '@/helpers/types';
 
-const store = useFinancialReportStore();
+const store = useStepperStore();
 
 let selectedOption = ref<ExecutionMethod>('Upload');
 

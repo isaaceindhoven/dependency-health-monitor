@@ -17,10 +17,10 @@
 <script setup lang="ts">
 import Button from 'primevue/button';
 import ExecutionSteps from '@/components/ExecutionSteps.vue';
-import { useFinancialReportStore } from '@/stores/financial-report';
+import { useStepperStore } from '@/stores/stepper';
 import { useRouter } from 'vue-router';
 
-const store = useFinancialReportStore();
+const store = useStepperStore();
 const router = useRouter();
 
 const nextPage = () => {

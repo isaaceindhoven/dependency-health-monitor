@@ -10,7 +10,7 @@ const defaultStore: FinancialReportStore = {
   activeStepIndex: 0,
 };
 
-export const useFinancialReportStore = defineStore({
+export const useStepperStore = defineStore({
   id: 'steps',
   state: () => defaultStore,
   getters: {
