@@ -1,22 +1,10 @@
 <template>
-  <!-- <div class="grid">
-    <div class="col-12">
-      <Editor v-model="inputValue" />
-    </div>
-    <div class="col-12 text-3xl text-center">or</div>
-    <div class="col-12">
-      <FileUpload accept=".json" :fileLimit="1" :customUpload="true" @uploader="fileUploaded">
-        <template #empty>
-          <p class="text-center">
-            Drag and drop file here to upload or click the button above and select the file to upload.
-          </p>
-        </template>
-      </FileUpload>
-    </div>
-  </div> -->
   <div class="grid">
-    <div class="col-7">
-      <Editor class="h-full" v-model="inputValue" editorStyle="height: 320px" />
+    <div class="col-6">
+      <TextArea class="package-json-input" v-model="inputValue" placeholder="Paste your package.json here" />
+    </div>
+    <div class="col-1 text-center flex align-items-center justify-content-center">
+      <p class="text-2xl">or</p>
     </div>
     <div class="col-5">
       <FileUpload class="h-full" accept=".json" :fileLimit="1" :customUpload="true" @uploader="fileUploaded">
@@ -31,12 +19,10 @@
 </template>
 
 <script setup lang="ts">
-import Editor from 'primevue/editor';
+import TextArea from 'primevue/textarea';
 import FileUpload from 'primevue/fileupload';
 
 import type { FileUploadUploaderEvent } from 'primevue/fileupload';
-
-const editorToolbarOptions = [[{ font: ['Monospace'] }], ['blockquote', 'code-block']];
 
 const fileUploaded = (uploadEvent: FileUploadUploaderEvent) => {
   let file: File;
@@ -58,4 +44,10 @@ const fileUploaded = (uploadEvent: FileUploadUploaderEvent) => {
 let inputValue = '';
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.package-json-input {
+  width: 100%;
+  height: 100%;
+  font-family: monospace;
+}
+</style>
