@@ -4,7 +4,7 @@
   <div class="grid grid-nogutter justify-content-end pt-4">
     <Button v-if="store.getActiveStepIndex > 0" label="Back" @click="prevPage()" icon="pi pi-angle-left" />
     <Button
-      v-if="store.getActiveStepIndex < store.getSteps.length"
+      v-if="store.getActiveStepIndex < store.getSteps.length - 1"
       label="Next"
       class="ml-2"
       icon="pi pi-angle-right"
