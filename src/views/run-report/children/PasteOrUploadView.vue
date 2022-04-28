@@ -6,14 +6,15 @@
         class="package-json-input"
         v-model="inputValue"
         placeholder="Paste your package.json here"
+        rows="30"
       />
       <span class="p-error" v-if="textInputError">{{ textInputError }}</span>
     </div>
     <div class="col-1 text-center flex align-items-center justify-content-center">
       <p class="text-2xl">or</p>
     </div>
-    <div class="col-5">
-      <FileUpload class="h-full" accept=".json" :fileLimit="1" :customUpload="true" @uploader="fileUploaded">
+    <div class="col-5 align-items-center flex">
+      <FileUpload accept=".json" :fileLimit="1" :customUpload="true" @uploader="fileUploaded">
         <template #empty>
           <p class="text-center">
             Drag and drop file here to upload or click the button above and select the file to upload.
@@ -66,6 +67,7 @@ const fileUploaded = (uploadEvent: FileUploadUploaderEvent) => {
       if (result.status === 'Success') {
         uploadError.value = '';
 
+        inputValue.value = JSON.stringify(result.value, undefined, 2);
         financialReportStore.setPackageJSON(result.value);
         stepStore.setAllowAdvance(true);
       } else {
