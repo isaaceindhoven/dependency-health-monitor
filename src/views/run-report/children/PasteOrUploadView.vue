@@ -63,30 +63,26 @@ const fileUploaded = (uploadEvent: FileUploadUploaderEvent) => {
     .text()
     .then((value) => {
       const result = parsePackageJSONStringToObject(value);
+      uploadError.value = '';
 
-      if (result.status === 'Success') {
-        uploadError.value = '';
-
-        inputValue.value = JSON.stringify(result.value, undefined, 2);
-        financialReportStore.setPackageJSON(result.value);
-        stepStore.setAllowAdvance(true);
-      } else {
-        uploadError.value = result.value;
-      }
+      inputValue.value = JSON.stringify(result, undefined, 2);
+      financialReportStore.setPackageJSON(result);
+      stepStore.setAllowAdvance(true);
     })
-    .catch((err) => console.error(err));
+    .catch((err) => {
+      uploadError.value = err;
+    });
 };
 
 const onBlur = () => {
-  const result = parsePackageJSONStringToObject(inputValue.value);
-
-  if (result.status === 'Success') {
+  try {
+    const result = parsePackageJSONStringToObject(inputValue.value);
     textInputError.value = '';
 
-    financialReportStore.setPackageJSON(result.value);
+    financialReportStore.setPackageJSON(result);
     stepStore.setAllowAdvance(true);
-  } else {
-    textInputError.value = result.value;
+  } catch (error: any) {
+    textInputError.value = error;
   }
 };
 </script>
