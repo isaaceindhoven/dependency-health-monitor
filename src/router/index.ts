@@ -5,6 +5,7 @@ import AboutView from '@/views/AboutView.vue';
 import RunReportView from '@/views/run-report/RunReportView.vue';
 import PasteOrUploadView from '@/views/run-report/children/PasteOrUploadView.vue';
 import SelectExecutionMethodView from '@/views/run-report/children/SelectExecutionMethodView.vue';
+import ConfirmAndExecute from '@/views/run-report/children/ConfirmAndExecuteView.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -24,7 +25,7 @@ const router = createRouter({
       name: 'report',
       component: RunReportView,
       children: [
-        { path: 'select', name: 'select', component: SelectExecutionMethodView },
+        { path: 'select', name: 'select', component: SelectExecutionMethodView, alias: '' },
         {
           path: 'paste-or-upload',
           name: 'paste-or-upload',
@@ -40,7 +41,7 @@ const router = createRouter({
         {
           path: 'confirm',
           name: 'confirm',
-          component: HomeView,
+          component: ConfirmAndExecute,
         },
         {
           path: 'results',

@@ -37,7 +37,7 @@ const pasteOrUploadSteps: MenuItem[] = [
   },
   {
     label: 'Confirm & Execute',
-    to: pathPrefix + '/',
+    to: pathPrefix + '/confirm',
   },
   {
     label: 'View results',
