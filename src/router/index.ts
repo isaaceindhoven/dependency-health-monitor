@@ -6,6 +6,7 @@ import RunReportView from '@/views/run-report/RunReportView.vue';
 import PasteOrUploadView from '@/views/run-report/children/PasteOrUploadView.vue';
 import SelectExecutionMethodView from '@/views/run-report/children/SelectExecutionMethodView.vue';
 import ConfirmAndExecute from '@/views/run-report/children/ConfirmAndExecuteView.vue';
+import Results from '@/views/run-report/children/ResultsView.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -46,7 +47,7 @@ const router = createRouter({
         {
           path: 'results',
           name: 'results',
-          component: HomeView,
+          component: Results,
         },
       ],
     },

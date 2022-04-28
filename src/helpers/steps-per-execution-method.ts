@@ -41,7 +41,7 @@ const pasteOrUploadSteps: MenuItem[] = [
   },
   {
     label: 'View results',
-    to: pathPrefix + '/',
+    to: pathPrefix + '/results',
   },
 ];
 
