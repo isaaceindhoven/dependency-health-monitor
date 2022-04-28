@@ -8,8 +8,10 @@ export const parsePackageJSONStringToObject = (stringToParse: string) => {
 
     return result;
   } catch (error: any) {
-    console.log(error);
-
-    throw new Error('Invalid JSON object, please verify object.');
+    if (error instanceof SyntaxError) {
+      throw new Error('Invalid JSON object, please verify object.');
+    } else {
+      throw error;
+    }
   }
 };
