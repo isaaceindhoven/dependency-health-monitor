@@ -39,12 +39,12 @@ import { parsePackageJSONStringToObject } from '@/helpers/json-parser';
 const stepStore = useStepperStore();
 const financialReportStore = useFinancialReportStore();
 
-let inputValue = ref(JSON.stringify(financialReportStore.getPackageJSON));
+let inputValue = ref(JSON.stringify(financialReportStore.getPackageJSON, undefined, 2));
 let textInputError = ref('');
 let uploadError = ref('');
 
 onMounted(() => {
-  if (financialReportStore.getPackageJSON) {
+  if (financialReportStore.getPackageJSON && Object.keys(financialReportStore.getPackageJSON).length > 0) {
     stepStore.setAllowAdvance(true);
   }
 });
