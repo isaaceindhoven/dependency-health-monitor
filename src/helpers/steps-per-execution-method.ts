@@ -10,19 +10,19 @@ const gitHubSteps: MenuItem[] = [
   },
   {
     label: 'Log in',
-    to: pathPrefix + '/',
+    to: pathPrefix,
   },
   {
     label: 'Select repository',
-    to: pathPrefix + '/',
+    to: pathPrefix,
   },
   {
     label: 'Confirm & Execute',
-    to: pathPrefix + '/',
+    to: pathPrefix,
   },
   {
     label: 'View results',
-    to: pathPrefix + '/',
+    to: pathPrefix,
   },
 ];
 
@@ -52,15 +52,15 @@ const publicURLSteps: MenuItem[] = [
   },
   {
     label: 'Insert public repository URL',
-    to: pathPrefix + '/',
+    to: pathPrefix,
   },
   {
     label: 'Confirm & Execute',
-    to: pathPrefix + '/',
+    to: pathPrefix,
   },
   {
     label: 'View results',
-    to: pathPrefix + '/',
+    to: pathPrefix,
   },
 ];
 
