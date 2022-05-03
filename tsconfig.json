@@ -1,5 +1,12 @@
 {
   "files": [],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+    },
+    "types": ["cypress", "cypress-file-upload"]
+  },
   "references": [
     {
       "path": "./tsconfig.vite-config.json"
