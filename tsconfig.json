@@ -9,13 +9,13 @@
   },
   "references": [
     {
-      "path": "./tsconfig.vite-config.json"
+      "path": "./packages/frontend/tsconfig.vite-config.json"
     },
     {
-      "path": "./tsconfig.app.json"
+      "path": "./packages/frontend/tsconfig.app.json"
     },
     {
-      "path": "./tsconfig.vitest.json"
+      "path": "./packages/frontend/tsconfig.vitest.json"
     }
   ]
 }

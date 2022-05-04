@@ -1,0 +1,12 @@
+
+   
+{
+  "compilerOptions": {
+    "strict": true,
+    "target": "esnext",
+    "module": "esnext",
+    "typeRoots": ["node_modules/@types", "@types"],
+    "outDir": "dist",
+    "declaration": true
+  }
+}
