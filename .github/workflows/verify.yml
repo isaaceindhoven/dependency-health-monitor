@@ -103,6 +103,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: frontend-build
+          path: dist
 
       - name: Run unit tests
         run: npm run test:e2e
