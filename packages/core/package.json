@@ -7,7 +7,7 @@
     "build": "tsc --project tsconfig.prod.json",
     "dev-old": "tsc --watch --project tsconfig.prod.json > null",
     "dev": "echo 'this is core :)'",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test:unit": "echo \"Error: no test specified yet\""
   },
   "keywords": [],
   "author": "",
