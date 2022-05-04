@@ -1,7 +1,7 @@
 import 'cypress-file-upload';
 
-import { getStepsForExecutionMethod } from '../../../../src/helpers/steps-per-execution-method';
-import { executionOptions } from '../../../../src/helpers/execution-options';
+import { getStepsForExecutionMethod } from '../../src/helpers/steps-per-execution-method';
+import { executionOptions } from '../../src/helpers/execution-options';
 
 describe('Paste or upload page', () => {
   beforeEach(() => {
