@@ -35,7 +35,7 @@ jobs:
       - name: Archive build output
         uses: actions/upload-artifact@v3
         with:
-          name: build:frontend
+          name: frontend-build
           path: packages/frontend/dist
           retention-days: 1
   lint:
@@ -102,7 +102,7 @@ jobs:
       - name: Download build artifact
         uses: actions/download-artifact@v3
         with:
-          name: build:frontend
+          name: frontend-build
 
       - name: Run unit tests
         run: npm run test:e2e
