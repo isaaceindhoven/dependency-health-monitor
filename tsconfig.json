@@ -4,8 +4,7 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
-    },
-    "types": ["cypress", "cypress-file-upload"]
+    }
   },
   "references": [
     {
