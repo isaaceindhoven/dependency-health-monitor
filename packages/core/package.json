@@ -5,8 +5,7 @@
   "type": "module",
   "scripts": {
     "build": "tsc --project tsconfig.prod.json",
-    "dev-old": "tsc --watch --project tsconfig.prod.json > null",
-    "dev": "echo 'this is core :)'",
+    "dev": "tsc --watch --project tsconfig.prod.json",
     "test:unit": "echo \"Error: no test specified yet\""
   },
   "keywords": [],

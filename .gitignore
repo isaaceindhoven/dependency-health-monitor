@@ -27,3 +27,8 @@ coverage
 *.sln
 *.sw?
 .eslintcache
+
+# Turborepo
+.turbo
+build
+.next

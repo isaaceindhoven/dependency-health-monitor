@@ -5,13 +5,13 @@
     "packages/*"
   ],
   "scripts": {
-    "prepare": "husky install",
-    "dev": "npm run dev -ws",
-    "test:unit": "npm run test:unit -ws",
-    "test:e2e": "npm run test:e2e:ci --workspace=packages/frontend",
-    "build:frontend": "npm run build --workspace=packages/frontend",
-    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
-    "test:lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --ignore-path .gitignore"
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "test:unit": "turbo run test:unit",
+    "test:e2e:ci": "turbo run test:e2e:ci --filter=frontend",
+    "lint": "turbo run lint",
+    "test:lint": "turbo run test:lint",
+    "prepare": "husky install"
   },
   "devDependencies": {
     "@commitlint/cli": "^16.2.4",
@@ -22,6 +22,7 @@
     "eslint-plugin-cypress": "^2.12.1",
     "eslint-plugin-vue": "^8.7.1",
     "husky": "^7.0.4",
-    "prettier": "^2.6.2"
+    "prettier": "^2.6.2",
+    "turbo": "^1.2.6"
   }
 }
