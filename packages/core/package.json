@@ -1,0 +1,14 @@
+{
+  "name": "@dependency-health-monitor/core",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "type": "module",
+  "scripts": {
+    "build": "tsc --project tsconfig.prod.json",
+    "dev": "tsc --watch --project tsconfig.prod.json",
+    "test:unit": "echo \"Error: no test specified yet\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
