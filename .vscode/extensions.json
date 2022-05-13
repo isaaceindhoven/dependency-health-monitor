@@ -1,3 +1,7 @@
 {
-  "recommendations": ["johnsoncodehk.volar", "johnsoncodehk.vscode-typescript-vue-plugin"]
+  "recommendations": [
+    "ms-azuretools.vscode-azurefunctions",
+    "johnsoncodehk.volar",
+    "johnsoncodehk.vscode-typescript-vue-plugin"
+  ]
 }
