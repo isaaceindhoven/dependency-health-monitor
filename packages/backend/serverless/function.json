@@ -16,5 +16,5 @@
       "name": "res"
     }
   ],
-  "scriptFile": "../dist/fetch-npm-dependencies/index.js"
+  "scriptFile": "../dist/serverless/index.js"
 }
