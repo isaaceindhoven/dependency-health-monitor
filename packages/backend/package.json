@@ -1,17 +1,15 @@
 {
-  "name": "src",
+  "name": "@dependency-health-monitor/backend",
   "version": "1.0.0",
   "description": "",
+  "type": "module",
   "scripts": {
     "build": "tsc",
-    "watch": "tsc -w",
-    "predev": "npm run build",
     "dev": "func start",
-    "test": "echo \"No tests yet...\""
+    "test:unit": "echo \"No tests yet...\""
   },
-  "dependencies": {},
   "devDependencies": {
     "@azure/functions": "^3.0.0",
-    "typescript": "^4.0.0"
+    "typescript": "^4.6.4"
   }
 }
