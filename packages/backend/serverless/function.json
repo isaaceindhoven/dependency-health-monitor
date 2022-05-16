@@ -16,5 +16,5 @@
       "name": "res"
     }
   ],
-  "scriptFile": "../dist/serverless/index.js"
+  "scriptFile": "../dist/serverless/index.mjs"
 }
