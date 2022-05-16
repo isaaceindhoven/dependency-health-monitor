@@ -32,3 +32,6 @@ coverage
 .turbo
 build
 .next
+
+# Azure Functions
+local.settings.json
