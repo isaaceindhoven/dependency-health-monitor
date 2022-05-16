@@ -9,7 +9,7 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
     };
     return;
   }
-  const packageName: string = req.body.packageName || '';
+  const packageName: string = req.body.packageName;
 
   const dependencies: Map<string, number> = await fetchDependenciesForPackageInDepth(packageName);
 
