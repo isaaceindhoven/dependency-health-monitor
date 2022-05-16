@@ -7,6 +7,9 @@ module.exports = {
   env: {
     'vue/setup-compiler-macros': true,
   },
+  rules: {
+    '@typescript-eslint/ban-ts-comment': ['error', { 'ts-ignore': 'allow-with-description' }],
+  },
   overrides: [
     {
       files: ['packages/frontend/src/**/*', 'packages/frontend/src/**/*.vue', 'packages/frontend/env.d.ts'],

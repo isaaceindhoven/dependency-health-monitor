@@ -1,19 +1,18 @@
 {
   "name": "@dependency-health-monitor/backend",
   "version": "1.0.0",
-  "main": "index.js",
+  "description": "",
   "type": "module",
   "scripts": {
-    "dev": "echo 'this is backend :)'",
-    "test:unit": "echo \"Error: no test specified yet\""
+    "build": "tsc",
+    "dev": "func start",
+    "test:unit": "echo \"No tests yet...\""
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "@dependency-health-monitor/core": "*"
+    "@dependency-health-monitor/npm-dependency-fetcher": "1.0.0"
   },
   "devDependencies": {
+    "@azure/functions": "^3.0.0",
     "typescript": "^4.6.4"
   }
 }
