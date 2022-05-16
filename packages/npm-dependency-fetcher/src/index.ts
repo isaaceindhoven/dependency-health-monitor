@@ -1,4 +1,4 @@
-import { fetchDependencies } from './pMap.js';
+import { fetchDependencies } from './fetch-dependencies.js';
 
 function storeDependenciesInMap(dependenciesToStore: string[], map: Map<string, number>) {
   dependenciesToStore.forEach((dependency) => {
