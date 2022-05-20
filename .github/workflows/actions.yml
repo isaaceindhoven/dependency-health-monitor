@@ -58,8 +58,8 @@ jobs:
           name: frontend-build
           path: packages/frontend/dist
 
-      - name: Install dependencies
-        run: npm ci
+      - name: Install SWA
+        run: npm install -D @azure/static-web-apps-cli
 
       - name: Deploy Azure Static Web App
         env:
