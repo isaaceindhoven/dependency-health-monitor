@@ -58,17 +58,16 @@ jobs:
           name: frontend-build
           path: packages/frontend/dist
 
-      - name: Print build directory
-        run: |
-          ls packages/frontend/dist
-          
-      - name: Azure Static Web Apps Deploy
-        uses: Azure/static-web-apps-deploy@v1
-        with:
-          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_BLUE_BAY_064C4C303 }}
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          action: "upload"
-          app_location: "packages/frontend"
-          output_location: "dist"
-          skip_app_build: true
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Deploy Azure Static Web App
+        env:
+          DEPLOYMENT_TOKEN: ${{ secrets.SWA_CLI_DEPLOYMENT_TOKEN }}
+          SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+          APP_NAME: ${{ secrets.SWA_CLI_APP_NAME }}
+          RESOURCE_GROUP: ${{ secrets.AZURE_RESOURCE_GROUP }}
+
+        run: swa deploy -O ./packages/frontend/dist -d $DEPLOYMENT_TOKEN -S $SUBSCRIPTION_ID -T $TENANT_ID -n $APP_NAME -R $RESOURCE_GROUP
 
