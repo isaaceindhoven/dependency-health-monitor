@@ -58,6 +58,10 @@ jobs:
           name: frontend-build
           path: packages/frontend/dist
 
+      - name: Print build directory
+        run: |
+          ls packages/frontend/dist
+          
       - name: Azure Static Web Apps Deploy
         uses: Azure/static-web-apps-deploy@v1
         with:
