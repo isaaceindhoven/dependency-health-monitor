@@ -15,5 +15,5 @@
       "name": "res"
     }
   ],
-  "scriptFile": "../dist/serverless/index.mjs"
+  "scriptFile": "../dist/determine-dependencies/index.mjs"
 }
