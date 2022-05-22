@@ -46,6 +46,12 @@ jobs:
           path: packages/npm-dependency-fetcher/dist
           retention-days: 1
 
+      - name: Archive backend build artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: backend-build
+          path: packages/backend/dist
+
       - name: Test unit
         run: npm run test:unit
 
@@ -70,6 +76,12 @@ jobs:
         with:
           name: npm-dependency-fetcher-build
           path: packages/npm-dependency-fetcher/dist
+
+      - name: Download backend build artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: backend-build
+          path: packages/backend/dist
 
       - name: Install SWA
         run: npm install -g @azure/static-web-apps-cli
