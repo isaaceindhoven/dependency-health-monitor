@@ -95,6 +95,6 @@ jobs:
           APP_NAME: ${{ secrets.SWA_CLI_APP_NAME }}
           RESOURCE_GROUP: ${{ secrets.AZURE_RESOURCE_GROUP }}
 
-        run: swa deploy -a ./packages/frontend -i ./packages/backend -O ./dist -d $DEPLOYMENT_TOKEN -S $SUBSCRIPTION_ID -T $TENANT_ID -n $APP_NAME -R $RESOURCE_GROUP
+        run: swa deploy -a ./packages/frontend -i ./packages/backend -O ./dist -d $DEPLOYMENT_TOKEN -S $SUBSCRIPTION_ID -T $TENANT_ID -n $APP_NAME -R $RESOURCE_GROUP --env "Production"
           
 
