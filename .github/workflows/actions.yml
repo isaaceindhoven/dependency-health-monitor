@@ -39,11 +39,11 @@ jobs:
           path: packages/frontend/dist
           retention-days: 1
       
-      - name: Archive backend build output
+      - name: Archive npm-dependency-fetcher build output
         uses: actions/upload-artifact@v3
         with:
-          name: backend-build
-          path: packages/backend/dist
+          name: npm-dependency-fetcher-build
+          path: packages/npm-dependency-fetcher/dist
           retention-days: 1
 
       - name: Test unit
@@ -65,11 +65,11 @@ jobs:
           name: frontend-build
           path: packages/frontend/dist
 
-      - name: Download backend build artifact
+      - name: Download npm-dependency-fetcher build artifact
         uses: actions/download-artifact@v3
         with:
-          name: backend-build
-          path: packages/backend/dist
+          name: npm-dependency-fetcher-build
+          path: packages/npm-dependency-fetcher/dist
 
       - name: Install SWA
         run: npm install -g @azure/static-web-apps-cli
