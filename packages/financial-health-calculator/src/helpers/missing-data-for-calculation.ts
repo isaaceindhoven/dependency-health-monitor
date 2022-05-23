@@ -1,4 +1,4 @@
-import { ScoreCalculationResult } from './../../dist/types/score-calculation-result.d';
+import { ScoreCalculationResult } from './../types/score-calculation-result';
 
 export const cannotCalculateWithMissingData = (
   packageName: string,

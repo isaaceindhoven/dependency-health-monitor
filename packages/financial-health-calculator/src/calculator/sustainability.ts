@@ -1,6 +1,6 @@
 import { AVERAGE_SALARY_CENTS } from './../constants';
 import { cannotCalculateWithMissingData } from './../helpers/missing-data-for-calculation';
-import type { ScoreCalculationResult } from './../../dist/types/score-calculation-result.d';
+import type { ScoreCalculationResult } from './../types/score-calculation-result';
 
 const calculateScoreWithFundingGoal = (
   yearlyRevenueCents: number,
