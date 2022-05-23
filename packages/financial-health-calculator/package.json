@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "type": "module",
   "scripts": {
-    "test": "vitest",
+    "test:unit": "vitest",
     "build": "tsc"
   },
   "author": "",
