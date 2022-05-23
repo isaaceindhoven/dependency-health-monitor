@@ -1,0 +1,1 @@
+export const AVERAGE_SALARY_CENTS = 5000000; // 50k
