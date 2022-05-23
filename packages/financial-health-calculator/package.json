@@ -1,0 +1,13 @@
+{
+  "name": "@dependency-health-monitor/financial-health-calculator",
+  "version": "1.0.0",
+  "description": "Calculates financial health for Open-Source packages",
+  "main": "dist/index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
+  },
+  "author": "",
+  "license": "MIT"
+}
