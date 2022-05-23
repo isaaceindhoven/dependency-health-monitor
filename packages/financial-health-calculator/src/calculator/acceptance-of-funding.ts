@@ -1,4 +1,3 @@
-import { cannotCalculateWithMissingData } from './../helpers/missing-data-for-calculation';
 import type { ScoreCalculationResult } from './../types/score-calculation-result';
 
 export const calculateAcceptanceOfFundingScore = (
@@ -7,10 +6,10 @@ export const calculateAcceptanceOfFundingScore = (
   githubFundingUrl: string,
 ): ScoreCalculationResult => {
   if (!npmFundingUrl && !githubFundingUrl) {
-    return cannotCalculateWithMissingData(packageName, 'Acceptance of funding', [
-      'NPM Funding URL',
-      'GitHub Funding URL',
-    ]);
+    return {
+      score: 0,
+      explanation: `${packageName} does not accept funding on both GitHub or NPM. Therefore, it receives a score of 0.`,
+    };
   }
 
   return {
