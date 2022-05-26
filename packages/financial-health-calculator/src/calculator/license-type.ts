@@ -3,7 +3,7 @@ import { cannotCalculateWithMissingData } from './../helpers/missing-data-for-ca
 import type { ScoreCalculationResult } from './../types/score-calculation-result';
 
 export const calculateLicenseTypeScore = (packageName: string, licenseIdentifier: string): ScoreCalculationResult => {
-  if (licenseIdentifier === 'none') {
+  if (licenseIdentifier === 'none' || licenseIdentifier === '') {
     return cannotCalculateWithMissingData(packageName, 'License type', ['License type']);
   }
 

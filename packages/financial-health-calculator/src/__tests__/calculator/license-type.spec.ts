@@ -21,8 +21,10 @@ describe('license type score calculation', () => {
   it('gives a score of 0 whenever no license has been set in NPM', async () => {
     expect(() => {
       const scoreCalculationResult = calculateLicenseTypeScore('eslint', 'none');
+      const scoreCalculationResultEmpty = calculateLicenseTypeScore('eslint', '');
 
       expect(scoreCalculationResult.score).toBe(0);
+      expect(scoreCalculationResultEmpty.score).toBe(0);
     }).not.toThrow();
   });
 });
