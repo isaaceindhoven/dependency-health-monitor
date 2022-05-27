@@ -21,7 +21,6 @@ export const calculateFinancialHealthScore = async (
   }
 
   const openCollectiveData = await fetchOpenCollectiveData(packageName);
-
   const gitHubData = await fetchGitHubData(npmData.gitHubRepositoryIdentifier);
 
   return {
