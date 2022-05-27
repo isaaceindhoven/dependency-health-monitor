@@ -21,5 +21,6 @@ export const fetchNpmData = async (packageName: string): Promise<NpmData> => {
   return {
     fundingUrl,
     licenseIdentifier: scrapeResult.licenseIdentifier,
+    gitHubRepositoryIdentifier: scrapeResult.gitHubRepositoryIdentifier,
   };
 };

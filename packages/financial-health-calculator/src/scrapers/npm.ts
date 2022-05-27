@@ -17,7 +17,7 @@ const getLicenseIdentifier = (root: HTMLElement): string => {
   return licenseIdentifier;
 };
 
-const getGitHubRepositoryIdentifiers = (root: HTMLElement): GitHubRepositoryIdentifier | undefined => {
+const getGitHubRepositoryIdentifier = (root: HTMLElement): GitHubRepositoryIdentifier | undefined => {
   const h3Elements = root.getElementsByTagName('h3');
   const h3Arr = Array.from(h3Elements);
   const repositoryElement = h3Arr.filter((e) => e.innerText === 'Repository')[0];
@@ -43,7 +43,7 @@ export const scrapeNpm = async (packageName: string): Promise<NpmScrapeResult> =
   const root = parse(npmHtml);
 
   const licenseIdentifier = getLicenseIdentifier(root);
-  const gitHubRepositoryIdentifier = getGitHubRepositoryIdentifiers(root);
+  const gitHubRepositoryIdentifier = getGitHubRepositoryIdentifier(root);
 
   return {
     licenseIdentifier,
