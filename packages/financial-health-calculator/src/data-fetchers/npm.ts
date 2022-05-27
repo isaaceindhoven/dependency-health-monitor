@@ -1,4 +1,4 @@
-import { scrapeFromNpm } from '../scrapers/npm';
+import { scrapeNpm } from '../scrapers/npm';
 import pacote from 'pacote';
 import type { NpmData } from '../types/npm-data';
 
@@ -10,7 +10,7 @@ function isFunding(element: unknown): element is Funding {
 
 export const fetchNpmData = async (packageName: string): Promise<NpmData> => {
   const projectData = await pacote.manifest(packageName);
-  const scrapeResult = await scrapeFromNpm(packageName);
+  const scrapeResult = await scrapeNpm(packageName);
 
   let fundingUrl = '';
 
