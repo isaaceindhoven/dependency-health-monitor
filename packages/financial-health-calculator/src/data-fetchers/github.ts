@@ -1,7 +1,7 @@
-import type { GitHubRateLimitData } from './../types/github-rate-limit-data';
-import type { GitHubCollaborator } from './../types/github-collaborator';
-import type { GitHubRepositoryIdentifier } from './../types/github-repository-identifier';
-import type { GitHubData } from './../types/github-data';
+import type { GitHubRateLimitData } from './../types/github/github-rate-limit-data';
+import type { GitHubCollaborator } from '../types/github/github-collaborator';
+import type { GitHubRepositoryIdentifier } from './../types/github/github-repository-identifier';
+import type { GitHubData } from './../types/github/github-data';
 
 const fetchCollaboratorData = async (url: string): Promise<GitHubCollaborator[]> => {
   const response = await fetch(url);

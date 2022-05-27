@@ -1,7 +1,7 @@
-import { GitHubData } from './../types/github-data';
+import { GitHubData } from '../types/github/github-data';
 import { scrapeGitHubProfile } from './../scrapers/github';
-import type { OrganisationalActivityScoreCalculationResult } from './../types/organisational-activity-score-calculation-result';
-import type { GitHubRepositoryIdentifier } from './../types/github-repository-identifier';
+import type { OrganisationalActivityScoreCalculationResult } from '../types/score/organisational-activity-score-calculation-result';
+import type { GitHubRepositoryIdentifier } from '../types/github/github-repository-identifier';
 
 const collaboratorIsPartOfOrganisation = (organisations: string[], organisation: string): boolean => {
   return organisations.includes(organisation);

@@ -1,4 +1,4 @@
-import { GitHubRepositoryIdentifier } from './github-repository-identifier';
+import type { GitHubRepositoryIdentifier } from '../github/github-repository-identifier';
 export interface NpmScrapeResult {
   licenseIdentifier: string;
   gitHubRepositoryIdentifier?: GitHubRepositoryIdentifier;

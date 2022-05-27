@@ -1,5 +1,5 @@
 import { HTMLElement, parse } from 'node-html-parser';
-import type { GitHubProfileScrapeResult } from '../types/github-profile-scrape-result';
+import type { GitHubProfileScrapeResult } from '../types/github/github-profile-scrape-result';
 
 const getUserOrganizations = (gitHubProfile: HTMLElement): string[] => {
   const h2Elements = gitHubProfile.getElementsByTagName('h2');

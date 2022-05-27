@@ -1,6 +1,6 @@
 import spdxLicenseList from '../data-files/spdx-licenses.json';
 import { cannotCalculateWithMissingData } from './../helpers/missing-data-for-calculation';
-import type { ScoreCalculationResult } from './../types/score-calculation-result';
+import type { ScoreCalculationResult } from './../types/score/score-calculation-result';
 
 export const calculateLicenseTypeScore = (packageName: string, licenseIdentifier: string): ScoreCalculationResult => {
   if (licenseIdentifier === 'none' || licenseIdentifier === '') {

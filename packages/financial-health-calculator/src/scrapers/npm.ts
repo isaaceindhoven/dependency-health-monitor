@@ -1,6 +1,6 @@
-import { GitHubRepositoryIdentifier } from './../types/github-repository-identifier';
+import { GitHubRepositoryIdentifier } from '../types/github/github-repository-identifier';
 import { HTMLElement, parse } from 'node-html-parser';
-import type { NpmScrapeResult } from './../types/npm-scrape-result';
+import type { NpmScrapeResult } from './../types/npm/npm-scrape-result';
 
 const getLicenseIdentifier = (root: HTMLElement): string => {
   const h3Elements = root.getElementsByTagName('h3');

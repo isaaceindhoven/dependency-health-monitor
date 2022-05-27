@@ -1,6 +1,6 @@
 import { scrapeNpm } from '../scrapers/npm';
 import pacote from 'pacote';
-import type { NpmData } from '../types/npm-data';
+import type { NpmData } from '../types/npm/npm-data';
 
 type Funding = { url: string };
 
