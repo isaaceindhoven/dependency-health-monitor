@@ -5,6 +5,8 @@ export const calculateAcceptanceOfFundingScore = (
   npmFundingUrl: string,
   githubFundingUrl: string,
 ): ScoreCalculationResult => {
+  const weight = 0.6;
+
   if (!npmFundingUrl && !githubFundingUrl) {
     return {
       score: 0,
@@ -13,7 +15,7 @@ export const calculateAcceptanceOfFundingScore = (
   }
 
   return {
-    score: 100,
+    score: 100 * weight,
     explanation: `
             As ${packageName} accepts funding, they receive a score of 100. ${packageName} promotes their funding on:
             ${npmFundingUrl ? ` - NPM: ${npmFundingUrl} \n` : ''}

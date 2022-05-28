@@ -7,6 +7,8 @@ export const calculateLicenseTypeScore = (packageName: string, licenseIdentifier
     return cannotCalculateWithMissingData(packageName, 'License type', ['License type']);
   }
 
+  const weight = 0.4;
+
   const licenses = spdxLicenseList.licenses;
   for (const license of licenses) {
     if (license.licenseId === licenseIdentifier) {
@@ -18,7 +20,7 @@ export const calculateLicenseTypeScore = (packageName: string, licenseIdentifier
   }
 
   return {
-    score: 100,
+    score: 100 * weight,
     explanation: `License with ID ${licenseIdentifier} has not been found in the SPDX list. Therefore, the license is seen as pay to use and ${packageName} receives a score of 100 for the 'License type' criterion.`,
   };
 };

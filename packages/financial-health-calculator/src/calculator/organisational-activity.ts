@@ -12,6 +12,7 @@ export const calculateOrganisationalActivityScore = async (
   gitHubData: GitHubData,
   repositoryIdentifier: GitHubRepositoryIdentifier,
 ): Promise<OrganisationalActivityScoreCalculationResult> => {
+  const weight = 0.2;
   let totalContributions = 0;
   let contributionsFromSameOrganisation = 0;
 
@@ -28,7 +29,7 @@ export const calculateOrganisationalActivityScore = async (
   const score = (contributionsFromSameOrganisation / totalContributions) * 100;
 
   return {
-    score,
+    score: score * weight,
     rateLimitLeft: gitHubData.rateLimitLeft,
     explanation: `
         Calculated score with the following data:

@@ -2,6 +2,8 @@ import { AVERAGE_SALARY_CENTS } from './../constants';
 import { cannotCalculateWithMissingData } from './../helpers/missing-data-for-calculation.js';
 import type { ScoreCalculationResult } from './../types/score/score-calculation-result';
 
+const weight = 1;
+
 const calculateScoreWithFundingGoal = (
   yearlyRevenueCents: number,
   fundingGoalCents: number,
@@ -9,7 +11,7 @@ const calculateScoreWithFundingGoal = (
   const score = Math.min(100, (yearlyRevenueCents / fundingGoalCents) * 100);
 
   return {
-    score,
+    score: score * weight,
     explanation: `
             Calculated score with the following data:
                 - Yearly revenue (in cents): ${yearlyRevenueCents}
@@ -27,7 +29,7 @@ const calculateScoreWithTotalTeamCost = (yearlyRevenue: number, teamSize: number
   const score = Math.min(100, (yearlyRevenue / teamCostCents) * 100);
 
   return {
-    score,
+    score: score * weight,
     explanation: `
             Calculated score with the following data:
                 - Yearly revenue (in cents): ${yearlyRevenue}
