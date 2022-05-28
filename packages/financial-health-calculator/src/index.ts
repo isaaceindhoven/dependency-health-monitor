@@ -1,11 +1,11 @@
-import { calculateOrganisationalActivityScore } from './calculator/organisational-activity';
-import { calculateSustainabilityScore } from './calculator/sustainability';
-import { calculateAcceptanceOfFundingScore } from './calculator/acceptance-of-funding';
-import { fetchOpenCollectiveData } from './data-fetchers/open-collective';
-import { calculateFinancialRoadmapScore } from './calculator/financial-roadmap';
-import { calculateLicenseTypeScore } from './calculator/license-type';
-import { fetchGitHubData } from './data-fetchers/github';
-import { fetchNpmData } from './data-fetchers/npm';
+import { calculateOrganisationalActivityScore } from './calculator/organisational-activity.js';
+import { calculateSustainabilityScore } from './calculator/sustainability.js';
+import { calculateAcceptanceOfFundingScore } from './calculator/acceptance-of-funding.js';
+import { fetchOpenCollectiveData } from './data-fetchers/open-collective.js';
+import { calculateFinancialRoadmapScore } from './calculator/financial-roadmap.js';
+import { calculateLicenseTypeScore } from './calculator/license-type.js';
+import { fetchGitHubData } from './data-fetchers/github.js';
+import { fetchNpmData } from './data-fetchers/npm.js';
 
 import type { FinancialHealthScoreCalculationResult } from './types/score/financial-health-score-calculation-result';
 

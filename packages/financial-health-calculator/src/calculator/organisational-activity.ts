@@ -1,5 +1,5 @@
-import { GitHubData } from '../types/github/github-data';
-import { scrapeGitHubProfile } from './../scrapers/github';
+import { scrapeGitHubProfile } from './../scrapers/github.js';
+import type { GitHubData } from '../types/github/github-data';
 import type { OrganisationalActivityScoreCalculationResult } from '../types/score/organisational-activity-score-calculation-result';
 import type { GitHubRepositoryIdentifier } from '../types/github/github-repository-identifier';
 

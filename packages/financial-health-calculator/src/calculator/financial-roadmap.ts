@@ -1,4 +1,4 @@
-import { ScoreCalculationResult } from './../types/score/score-calculation-result';
+import type { ScoreCalculationResult } from './../types/score/score-calculation-result';
 
 export const calculateFinancialRoadmapScore = (
   packageName: string,

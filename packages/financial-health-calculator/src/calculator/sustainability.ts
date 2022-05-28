@@ -1,5 +1,5 @@
 import { AVERAGE_SALARY_CENTS } from './../constants';
-import { cannotCalculateWithMissingData } from './../helpers/missing-data-for-calculation';
+import { cannotCalculateWithMissingData } from './../helpers/missing-data-for-calculation.js';
 import type { ScoreCalculationResult } from './../types/score/score-calculation-result';
 
 const calculateScoreWithFundingGoal = (
