@@ -35,7 +35,7 @@ describe('scraping github', () => {
   it(`returns an empty array when the user is not part of an organisation`, async () => {
     expect(async () => {
       const gitHubScrapeResult = await scrapeGitHubProfile('Ensar025-without-organization');
-      expect(gitHubScrapeResult.organisations).toBe([]);
+      expect(gitHubScrapeResult.organisations.length).toBe(0);
     }).not.toThrow();
   });
 });
