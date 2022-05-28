@@ -1,4 +1,4 @@
-import spdxLicenseList from '../data-files/spdx-licenses.json';
+import { spdxLicenseList } from '../data-files/spdx-licenses.js';
 import { cannotCalculateWithMissingData } from './../helpers/missing-data-for-calculation.js';
 import type { ScoreCalculationResult } from './../types/score/score-calculation-result';
 
