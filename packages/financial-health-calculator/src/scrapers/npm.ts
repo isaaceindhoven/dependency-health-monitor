@@ -14,9 +14,9 @@ const getLicenseIdentifier = (root: HTMLElement): string => {
   }
 
   const licenseParentElement = licenseElement.parentNode;
-  const licenseIdentifier = licenseParentElement.childNodes[1].innerText;
+  const licenseIdentifier = licenseParentElement.getElementsByTagName('p')[0];
 
-  return licenseIdentifier;
+  return licenseIdentifier.innerText;
 };
 
 const getGitHubRepositoryIdentifier = (root: HTMLElement): GitHubRepositoryIdentifier | undefined => {
@@ -29,13 +29,18 @@ const getGitHubRepositoryIdentifier = (root: HTMLElement): GitHubRepositoryIdent
   }
 
   const repositoryParentElement = repositoryElement.parentNode;
-  const repositoryText = repositoryParentElement.childNodes[1].childNodes[0].innerText;
+  const repositoryPTag = repositoryParentElement.getElementsByTagName('a')[0];
+  const hrefAttribute = repositoryPTag.getAttribute('href');
 
-  const splitRepositoryText = repositoryText.split('/');
+  if (!hrefAttribute) {
+    return undefined;
+  }
+
+  const splitRepositoryText = hrefAttribute.split('/');
 
   return {
-    organisation: splitRepositoryText[1],
-    project: splitRepositoryText[0],
+    organisation: splitRepositoryText[3],
+    project: splitRepositoryText[4],
   };
 };
 
