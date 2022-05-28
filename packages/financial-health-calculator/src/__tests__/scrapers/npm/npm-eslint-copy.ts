@@ -909,10 +909,11 @@ YeonJuan
 </html>`;
 
 export const eslintWithoutLicenseIdentifierCopy = eslintHTMLCopy.replace(
-  `
-<div class="_702d723c dib w-50 bb b--black-10 pr2">
-    <h3 class="c84e15be f5 mt2 pt2 mb0">License</h3>
-    <p class="f2874b88 fw6 mb3 mt2 truncate black-80 f4">MIT</p>
-</div>`,
+  '<h3 class="c84e15be f5 mt2 pt2 mb0">License</h3>',
+  '',
+);
+
+export const eslintWithoutRepository = eslintHTMLCopy.replace(
+  '<h3 id="repository" class="c84e15be f5 mt2 pt2 mb0">Repository</h3>',
   '',
 );

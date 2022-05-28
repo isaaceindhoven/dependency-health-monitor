@@ -30,14 +30,6 @@ export const gitHubProfileMockHtml = `
 `;
 
 export const gitHubProfileMockWithoutOrganization = gitHubProfileMockHtml.replace(
-  `
-    <div class="border-top color-border-muted pt-3 mt-3 clearfix hide-sm hide-md">
-        <h2 class="mb-2 h4">Organizations</h2>
-
-        <a aria-label="isaaceindhoven" itemprop="follows" class="avatar-group-item" data-hovercard-type="organization" data-hovercard-url="/orgs/isaaceindhoven/hovercard" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" data-hydro-click="{&quot;event_type&quot;:&quot;user_profile.click&quot;,&quot;payload&quot;:{&quot;profile_user_id&quot;:99197230,&quot;target&quot;:&quot;MEMBER_ORGANIZATION_AVATAR&quot;,&quot;user_id&quot;:99197230,&quot;originating_url&quot;:&quot;https://github.com/Ensar025&quot;}}" data-hydro-click-hmac="17206f47b1ea957bd90d0c766ef9ad5872c9f6c62d3f0b78d34950ac2c058a64" href="/isaaceindhoven">
-            <img src="https://avatars.githubusercontent.com/u/2471852?s=64&amp;v=4" alt="@isaaceindhoven" size="32" height="32" width="32" data-view-component="true" class="avatar">
-        </a>
-    </div>
-    `,
+  '<h2 class="mb-2 h4">Organizations</h2>',
   '',
 );
