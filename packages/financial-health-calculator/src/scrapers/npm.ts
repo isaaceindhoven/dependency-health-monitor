@@ -1,3 +1,5 @@
+import fetch from 'node-fetch';
+
 import { HTMLElement, parse } from 'node-html-parser';
 import type { GitHubRepositoryIdentifier } from '../types/github/github-repository-identifier';
 import type { NpmScrapeResult } from './../types/npm/npm-scrape-result';

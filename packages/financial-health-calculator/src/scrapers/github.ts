@@ -1,3 +1,4 @@
+import fetch from 'node-fetch';
 import { HTMLElement, parse } from 'node-html-parser';
 import type { GitHubProfileScrapeResult } from '../types/github/github-profile-scrape-result';
 

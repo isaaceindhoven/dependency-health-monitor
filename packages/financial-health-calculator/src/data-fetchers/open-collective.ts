@@ -1,3 +1,4 @@
+import fetch, { RequestInit, Headers } from 'node-fetch';
 import { OPEN_COLLECTIVE_API_KEY } from '../secrets.js';
 import type { OpenCollectiveData } from '../types/open-collective/open-collective-data';
 
