@@ -12,9 +12,10 @@ describe('license type score calculation', () => {
 
   it('gives a score of 100 whenever the license is not the SPDX list', async () => {
     expect(() => {
+      const weight = 0.4;
       const scoreCalculationResult = calculateLicenseTypeScore('eslint', 'MITLPDEA');
 
-      expect(scoreCalculationResult.score).toBe(100);
+      expect(scoreCalculationResult.score).toBe(100 * weight);
     }).not.toThrow();
   });
 
