@@ -1,3 +1,4 @@
+import { MAX_FINANCIAL_HEALTH_SCORE } from './constants.js';
 import { calculateOrganisationalActivityScore } from './calculator/organisational-activity.js';
 import { calculateSustainabilityScore } from './calculator/sustainability.js';
 import { calculateAcceptanceOfFundingScore } from './calculator/acceptance-of-funding.js';
@@ -23,24 +24,38 @@ export const calculateFinancialHealthScore = async (
   const openCollectiveData = await fetchOpenCollectiveData(packageName);
   const gitHubData = await fetchGitHubData(npmData.gitHubRepositoryIdentifier);
 
+  const acceptanceOfFundingScore = calculateAcceptanceOfFundingScore(packageName, npmData.fundingUrl, '');
+  const licenseTypeScore = calculateLicenseTypeScore(packageName, npmData.licenseIdentifier);
+  const sustainabilityScore = calculateSustainabilityScore(
+    packageName,
+    openCollectiveData.yearlyRevenueCents,
+    openCollectiveData.fundingGoalCents,
+    openCollectiveData.teamSize,
+  );
+  const financialRoadmapScore = calculateFinancialRoadmapScore(
+    packageName,
+    openCollectiveData.fundingGoalCents,
+    openCollectiveData.currency,
+  );
+  const organisationalActivityScore = await calculateOrganisationalActivityScore(
+    packageName,
+    gitHubData,
+    npmData.gitHubRepositoryIdentifier,
+  );
+
+  const totalScore =
+    sustainabilityScore.score +
+    acceptanceOfFundingScore.score +
+    licenseTypeScore.score +
+    financialRoadmapScore.score +
+    organisationalActivityScore.score;
+
   return {
-    sustainabilityScore: calculateSustainabilityScore(
-      packageName,
-      openCollectiveData.yearlyRevenueCents,
-      openCollectiveData.fundingGoalCents,
-      openCollectiveData.teamSize,
-    ),
-    acceptanceOfFundingScore: calculateAcceptanceOfFundingScore(packageName, npmData.fundingUrl, ''),
-    licenseTypeScore: calculateLicenseTypeScore(packageName, npmData.licenseIdentifier),
-    financialRoadmapScore: calculateFinancialRoadmapScore(
-      packageName,
-      openCollectiveData.fundingGoalCents,
-      openCollectiveData.currency,
-    ),
-    organisationalActivityScore: await calculateOrganisationalActivityScore(
-      packageName,
-      gitHubData,
-      npmData.gitHubRepositoryIdentifier,
-    ),
+    sustainabilityScore,
+    acceptanceOfFundingScore,
+    licenseTypeScore,
+    financialRoadmapScore,
+    organisationalActivityScore,
+    finalScore: (totalScore / MAX_FINANCIAL_HEALTH_SCORE) * 100,
   };
 };

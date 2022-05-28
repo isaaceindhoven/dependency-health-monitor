@@ -7,4 +7,5 @@ export interface FinancialHealthScoreCalculationResult {
   licenseTypeScore: ScoreCalculationResult;
   financialRoadmapScore: ScoreCalculationResult;
   organisationalActivityScore: OrganisationalActivityScoreCalculationResult;
+  finalScore: number;
 }
