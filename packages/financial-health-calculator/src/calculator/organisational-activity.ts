@@ -1,10 +1,21 @@
+import pMap from 'p-map';
 import { scrapeGitHubProfile } from './../scrapers/github.js';
+import type { GitHubCollaborator } from './../types/github/github-collaborator';
 import type { GitHubData } from '../types/github/github-data';
 import type { OrganisationalActivityScoreCalculationResult } from '../types/score/organisational-activity-score-calculation-result';
 import type { GitHubRepositoryIdentifier } from '../types/github/github-repository-identifier';
 
 const collaboratorIsPartOfOrganisation = (organisations: string[], organisation: string): boolean => {
   return organisations.includes(organisation);
+};
+
+const getCollaboratorContributionData = async (collaborator: GitHubCollaborator) => {
+  const gitHubScrapeResult = await scrapeGitHubProfile(collaborator.name);
+
+  return {
+    organisations: gitHubScrapeResult.organisations,
+    contributions: collaborator.contributions,
+  };
 };
 
 export const calculateOrganisationalActivityScore = async (
@@ -16,14 +27,15 @@ export const calculateOrganisationalActivityScore = async (
   let totalContributions = 0;
   let contributionsFromSameOrganisation = 0;
 
-  gitHubData.collaborators.forEach(async (collaborator) => {
-    const gitHubScrapeResult = await scrapeGitHubProfile(collaborator.name);
+  const pMapResult = await pMap(gitHubData.collaborators, getCollaboratorContributionData, {
+    concurrency: 75,
+  });
 
-    if (collaboratorIsPartOfOrganisation(gitHubScrapeResult.organisations, repositoryIdentifier.organisation)) {
-      contributionsFromSameOrganisation += collaborator.contributions;
+  pMapResult.forEach((result) => {
+    if (collaboratorIsPartOfOrganisation(result.organisations, repositoryIdentifier.organisation)) {
+      contributionsFromSameOrganisation += result.contributions;
     }
-
-    totalContributions += collaborator.contributions;
+    totalContributions += result.contributions;
   });
 
   const score = (contributionsFromSameOrganisation / totalContributions) * 100;

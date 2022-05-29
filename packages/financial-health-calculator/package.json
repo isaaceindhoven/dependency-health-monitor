@@ -12,6 +12,7 @@
   "license": "MIT",
   "dependencies": {
     "node-html-parser": "^5.3.3",
+    "p-map": "^5.4.0",
     "pacote": "^13.4.1"
   },
   "devDependencies": {
