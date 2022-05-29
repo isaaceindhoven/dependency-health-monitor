@@ -7,7 +7,7 @@ describe('sustainability score calculation', () => {
     expect(() => {
       const scoreCalculationResult = calculateSustainabilityScore('eslint', 0, 100, 100);
 
-      expect(scoreCalculationResult.score).toBe(0);
+      expect(scoreCalculationResult.weightedScore).toBe(0);
     }).not.toThrow();
   });
 
@@ -15,7 +15,7 @@ describe('sustainability score calculation', () => {
     expect(() => {
       const scoreCalculationResult = calculateSustainabilityScore('eslint', 100, 0, 0);
 
-      expect(scoreCalculationResult.score).toBe(0);
+      expect(scoreCalculationResult.weightedScore).toBe(0);
     }).not.toThrow();
   });
 
@@ -23,7 +23,7 @@ describe('sustainability score calculation', () => {
     expect(() => {
       const scoreCalculationResult = calculateSustainabilityScore('eslint', 0, 0, 0);
 
-      expect(scoreCalculationResult.score).toBe(0);
+      expect(scoreCalculationResult.weightedScore).toBe(0);
     }).not.toThrow();
   });
 
@@ -31,7 +31,7 @@ describe('sustainability score calculation', () => {
     expect(() => {
       const scoreCalculationResult = calculateSustainabilityScore('eslint', 100, 100, 0);
 
-      expect(scoreCalculationResult.score).toBe(100);
+      expect(scoreCalculationResult.weightedScore).toBe(100);
     }).not.toThrow();
   });
 
@@ -39,7 +39,7 @@ describe('sustainability score calculation', () => {
     expect(() => {
       const scoreCalculationResult = calculateSustainabilityScore('eslint', 100, 50, 0);
 
-      expect(scoreCalculationResult.score).toBe(100);
+      expect(scoreCalculationResult.weightedScore).toBe(100);
     }).not.toThrow();
   });
 
@@ -47,7 +47,7 @@ describe('sustainability score calculation', () => {
     expect(() => {
       const scoreCalculationResult = calculateSustainabilityScore('eslint', 100, 100, 75);
 
-      expect(scoreCalculationResult.score).toBe(100);
+      expect(scoreCalculationResult.weightedScore).toBe(100);
     }).not.toThrow();
   });
 
@@ -58,7 +58,7 @@ describe('sustainability score calculation', () => {
 
       const scoreCalculationResult = calculateSustainabilityScore('eslint', teamCost, 0, teamSize);
 
-      expect(scoreCalculationResult.score).toBe(100);
+      expect(scoreCalculationResult.weightedScore).toBe(100);
     }).not.toThrow();
   });
 });
