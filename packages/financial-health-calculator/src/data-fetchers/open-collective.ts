@@ -59,7 +59,7 @@ export const fetchOpenCollectiveData = (packageName: string): Promise<OpenCollec
   return fetch('https://api.opencollective.com/graphql/v2', options)
     .then((response) => response.json())
     .then(({ data }): OpenCollectiveData => {
-      if (!data) {
+      if (!data.collective) {
         return {
           yearlyRevenueCents: 0,
           fundingGoalCents: 0,
