@@ -58,12 +58,21 @@ export const fetchOpenCollectiveData = (packageName: string): Promise<OpenCollec
 
   return fetch('https://api.opencollective.com/graphql/v2', options)
     .then((response) => response.json())
-    .then(
-      ({ data }): OpenCollectiveData => ({
+    .then(({ data }): OpenCollectiveData => {
+      if (!data) {
+        return {
+          yearlyRevenueCents: 0,
+          fundingGoalCents: 0,
+          teamSize: 0,
+          currency: '',
+        };
+      }
+
+      return {
         yearlyRevenueCents: data.collective.stats.yearlyBudget,
         fundingGoalCents: getTotalFundingGoalCents(data.collective.settings.goals || []),
         teamSize: data.collective.contributors.totalCount,
         currency: data.collective.currency,
-      }),
-    );
+      };
+    });
 };
