@@ -44,11 +44,11 @@ export const calculateFinancialHealthScore = async (
   );
 
   const totalScore =
-    sustainabilityScore.score +
-    acceptanceOfFundingScore.score +
-    licenseTypeScore.score +
-    financialRoadmapScore.score +
-    organisationalActivityScore.score;
+    sustainabilityScore.weightedScore +
+    acceptanceOfFundingScore.weightedScore +
+    licenseTypeScore.weightedScore +
+    financialRoadmapScore.weightedScore +
+    organisationalActivityScore.weightedScore;
 
   return {
     sustainabilityScore,

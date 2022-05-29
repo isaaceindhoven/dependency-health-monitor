@@ -41,7 +41,8 @@ export const calculateOrganisationalActivityScore = async (
   const score = (contributionsFromSameOrganisation / totalContributions) * 100;
 
   return {
-    score: score * weight,
+    score,
+    weightedScore: score * weight,
     rateLimitLeft: gitHubData.rateLimitLeft,
     explanation: `
         Calculated score with the following data:
