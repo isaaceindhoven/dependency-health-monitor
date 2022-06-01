@@ -35,3 +35,6 @@ build
 
 # Azure Functions
 local.settings.json
+
+# Financial health calculation
+secrets.ts
