@@ -13,7 +13,8 @@
   "dependencies": {
     "node-html-parser": "^5.3.3",
     "p-map": "^5.4.0",
-    "pacote": "^13.4.1"
+    "pacote": "^13.4.1",
+    "spdx-license-list": "^6.5.0"
   },
   "devDependencies": {
     "@types/pacote": "^11.1.3",
