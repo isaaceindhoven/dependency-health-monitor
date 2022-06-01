@@ -28,7 +28,6 @@ query fetchFundingData($slug: String!) {
 const getTotalFundingGoalCents = (fundingGoals: Record<string, unknown>[]): number => {
   let totalFundingCents = 0;
 
-  // TODO: research if there are more types than balance and yearlyBudget
   fundingGoals.forEach((goal) => {
     if (goal.type === 'balance' || goal.type === 'yearlyBudget') {
       totalFundingCents += goal.amount as number;

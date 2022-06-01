@@ -1,4 +1,4 @@
-import { CRITERIA_WEIGHTS } from './../constants';
+import { CRITERIA_WEIGHTS } from './../constants.js';
 import type { ScoreCalculationResult } from './../types/score/score-calculation-result';
 
 export const calculateAcceptanceOfFundingScore = (

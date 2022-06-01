@@ -1,5 +1,4 @@
-import { AVERAGE_SALARY_CENTS } from './../constants.js';
-import { CRITERIA_WEIGHTS } from './../constants';
+import { AVERAGE_SALARY_CENTS, CRITERIA_WEIGHTS } from './../constants.js';
 import { cannotCalculateWithMissingData } from './../helpers/missing-data-for-calculation.js';
 import type { ScoreCalculationResult } from './../types/score/score-calculation-result';
 

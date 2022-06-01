@@ -1,4 +1,4 @@
-import { CRITERIA_WEIGHTS } from './../constants';
+import { CRITERIA_WEIGHTS } from './../constants.js';
 import pMap from 'p-map';
 import { scrapeGitHubProfile } from './../scrapers/github.js';
 import type { GitHubCollaborator } from './../types/github/github-collaborator';
