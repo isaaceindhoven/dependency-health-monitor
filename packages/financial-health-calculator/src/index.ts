@@ -50,12 +50,14 @@ export const calculateFinancialHealthScore = async (
     financialRoadmapScore.weightedScore +
     organisationalActivityScore.weightedScore;
 
+  const finalScore = (totalScore / MAX_FINANCIAL_HEALTH_SCORE) * 100;
+
   return {
     sustainabilityScore,
     acceptanceOfFundingScore,
     licenseTypeScore,
     financialRoadmapScore,
     organisationalActivityScore,
-    finalScore: (totalScore / MAX_FINANCIAL_HEALTH_SCORE) * 100,
+    finalScore,
   };
 };
