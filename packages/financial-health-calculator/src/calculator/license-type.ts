@@ -1,3 +1,4 @@
+import { CRITERIA_WEIGHTS } from './../constants';
 import { spdxLicenseList } from '../data-files/spdx-licenses.js';
 import { cannotCalculateWithMissingData } from './../helpers/missing-data-for-calculation.js';
 import type { ScoreCalculationResult } from './../types/score/score-calculation-result';
@@ -6,8 +7,6 @@ export const calculateLicenseTypeScore = (packageName: string, licenseIdentifier
   if (licenseIdentifier === 'none' || licenseIdentifier === '') {
     return cannotCalculateWithMissingData(packageName, 'License type', ['License type']);
   }
-
-  const weight = 0.4;
 
   const licenses = spdxLicenseList.licenses;
   for (const license of licenses) {
@@ -22,7 +21,7 @@ export const calculateLicenseTypeScore = (packageName: string, licenseIdentifier
 
   return {
     score: 100,
-    weightedScore: 100 * weight,
+    weightedScore: 100 * CRITERIA_WEIGHTS.LICENSE_TYPE,
     explanation: `License with ID ${licenseIdentifier} has not been found in the SPDX list. Therefore, the license is seen as pay to use and ${packageName} receives a score of 100 for the 'License type' criterion.`,
   };
 };

@@ -1,3 +1,4 @@
+import { CRITERIA_WEIGHTS } from './../constants';
 import type { ScoreCalculationResult } from './../types/score/score-calculation-result';
 
 export const calculateFinancialRoadmapScore = (
@@ -5,8 +6,6 @@ export const calculateFinancialRoadmapScore = (
   fundingGoalCents: number,
   currency: string,
 ): ScoreCalculationResult => {
-  const weight = 0.2;
-
   if (!fundingGoalCents) {
     return {
       score: 0,
@@ -17,7 +16,7 @@ export const calculateFinancialRoadmapScore = (
 
   return {
     score: 100,
-    weightedScore: 100 * weight,
+    weightedScore: 100 * CRITERIA_WEIGHTS.FINANCIAL_ROADMAP,
     explanation: `${packageName} has set a Funding goal of ${currency} ${
       fundingGoalCents / 100
     }. Therefore, they receive a score of 100.`,

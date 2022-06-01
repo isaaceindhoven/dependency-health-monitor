@@ -1,8 +1,7 @@
 import { AVERAGE_SALARY_CENTS } from './../constants.js';
+import { CRITERIA_WEIGHTS } from './../constants';
 import { cannotCalculateWithMissingData } from './../helpers/missing-data-for-calculation.js';
 import type { ScoreCalculationResult } from './../types/score/score-calculation-result';
-
-const weight = 1;
 
 const calculateScoreWithFundingGoal = (
   yearlyRevenueCents: number,
@@ -12,7 +11,7 @@ const calculateScoreWithFundingGoal = (
 
   return {
     score,
-    weightedScore: score * weight,
+    weightedScore: score * CRITERIA_WEIGHTS.SUSTAINABILITY,
     explanation: `
             Calculated score with the following data:
                 - Yearly revenue (in cents): ${yearlyRevenueCents}
@@ -31,7 +30,7 @@ const calculateScoreWithTotalTeamCost = (yearlyRevenue: number, teamSize: number
 
   return {
     score,
-    weightedScore: score * weight,
+    weightedScore: score * CRITERIA_WEIGHTS.SUSTAINABILITY,
     explanation: `
             Calculated score with the following data:
                 - Yearly revenue (in cents): ${yearlyRevenue}

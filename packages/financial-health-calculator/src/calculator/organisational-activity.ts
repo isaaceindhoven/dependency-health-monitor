@@ -1,3 +1,4 @@
+import { CRITERIA_WEIGHTS } from './../constants';
 import pMap from 'p-map';
 import { scrapeGitHubProfile } from './../scrapers/github.js';
 import type { GitHubCollaborator } from './../types/github/github-collaborator';
@@ -23,7 +24,6 @@ export const calculateOrganisationalActivityScore = async (
   gitHubData: GitHubData,
   repositoryIdentifier: GitHubRepositoryIdentifier,
 ): Promise<OrganisationalActivityScoreCalculationResult> => {
-  const weight = 0.2;
   let totalContributions = 0;
   let contributionsFromSameOrganisation = 0;
 
@@ -42,7 +42,7 @@ export const calculateOrganisationalActivityScore = async (
 
   return {
     score,
-    weightedScore: score * weight,
+    weightedScore: score * CRITERIA_WEIGHTS.ORGANISATIONAL_ACTIVITY,
     rateLimitLeft: gitHubData.rateLimitLeft,
     explanation: `
         Calculated score with the following data:
