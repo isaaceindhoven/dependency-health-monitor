@@ -2,6 +2,6 @@ import type { GitHubRepositoryIdentifier } from '../github/github-repository-ide
 
 export interface NpmData {
   fundingUrl: string;
-  licenseIdentifier: string;
+  licenseIdentifier?: string;
   gitHubRepositoryIdentifier?: GitHubRepositoryIdentifier;
 }

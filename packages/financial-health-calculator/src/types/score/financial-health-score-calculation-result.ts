@@ -1,4 +1,3 @@
-import type { OrganisationalActivityScoreCalculationResult } from './organisational-activity-score-calculation-result';
 import type { ScoreCalculationResult } from './score-calculation-result';
 
 export interface FinancialHealthScoreCalculationResult {
@@ -6,6 +5,6 @@ export interface FinancialHealthScoreCalculationResult {
   acceptanceOfFundingScore: ScoreCalculationResult;
   licenseTypeScore: ScoreCalculationResult;
   financialRoadmapScore: ScoreCalculationResult;
-  organisationalActivityScore: OrganisationalActivityScoreCalculationResult;
+  organisationalActivityScore: ScoreCalculationResult;
   finalScore: number;
 }

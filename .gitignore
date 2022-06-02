@@ -37,4 +37,4 @@ build
 local.settings.json
 
 # Financial health calculation
-secrets.ts
+.env

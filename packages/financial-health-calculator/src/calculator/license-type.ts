@@ -3,8 +3,8 @@ import { CRITERIA_WEIGHTS } from './../constants.js';
 import { cannotCalculateWithMissingData } from './../helpers/missing-data-for-calculation.js';
 import type { ScoreCalculationResult } from './../types/score/score-calculation-result';
 
-export const calculateLicenseTypeScore = (packageName: string, licenseIdentifier: string): ScoreCalculationResult => {
-  if (licenseIdentifier === 'none' || licenseIdentifier === '') {
+export const calculateLicenseTypeScore = (packageName: string, licenseIdentifier?: string): ScoreCalculationResult => {
+  if (!licenseIdentifier || licenseIdentifier === 'none') {
     return cannotCalculateWithMissingData(packageName, 'License type', ['License type']);
   }
 
