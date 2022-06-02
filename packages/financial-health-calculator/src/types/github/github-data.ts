@@ -4,4 +4,6 @@ import type { GitHubCollaborator } from './github-collaborator';
 export interface GitHubData {
   collaborators: GitHubCollaborator[];
   rateLimitLeft: GitHubRateLimitData;
+  totalContributions: number;
+  contributionsFromSameOrganisation: number;
 }

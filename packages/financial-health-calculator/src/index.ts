@@ -39,8 +39,9 @@ export const calculateFinancialHealthScore = async (
   );
   const organisationalActivityScore = await calculateOrganisationalActivityScore(
     packageName,
-    gitHubData,
-    npmData.gitHubRepositoryIdentifier,
+    npmData.gitHubRepositoryIdentifier.organisation,
+    gitHubData.totalContributions,
+    gitHubData.contributionsFromSameOrganisation,
   );
 
   const totalScore =
