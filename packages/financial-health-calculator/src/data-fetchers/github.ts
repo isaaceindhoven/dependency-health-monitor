@@ -1,7 +1,6 @@
 import fetch from 'node-fetch';
 import pMap from 'p-map';
 import { scrapeGitHubProfile } from './../scrapers/github';
-
 import type { GitHubRateLimitData } from './../types/github/github-rate-limit-data';
 import type { GitHubCollaborator } from '../types/github/github-collaborator';
 import type { GitHubRepositoryIdentifier } from './../types/github/github-repository-identifier';

@@ -7,7 +7,6 @@ import { calculateFinancialRoadmapScore } from './calculator/financial-roadmap.j
 import { calculateLicenseTypeScore } from './calculator/license-type.js';
 import { fetchGitHubData } from './data-fetchers/github.js';
 import { fetchNpmData } from './data-fetchers/npm.js';
-
 import type { FinancialHealthScoreCalculationResult } from './types/score/financial-health-score-calculation-result';
 
 export const calculateFinancialHealthScore = async (
