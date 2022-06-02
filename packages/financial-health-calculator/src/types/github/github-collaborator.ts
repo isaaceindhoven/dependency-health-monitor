@@ -1,5 +1,5 @@
 export interface GitHubCollaborator {
-  contributions: number;
+  contributionCount: number;
   name: string;
   id: number;
 }
