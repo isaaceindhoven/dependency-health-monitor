@@ -1,3 +1,4 @@
+import { CRITERIA_WEIGHTS } from './../../constants';
 import { calculateLicenseTypeScore } from './../../calculator/license-type';
 import { describe, it, expect } from 'vitest';
 
@@ -6,16 +7,17 @@ describe('license type score calculation', () => {
     expect(() => {
       const scoreCalculationResult = calculateLicenseTypeScore('eslint', 'MIT');
 
-      expect(scoreCalculationResult.weightedScore).toBe(0);
+      expect(scoreCalculationResult.score).toBe(0);
+      expect(scoreCalculationResult.weightedScore).toBe(0 * CRITERIA_WEIGHTS.LICENSE_TYPE);
     }).not.toThrow();
   });
 
   it('gives a score of 100 whenever the license is not the SPDX list', async () => {
     expect(() => {
-      const weight = 0.4;
       const scoreCalculationResult = calculateLicenseTypeScore('eslint', 'MITLPDEA');
 
-      expect(scoreCalculationResult.weightedScore).toBe(100 * weight);
+      expect(scoreCalculationResult.score).toBe(100);
+      expect(scoreCalculationResult.weightedScore).toBe(100 * CRITERIA_WEIGHTS.LICENSE_TYPE);
     }).not.toThrow();
   });
 
@@ -24,8 +26,10 @@ describe('license type score calculation', () => {
       const scoreCalculationResult = calculateLicenseTypeScore('eslint', 'none');
       const scoreCalculationResultEmpty = calculateLicenseTypeScore('eslint', '');
 
-      expect(scoreCalculationResult.weightedScore).toBe(0);
-      expect(scoreCalculationResultEmpty.weightedScore).toBe(0);
+      expect(scoreCalculationResult.score).toBe(0);
+      expect(scoreCalculationResultEmpty.score).toBe(0);
+      expect(scoreCalculationResult.weightedScore).toBe(0 * CRITERIA_WEIGHTS.LICENSE_TYPE);
+      expect(scoreCalculationResultEmpty.weightedScore).toBe(0 * CRITERIA_WEIGHTS.LICENSE_TYPE);
     }).not.toThrow();
   });
 });
