@@ -7,7 +7,7 @@ export const calculateOrganisationalActivityScore = (
   totalContributions: number,
   contributionsFromSameOrganisation: number,
 ): ScoreCalculationResult => {
-  const score = (contributionsFromSameOrganisation / totalContributions) * 100;
+  const score = (contributionsFromSameOrganisation / totalContributions) * 100 || 0;
 
   return {
     score,

@@ -50,4 +50,20 @@ describe('organisational activity score calculation', () => {
       expect(scoreCalculationResult.weightedScore).toBe(0 * CRITERIA_WEIGHTS.ORGANISATIONAL_ACTIVITY);
     }).not.toThrow();
   });
+
+  it('gives a score of 0 whenever there has not been comitted yet', async () => {
+    expect(() => {
+      const totalCommits = 0;
+      const commitsFromSameOrg = 0;
+      const scoreCalculationResult = calculateOrganisationalActivityScore(
+        'eslint',
+        'eslint',
+        totalCommits,
+        commitsFromSameOrg,
+      );
+
+      expect(scoreCalculationResult.score).toBe(0);
+      expect(scoreCalculationResult.weightedScore).toBe(0 * CRITERIA_WEIGHTS.ORGANISATIONAL_ACTIVITY);
+    }).not.toThrow();
+  });
 });
