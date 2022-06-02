@@ -51,7 +51,7 @@ describe('organisational activity score calculation', () => {
     }).not.toThrow();
   });
 
-  it('gives a score of 0 whenever there has not been comitted yet', async () => {
+  it('gives a score of 0 whenever there has not been committed yet', async () => {
     expect(() => {
       const totalCommits = 0;
       const commitsFromSameOrg = 0;
