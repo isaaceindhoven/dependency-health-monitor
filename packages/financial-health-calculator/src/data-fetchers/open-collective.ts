@@ -68,7 +68,7 @@ export const fetchOpenCollectiveData = (packageName: string): Promise<OpenCollec
       }
 
       return {
-        yearlyRevenueCents: data.collective.stats.yearlyBudget,
+        yearlyRevenueCents: data.collective.stats.yearlyBudget.value,
         fundingGoalCents: getTotalFundingGoalCents(data.collective.settings.goals || []),
         teamSize: data.collective.contributors.totalCount,
         currency: data.collective.currency,
