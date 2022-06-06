@@ -1,5 +1,5 @@
+import 'dotenv/config';
 import fetch, { RequestInit, Headers } from 'node-fetch';
-import { OPEN_COLLECTIVE_API_KEY } from '../secrets.js';
 import type { OpenCollectiveData } from '../types/open-collective/open-collective-data';
 
 const query = `
@@ -39,7 +39,7 @@ const getTotalFundingGoalCents = (fundingGoals: Record<string, unknown>[]): numb
 
 export const fetchOpenCollectiveData = (packageName: string): Promise<OpenCollectiveData> => {
   const headers = new Headers();
-  headers.append('Api-Key', OPEN_COLLECTIVE_API_KEY);
+  headers.append('Api-Key', process.env.OPEN_COLLECTIVE_API_KEY);
   headers.append('Content-Type', 'application/json');
 
   const body = {

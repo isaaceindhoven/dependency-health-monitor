@@ -29,6 +29,12 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Create .env file in packages/financial-health-calculator
+        run: | 
+          cd packages/financial-health-calculator
+          touch .env
+          echo OPEN_COLLECTIVE_API_KEY="${{ secrets.OPEN_COLLECTIVE_API_KEY }}" >> .env
+
       - name: Build
         run: npm run build
 

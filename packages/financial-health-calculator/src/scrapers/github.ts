@@ -13,7 +13,6 @@ const getUserOrganizations = (gitHubProfile: HTMLElement): string[] => {
   }
 
   const organizationParentElement = organizationElement.parentNode;
-
   const aTags = organizationParentElement.getElementsByTagName('a');
 
   const organisations: string[] = [];
