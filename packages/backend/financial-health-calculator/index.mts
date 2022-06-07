@@ -5,7 +5,7 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
   const eslintScore = await calculateFinancialHealthScore('eslint');
   context.res = {
     // status: 200, /* Defaults to 200 */
-    body: JSON.stringify(eslintScore),
+    body: eslintScore,
   };
 };
 
