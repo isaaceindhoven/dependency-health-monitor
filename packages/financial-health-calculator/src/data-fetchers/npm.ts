@@ -13,7 +13,7 @@ const getGitHubRepositoryIdentifier = (projectData: ManifestResult): GitHubRepos
   let project = '';
 
   if (projectData.repository && projectData.repository.url && projectData.repository.url.includes('github')) {
-    const gitHubRepositoryUrl = projectData.repository.url.replace('git+', '');
+    const gitHubRepositoryUrl = projectData.repository.url.replace(/git\+|\.git/gi, '');
     const splitRepositoryUrl = gitHubRepositoryUrl.split('/');
 
     organisation = splitRepositoryUrl[3];
