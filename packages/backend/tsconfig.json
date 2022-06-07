@@ -10,5 +10,13 @@
     "moduleResolution": "node",
     "emitDeclarationOnly": true,
     "declaration": true
-  }
+  },
+  "references": [
+    {
+      "path": "../npm-dependency-fetcher"
+    },
+    {
+      "path": "../financial-health-calculator"
+    }
+  ]
 }
