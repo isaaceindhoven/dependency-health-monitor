@@ -16,5 +16,5 @@
       "name": "res"
     }
   ],
-  "scriptFile": "../dist/financial-health-calculator/index.mjs"
+  "scriptFile": "../dist/financial-health-calculator/index.js"
 }
