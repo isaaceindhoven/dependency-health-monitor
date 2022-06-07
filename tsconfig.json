@@ -1,7 +1,6 @@
 {
   "files": [],
   "compilerOptions": {
-    "composite": true,
     "declaration": true,
     "paths": {
       "@/*": ["./src/*"],
