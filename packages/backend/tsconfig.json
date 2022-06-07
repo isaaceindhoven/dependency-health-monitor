@@ -6,6 +6,8 @@
     "rootDir": ".",
     "sourceMap": true,
     "strict": true,
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "emitDeclarationOnly": true,
+    "declaration": true,
   }
 }
