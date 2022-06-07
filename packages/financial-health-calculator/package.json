@@ -2,7 +2,8 @@
   "name": "@dependency-health-monitor/financial-health-calculator",
   "version": "1.0.0",
   "description": "Calculates financial health for Open-Source packages",
-  "main": "dist/index.js",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
   "type": "module",
   "scripts": {
     "test:unit": "vitest",

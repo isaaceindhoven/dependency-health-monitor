@@ -1,5 +1,4 @@
 {
-  "files": [],
   "compilerOptions": {
     "composite": true,
     "declaration": true,
