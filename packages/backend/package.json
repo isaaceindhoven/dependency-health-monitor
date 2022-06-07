@@ -9,7 +9,6 @@
     "test:unit": "echo \"No tests yet...\""
   },
   "dependencies": {
-    "@dependency-health-monitor/npm-dependency-fetcher": "1.0.0",
     "esbuild": "^0.14.42"
   },
   "devDependencies": {
