@@ -1,5 +1,5 @@
-import { CRITERIA_WEIGHTS } from './../../constants';
-import { calculateOrganisationalActivityScore } from './../../calculator/organisational-activity';
+import { CRITERIA_WEIGHTS } from './../../src/constants';
+import { calculateOrganisationalActivityScore } from './../../src/calculator/organisational-activity';
 import { describe, it, expect } from 'vitest';
 
 describe('organisational activity score calculation', () => {

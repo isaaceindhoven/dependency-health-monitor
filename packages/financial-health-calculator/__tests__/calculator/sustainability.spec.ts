@@ -1,5 +1,5 @@
-import { AVERAGE_SALARY_CENTS, CRITERIA_WEIGHTS } from './../../constants';
-import { calculateSustainabilityScore } from './../../calculator/sustainability';
+import { AVERAGE_SALARY_CENTS, CRITERIA_WEIGHTS } from './../../src/constants';
+import { calculateSustainabilityScore } from './../../src/calculator/sustainability';
 import { describe, it, expect } from 'vitest';
 
 describe('sustainability score calculation', () => {

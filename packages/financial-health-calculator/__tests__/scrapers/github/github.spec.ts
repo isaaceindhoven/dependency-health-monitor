@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeAll, afterAll, afterEach } from 'vitest';
 import { setupServer } from 'msw/node';
 import { rest } from 'msw';
-import { scrapeGitHubProfile } from '../../../scrapers/github';
+import { scrapeGitHubProfile } from '../../../src/scrapers/github';
 import { gitHubProfileMockHtml, gitHubProfileMockWithoutOrganization } from './github-profile-copy.js';
 
 const restHandlers = [

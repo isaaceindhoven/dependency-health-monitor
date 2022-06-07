@@ -1,5 +1,5 @@
-import { CRITERIA_WEIGHTS } from './../../constants';
-import { calculateLicenseTypeScore } from './../../calculator/license-type';
+import { CRITERIA_WEIGHTS } from './../../src/constants';
+import { calculateLicenseTypeScore } from './../../src/calculator/license-type';
 import { describe, it, expect } from 'vitest';
 
 describe('license type score calculation', () => {

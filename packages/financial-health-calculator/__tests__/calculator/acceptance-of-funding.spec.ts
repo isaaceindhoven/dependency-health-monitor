@@ -1,5 +1,5 @@
-import { CRITERIA_WEIGHTS } from './../../constants';
-import { calculateAcceptanceOfFundingScore } from '../../calculator/acceptance-of-funding';
+import { CRITERIA_WEIGHTS } from '../../src/constants';
+import { calculateAcceptanceOfFundingScore } from '../../src/calculator/acceptance-of-funding';
 import { describe, it, expect } from 'vitest';
 
 describe('acceptance of funding score calculation', () => {
