@@ -1,4 +1,3 @@
-import 'dotenv/config';
 import fetch, { RequestInit, Headers } from 'node-fetch';
 import type { OpenCollectiveData } from '../types/open-collective/open-collective-data';
 
