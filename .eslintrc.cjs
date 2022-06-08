@@ -6,7 +6,6 @@ module.exports = {
   extends: ['eslint:recommended', '@vue/eslint-config-typescript/recommended', '@vue/eslint-config-prettier'],
   env: {
     'vue/setup-compiler-macros': true,
-    node: true,
   },
   rules: {
     '@typescript-eslint/ban-ts-comment': ['error', { 'ts-ignore': 'allow-with-description' }],
