@@ -35,6 +35,4 @@ build
 
 # Azure Functions
 local.settings.json
-
-# Financial health calculation
 .env
