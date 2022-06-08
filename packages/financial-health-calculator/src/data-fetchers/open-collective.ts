@@ -39,7 +39,6 @@ const getTotalFundingGoalCents = (fundingGoals: Record<string, unknown>[]): numb
 
 export const fetchOpenCollectiveData = (packageName: string): Promise<OpenCollectiveData> => {
   const headers = new Headers();
-  headers.append('Api-Key', process.env.OPEN_COLLECTIVE_API_KEY);
   headers.append('Content-Type', 'application/json');
 
   const body = {
