@@ -35,3 +35,5 @@ build
 
 # Azure Functions
 local.settings.json
+.env
+.env*.

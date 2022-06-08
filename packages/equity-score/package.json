@@ -1,0 +1,15 @@
+{
+  "name": "equity-score-calculator",
+  "version": "1.0.0",
+  "description": "Determines the equity of the financial health of Open-Source projects",
+  "main": "dist/index.js",
+  "scripts": {
+    "test:unit": "vitest",
+    "build": "tsc"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "vitest": "^0.14.1"
+  }
+}
