@@ -14,7 +14,9 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
   const score = await calculateFinancialHealthScore(packageName);
   context.res = {
     body: score,
-    type: 'application/json',
+    headers: {
+      'Content-Type': 'application/json',
+    },
   };
 };
 
