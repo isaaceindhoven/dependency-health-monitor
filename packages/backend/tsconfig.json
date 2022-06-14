@@ -1,4 +1,5 @@
 {
+  "extends": "../../tsconfig.json",
   "compilerOptions": {
     "module": "es2020",
     "target": "es2020",
@@ -6,6 +7,16 @@
     "rootDir": ".",
     "sourceMap": true,
     "strict": true,
-    "moduleResolution": "node"
-  }
+    "moduleResolution": "node",
+    "emitDeclarationOnly": true,
+    "declaration": true
+  },
+  "references": [
+    {
+      "path": "../npm-dependency-fetcher/tsconfig.json"
+    },
+    {
+      "path": "../financial-health-calculator/tsconfig.json"
+    }
+  ]
 }

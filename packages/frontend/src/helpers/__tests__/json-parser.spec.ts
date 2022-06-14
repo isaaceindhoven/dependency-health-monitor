@@ -35,8 +35,7 @@ describe('parse json', () => {
   });
 
   it('throws an error whenever the JSON syntax is wrong', () => {
-    const clone = `${validPackageJSONString}`;
-    const faultyJSONSyntaxString = clone.replace('}', '');
+    const faultyJSONSyntaxString = validPackageJSONString.replace('}', '');
 
     expect(() => parsePackageJSONStringToObject(faultyJSONSyntaxString)).toThrowError(
       /^Invalid JSON object, please verify object.$/,
