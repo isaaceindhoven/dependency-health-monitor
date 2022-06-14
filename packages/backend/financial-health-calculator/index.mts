@@ -13,7 +13,7 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
 
   const packageName = req.query.packageName;
   const financialHealthScore = await calculateFinancialHealthScore(packageName);
-  const equityScore = await calculateEquityScore(packageName, financialHealthScore);
+  const equityScore = await calculateEquityScore(packageName, financialHealthScore.finalScore);
   context.res = {
     body: {
       financialHealthScore,
