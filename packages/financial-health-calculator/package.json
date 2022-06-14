@@ -1,0 +1,26 @@
+{
+  "name": "@dependency-health-monitor/financial-health-calculator",
+  "version": "1.0.0",
+  "description": "Calculates financial health for Open-Source packages",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "type": "module",
+  "scripts": {
+    "test:unit": "vitest",
+    "build": "tsc"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "node-html-parser": "^5.3.3",
+    "p-map": "^5.4.0",
+    "pacote": "^13.4.1",
+    "spdx-license-list": "^6.5.0"
+  },
+  "devDependencies": {
+    "@types/pacote": "^11.1.3",
+    "msw": "^0.41.0",
+    "typescript": "^4.6.4",
+    "vitest": "^0.12.9"
+  }
+}
