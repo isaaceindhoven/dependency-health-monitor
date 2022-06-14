@@ -1,5 +1,5 @@
-import { calculateFinancialRoadmapScore } from './../../src/calculator/financial-roadmap';
-import { CRITERIA_WEIGHTS } from './../../src/constants';
+import { calculateFinancialRoadmapScore } from '../../src/calculator/financial-roadmap';
+import { CRITERIA_WEIGHTS } from '../../src/constants';
 import { describe, it, expect } from 'vitest';
 
 describe('financial roadmap score calculation', () => {
