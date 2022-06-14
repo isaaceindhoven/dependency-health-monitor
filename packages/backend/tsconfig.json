@@ -17,6 +17,9 @@
     },
     {
       "path": "../financial-health-calculator/tsconfig.json"
+    },
+    {
+      "path": "../equity-score-calculator/tsconfig.json"
     }
   ]
 }
