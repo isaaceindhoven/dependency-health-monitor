@@ -1,10 +1,10 @@
 import { minimumFinancialHealthScale } from './constants.js';
 
-export const roundUpToNearestLogOf10 = (numberToRoundUp: number): number => {
+export const roundDownToNearestLogOf10 = (numberToRoundDown: number): number => {
   const possibleLogValues = Object.keys(minimumFinancialHealthScale);
   const biggestPossibleLogValue = +possibleLogValues[possibleLogValues.length - 1];
 
-  let nearestLogOf10 = Math.pow(10, Math.ceil(Math.log10(numberToRoundUp)));
+  let nearestLogOf10 = Math.pow(10, Math.floor(Math.log10(numberToRoundDown)));
   nearestLogOf10 = Math.max(0, nearestLogOf10);
 
   return Math.min(biggestPossibleLogValue, nearestLogOf10);
