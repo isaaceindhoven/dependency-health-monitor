@@ -2,7 +2,7 @@ import { minimumFinancialHealthScale } from './constants.js';
 import { fetchNpmWeeklyDownloads } from './data-fetcher/npm-weekly-downloads.js';
 import { getEquitySeverity, roundUpToNearestLogOf10 } from './helpers.js';
 
-export const getEquityScore = async (packageName: string, financialHealthScore: number) => {
+export const calculateEquityScore = async (packageName: string, financialHealthScore: number) => {
   const weeklyDownloads = await fetchNpmWeeklyDownloads(packageName);
   const nearestLogRoundedUp = roundUpToNearestLogOf10(weeklyDownloads);
   const minimumFinancialHealthScore = minimumFinancialHealthScale[nearestLogRoundedUp];
