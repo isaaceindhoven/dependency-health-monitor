@@ -15,5 +15,5 @@
       "name": "res"
     }
   ],
-  "scriptFile": "../dist/npm-dependency-fetcher/index.js"
+  "scriptFile": "../dist/npm-dependency-report/index.js"
 }
