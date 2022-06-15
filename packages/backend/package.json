@@ -8,6 +8,7 @@
     "test:unit": "echo \"No tests yet...\""
   },
   "dependencies": {
+    "@octokit/core": "^3.6.0",
     "esbuild": "^0.14.42"
   },
   "devDependencies": {
