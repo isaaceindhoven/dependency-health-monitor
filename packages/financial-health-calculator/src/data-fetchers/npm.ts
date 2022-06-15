@@ -1,4 +1,4 @@
-import pacote, { ManifestResult } from 'pacote';
+import pacote, { Manifest } from 'pacote';
 import type { GitHubRepositoryIdentifier } from './../types/github/github-repository-identifier';
 import type { NpmData } from '../types/npm/npm-data';
 
@@ -8,7 +8,7 @@ function isFunding(element: unknown): element is Funding {
   return element !== undefined && (element as Funding).url !== undefined;
 }
 
-const getGitHubRepositoryIdentifier = (projectData: ManifestResult): GitHubRepositoryIdentifier => {
+const getGitHubRepositoryIdentifier = (projectData: Manifest): GitHubRepositoryIdentifier => {
   let organisation = '';
   let project = '';
 

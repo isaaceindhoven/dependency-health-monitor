@@ -6,7 +6,7 @@ rimraf.sync('./dist');
 
 esbuild
   .build({
-    entryPoints: ['./financial-health-calculator/index.mts', './npm-dependency-fetcher/index.mts'],
+    entryPoints: ['./financial-health-report/index.mts', './npm-dependency-report/index.mts'],
     outdir: 'dist',
     bundle: true,
     minify: true,
