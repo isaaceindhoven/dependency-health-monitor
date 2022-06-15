@@ -31,7 +31,7 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
       financialHealthReport,
       rateLimitLeft: {
         remaining: rateLimitLeft.data.resources.core.remaining,
-        reset: rateLimitLeft.data.resources.core.reset,
+        reset: rateLimitLeft.data.resources.core.reset * 1000,
       },
     },
     headers: {
