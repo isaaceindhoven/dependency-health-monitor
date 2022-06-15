@@ -11,11 +11,11 @@ function storeDependenciesInMap(dependenciesToStore: string[], map: Map<string, 
   });
 }
 
-export async function fetchDependenciesForPackageInDepth(packageName: string, depth = 2) {
+export async function fetchDependenciesForPackageInDepth(packageDependencies: Record<string, unknown>, depth = 2) {
   const dependencies = new Map<string, number>();
-  let previousDepthDependencies = [packageName];
+  let previousDepthDependencies = Object.keys(packageDependencies);
 
-  for (let currentDepth = 0; currentDepth <= depth; currentDepth++) {
+  for (let currentDepth = 1; currentDepth <= depth; currentDepth++) {
     if (previousDepthDependencies.length === 0) {
       break;
     }
