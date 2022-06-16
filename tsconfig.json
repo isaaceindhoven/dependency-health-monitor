@@ -8,6 +8,8 @@
       "@dependency-health-monitor/financial-health-calculator/*": ["./packages/financial-health-calculator/*"],
       "@dependency-health-monitor/npm-dependency-fetcher": ["./packages/npm-dependency-fetcher"],
       "@dependency-health-monitor/npm-dependency-fetcher/*": ["./packages/npm-dependency-fetcher/*"],
+      "@dependency-health-monitor/equity-score-calculator": ["./packages/equity-score-calculator"],
+      "@dependency-health-monitor/equity-score-calculator/*": ["./packages/equity-score-calculator/*"],
     }
   },
   "references": [

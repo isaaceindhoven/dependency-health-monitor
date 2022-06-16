@@ -1,4 +1,5 @@
 import { Octokit } from '@octokit/core';
+import { calculateEquityScore } from '@dependency-health-monitor/equity-score-calculator';
 import { calculateFinancialHealthScore } from '@dependency-health-monitor/financial-health-calculator';
 import type { AzureFunction, Context, HttpRequest } from '@azure/functions';
 
@@ -24,11 +25,13 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
 
   const packageName = req.body.packageName;
   const financialHealthReport = await calculateFinancialHealthScore(packageName);
+  const equityReport = await calculateEquityScore(packageName, financialHealthReport.finalScore);
   const rateLimitLeft = await octokit.request('GET /rate_limit', {});
 
   context.res = {
     body: {
       financialHealthReport,
+      equityReport,
       rateLimitLeft: {
         remaining: rateLimitLeft.data.resources.core.remaining,
         reset: rateLimitLeft.data.resources.core.reset * 1000,

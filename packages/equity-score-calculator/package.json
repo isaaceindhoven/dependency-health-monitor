@@ -1,0 +1,16 @@
+{
+  "name": "@dependency-health-monitor/equity-score-calculator",
+  "version": "1.0.0",
+  "description": "Determines the equity of the financial health of Open-Source projects",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "scripts": {
+    "test:unit": "vitest",
+    "build": "tsc"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "vitest": "^0.14.1"
+  }
+}
