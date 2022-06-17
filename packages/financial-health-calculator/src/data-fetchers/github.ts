@@ -1,4 +1,4 @@
-import fetch from 'node-fetch';
+import fetch, { Headers } from 'node-fetch';
 import pMap from 'p-map';
 import { scrapeGitHubProfile } from './../scrapers/github';
 import type { GitHubRateLimitData } from './../types/github/github-rate-limit-data';
@@ -7,7 +7,12 @@ import type { GitHubRepositoryIdentifier } from './../types/github/github-reposi
 import type { GitHubData } from './../types/github/github-data';
 
 const fetchCollaboratorData = async (url: string): Promise<GitHubCollaborator[]> => {
-  const response = await fetch(url);
+  const headers = new Headers();
+  headers.append('Authorization', `token ${process.env.GITHUB_PERSONAL_ACCESS_TOKEN}`);
+
+  const response = await fetch(url, {
+    headers,
+  });
   const collaboratorsData: Record<string, unknown>[] = await response.json();
 
   const collaborators: GitHubCollaborator[] = collaboratorsData.map((data) => ({
