@@ -5,8 +5,10 @@ import { getEquitySeverity, roundDownToNearestLogOf10 } from './helpers.js';
 export const calculateEquityScore = async (packageName: string, financialHealthScore: number) => {
   const weeklyDownloads = await fetchNpmWeeklyDownloads(packageName);
   const nearestLogRoundedDown = roundDownToNearestLogOf10(weeklyDownloads);
-  const minimumFinancialHealthScore = minimumFinancialHealthScale[nearestLogRoundedDown];
+  const smallestAcceptableLogOf10 = +Object.keys(minimumFinancialHealthScale)[0];
+  const scaleProjectFallsIn = Math.max(smallestAcceptableLogOf10, nearestLogRoundedDown);
 
+  const minimumFinancialHealthScore = minimumFinancialHealthScale[scaleProjectFallsIn];
   const financialHealthDifference = financialHealthScore - minimumFinancialHealthScore;
   const severity = getEquitySeverity(financialHealthDifference);
 

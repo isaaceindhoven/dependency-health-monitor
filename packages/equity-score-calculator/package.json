@@ -11,6 +11,7 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    "msw": "^0.42.1",
     "vitest": "^0.14.1"
   }
 }
