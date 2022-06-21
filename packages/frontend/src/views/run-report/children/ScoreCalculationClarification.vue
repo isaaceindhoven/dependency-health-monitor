@@ -2,7 +2,14 @@
   <DataTable :value="calculationResults" responsiveLayout="scroll">
     <Column field="topic" header="Topic"></Column>
     <Column field="score" header="Score"></Column>
-    <Column field="explanation" header="Explanation"></Column>
+    <Column field="explanation" header="Explanation">
+      <template #body="slotProps">
+        <span v-for="(line, index) in slotProps.data.explanation.split(/\n/g)" :key="index">
+          {{ line }}
+          <br />
+        </span>
+      </template>
+    </Column>
   </DataTable>
   <Toast />
 </template>

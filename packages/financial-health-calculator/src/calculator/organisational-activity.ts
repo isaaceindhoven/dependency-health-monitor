@@ -12,11 +12,9 @@ export const calculateOrganisationalActivityScore = (
   return {
     score,
     weightedScore: score * CRITERIA_WEIGHTS.ORGANISATIONAL_ACTIVITY,
-    explanation: `
-        Calculated score with the following data:
+    explanation: `Calculated score with the following data:
             - Total contributions from top 100 contributors: ${totalContributions}
             - Total contributions from top 100 contributors that are from the organisation ${organisationName}: ${contributionsFromSameOrganisation}.
-        ${packageName}'s Organisational activity score = Contributions from same organisation / total contributions from top 100 * 100 = ${contributionsFromSameOrganisation} / ${totalContributions} * 100 = ${score}.
-      `,
+        ${packageName}'s Organisational activity score = Contributions from same organisation / total contributions from top 100 * 100 = ${contributionsFromSameOrganisation} / ${totalContributions} * 100 = ${score}.`,
   };
 };

@@ -11,13 +11,11 @@ const calculateScoreWithFundingGoal = (
   return {
     score,
     weightedScore: score * CRITERIA_WEIGHTS.SUSTAINABILITY,
-    explanation: `
-            Calculated score with the following data:
+    explanation: `Calculated score with the following data:
                 - Yearly revenue (in cents): ${yearlyRevenueCents}
                 - Funding goal (in cents): ${fundingGoalCents}
             
-            Yearly revenue / funding goal * 100, with a max of 100 = ${yearlyRevenueCents} / ${fundingGoalCents} * 100 = ${score}
-          `,
+            Yearly revenue / funding goal * 100, with a max of 100 = ${yearlyRevenueCents} / ${fundingGoalCents} * 100 = ${score}`,
   };
 };
 
@@ -30,13 +28,11 @@ const calculateScoreWithTotalTeamCost = (yearlyRevenue: number, teamSize: number
   return {
     score,
     weightedScore: score * CRITERIA_WEIGHTS.SUSTAINABILITY,
-    explanation: `
-            Calculated score with the following data:
+    explanation: `Calculated score with the following data:
                 - Yearly revenue (in cents): ${yearlyRevenue}
                 - Team cost (in cents): Average salary (in cents, ${averageSalaryCents}) * Team size (${teamSize})
             
-            Yearly revenue / Team cost * 100, with a max of 100 = ${yearlyRevenue} / ${teamCostCents} * 100 = ${score}
-        `,
+            Yearly revenue / Team cost * 100, with a max of 100 = ${yearlyRevenue} / ${teamCostCents} * 100 = ${score}`,
   };
 };
 

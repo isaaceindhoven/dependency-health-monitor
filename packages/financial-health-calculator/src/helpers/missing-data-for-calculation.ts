@@ -8,7 +8,8 @@ export const cannotCalculateWithMissingData = (
   return {
     score: 0,
     weightedScore: 0,
-    explanation: `Can not calculate ${scoreType} score for package ${packageName}. Could not fetch the data for: 
-    ${missingKeys.map((key) => `  - ${key}\n`)}`,
+    explanation: `Can not calculate ${scoreType} score for package ${packageName}. Could not fetch the data for: ${missingKeys.map(
+      (key) => `\n  - ${key}`,
+    )}`,
   };
 };
