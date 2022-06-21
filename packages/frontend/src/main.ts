@@ -8,7 +8,12 @@ import PrimeVue from 'primevue/config';
 import 'primeflex/primeflex.css';
 import 'primeicons/primeicons.css';
 import 'primevue/resources/primevue.min.css';
-import 'primevue/resources/themes/lara-light-blue/theme.css';
+
+if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+  await import('primevue/resources/themes/lara-dark-blue/theme.css');
+} else {
+  await import('primevue/resources/themes/lara-light-blue/theme.css');
+}
 
 const app = createApp(App);
 
