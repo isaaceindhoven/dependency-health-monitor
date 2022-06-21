@@ -20,11 +20,25 @@
         paginatorTemplate="CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown"
       >
         <template #header>
-          <div class="table-header">
-            NPM dependency list
+          <div class="flex justify-content-between align-items-center">
+            <h4>Dependencies found for {{ financialStore.getPackageJSON.name }}</h4>
             <Button
+              v-if="financialReportStatus === FinancialReportStatus.NotExecuted"
               @click="executeFinancialHealthReportOnPage"
-              label="Execute financial health report on all dependencies on this page"
+              label="Execute financial health report on this page"
+            />
+            <Button
+              v-else-if="financialReportStatus === FinancialReportStatus.InProgress"
+              label="In progress"
+              icon="pi pi-spin pi-spinner"
+              disabled
+            />
+            <Button
+              v-else-if="financialReportStatus === FinancialReportStatus.Finished"
+              class="p-button-success"
+              label="Financial report already executed for this page"
+              icon="pi pi-check"
+              disabled
             />
           </div>
         </template>
@@ -40,6 +54,7 @@
           v-if="showExtraInformationColumn"
           headerStyle="width: 4rem; text-align: center"
           bodyStyle="text-align: center; overflow: visible"
+          header="Calculation clarification"
         >
           <template #body="{ data }">
             <Button
@@ -83,6 +98,13 @@ type FinancialHealthReportResponse = {
   rateLimitLeft: RateLimitLeft;
 };
 
+enum FinancialReportStatus {
+  NotExecuted = 1,
+  InProgress,
+  Finished,
+  Failure,
+}
+
 const pageSize = 5;
 const standardColumns: ColumnProps[] = [
   {
@@ -102,14 +124,15 @@ const executedHealthReports: Ref<Map<string, FinancialHealthReportResponse>> = r
 const showExtraInformationColumn = ref(false);
 const dependencies: Ref<Record<string, unknown>[]> = ref([]);
 const calculationInProgress = ref(true);
+const financialStore = useFinancialReportStore();
 const dialog = useDialog();
+const financialReportStatus = ref(FinancialReportStatus.NotExecuted);
 
 let newDataTableValues: Record<string, unknown>[] = [];
 let currentPageValues: Record<string, unknown>[] = [];
 let currentPage = 1;
 
 onMounted(() => {
-  const financialStore = useFinancialReportStore();
   const packageJSON = financialStore.getPackageJSON;
 
   fetchNPMDependenciesForPackageJSON(packageJSON).then((data: Record<string, number>) => {
@@ -149,13 +172,17 @@ const updateColumns = () => {
   }
 
   if (noReportExecutedCount === pageSize) {
+    financialReportStatus.value = FinancialReportStatus.NotExecuted;
     resetColumns();
   } else {
+    financialReportStatus.value = FinancialReportStatus.Finished;
     showFinancialHealthAndEquityColumns();
   }
 };
 
 const executeFinancialHealthReportOnPage = async () => {
+  financialReportStatus.value = FinancialReportStatus.InProgress;
+
   for (const value of currentPageValues) {
     const dependencyName = value.dependency as string;
     if (executedHealthReports.value.has(dependencyName)) {
@@ -175,6 +202,8 @@ const executeFinancialHealthReportOnPage = async () => {
       if (dataTableColumns.value.length == 2) {
         showFinancialHealthAndEquityColumns();
       }
+
+      financialReportStatus.value = FinancialReportStatus.Finished;
     });
   }
 };
