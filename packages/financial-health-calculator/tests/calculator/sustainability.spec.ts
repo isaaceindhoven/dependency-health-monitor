@@ -9,7 +9,13 @@ describe('sustainability score calculation', () => {
       const fundingGoalCents = 100;
       const teamSize = 100;
 
-      const scoreCalculationResult = calculateSustainabilityScore('eslint', yearlyRevenue, fundingGoalCents, teamSize);
+      const scoreCalculationResult = calculateSustainabilityScore(
+        'eslint',
+        yearlyRevenue,
+        fundingGoalCents,
+        teamSize,
+        'EUR',
+      );
 
       expect(scoreCalculationResult.score).toBe(0);
       expect(scoreCalculationResult.weightedScore).toBe(0 * CRITERIA_WEIGHTS.SUSTAINABILITY);
@@ -22,7 +28,13 @@ describe('sustainability score calculation', () => {
       const fundingGoalCents = 0;
       const teamSize = 0;
 
-      const scoreCalculationResult = calculateSustainabilityScore('eslint', yearlyRevenue, fundingGoalCents, teamSize);
+      const scoreCalculationResult = calculateSustainabilityScore(
+        'eslint',
+        yearlyRevenue,
+        fundingGoalCents,
+        teamSize,
+        'EUR',
+      );
 
       expect(scoreCalculationResult.score).toBe(0);
       expect(scoreCalculationResult.weightedScore).toBe(0 * CRITERIA_WEIGHTS.SUSTAINABILITY);
@@ -35,7 +47,13 @@ describe('sustainability score calculation', () => {
       const fundingGoalCents = 0;
       const teamSize = 0;
 
-      const scoreCalculationResult = calculateSustainabilityScore('eslint', yearlyRevenue, fundingGoalCents, teamSize);
+      const scoreCalculationResult = calculateSustainabilityScore(
+        'eslint',
+        yearlyRevenue,
+        fundingGoalCents,
+        teamSize,
+        'EUR',
+      );
 
       expect(scoreCalculationResult.score).toBe(0);
       expect(scoreCalculationResult.weightedScore).toBe(0 * CRITERIA_WEIGHTS.SUSTAINABILITY);
@@ -48,7 +66,13 @@ describe('sustainability score calculation', () => {
       const fundingGoalCents = 100;
       const teamSize = 0;
 
-      const scoreCalculationResult = calculateSustainabilityScore('eslint', yearlyRevenue, fundingGoalCents, teamSize);
+      const scoreCalculationResult = calculateSustainabilityScore(
+        'eslint',
+        yearlyRevenue,
+        fundingGoalCents,
+        teamSize,
+        'EUR',
+      );
 
       expect(scoreCalculationResult.score).toBe(100);
       expect(scoreCalculationResult.weightedScore).toBe(100 * CRITERIA_WEIGHTS.SUSTAINABILITY);
@@ -61,7 +85,13 @@ describe('sustainability score calculation', () => {
       const fundingGoalCents = 50;
       const teamSize = 0;
 
-      const scoreCalculationResult = calculateSustainabilityScore('eslint', yearlyRevenue, fundingGoalCents, teamSize);
+      const scoreCalculationResult = calculateSustainabilityScore(
+        'eslint',
+        yearlyRevenue,
+        fundingGoalCents,
+        teamSize,
+        'EUR',
+      );
 
       expect(scoreCalculationResult.score).toBe(100);
       expect(scoreCalculationResult.weightedScore).toBe(100 * CRITERIA_WEIGHTS.SUSTAINABILITY);
@@ -74,7 +104,13 @@ describe('sustainability score calculation', () => {
       const fundingGoalCents = 100;
       const teamSize = 75;
 
-      const scoreCalculationResult = calculateSustainabilityScore('eslint', yearlyRevenue, fundingGoalCents, teamSize);
+      const scoreCalculationResult = calculateSustainabilityScore(
+        'eslint',
+        yearlyRevenue,
+        fundingGoalCents,
+        teamSize,
+        'EUR',
+      );
 
       expect(scoreCalculationResult.score).toBe(100);
       expect(scoreCalculationResult.weightedScore).toBe(100 * CRITERIA_WEIGHTS.SUSTAINABILITY);
@@ -87,7 +123,13 @@ describe('sustainability score calculation', () => {
       const teamSize = 5;
       const yearlyRevenue = AVERAGE_SALARY_CENTS * teamSize;
 
-      const scoreCalculationResult = calculateSustainabilityScore('eslint', yearlyRevenue, fundingGoalCents, teamSize);
+      const scoreCalculationResult = calculateSustainabilityScore(
+        'eslint',
+        yearlyRevenue,
+        fundingGoalCents,
+        teamSize,
+        'EUR',
+      );
 
       expect(scoreCalculationResult.score).toBe(100);
       expect(scoreCalculationResult.weightedScore).toBe(100 * CRITERIA_WEIGHTS.SUSTAINABILITY);

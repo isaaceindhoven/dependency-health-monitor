@@ -30,6 +30,7 @@ export const calculateFinancialHealthScore = async (
     openCollectiveData.yearlyRevenueCents,
     openCollectiveData.fundingGoalCents,
     openCollectiveData.teamSize,
+    openCollectiveData.currency,
   );
   const financialRoadmapScore = calculateFinancialRoadmapScore(
     packageName,
