@@ -10,8 +10,7 @@
       <Button @click="redirectToExecuteReportPage" label="Execute the report!" icon="pi pi-heart" />
     </div>
     <div id="help-improve" class="col-6">
-      <img v-if="darkMode" src="@/assets/help-improve-dark.svg" />
-      <img v-else src="@/assets/help-improve-light.svg" />
+      <IconHelpImproveVue />
       <div class="flex justify-content-center">
         <Button
           @click="openStorySetPage"
@@ -27,9 +26,7 @@
 <script setup lang="ts">
 import router from '@/router';
 import Button from 'primevue/button';
-import { ref } from 'vue';
-
-const darkMode = ref(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+import IconHelpImproveVue from '@/components/icons/IconHelpImprove.vue';
 
 const redirectToExecuteReportPage = () => {
   router.push({ path: '/run-report/select' });
