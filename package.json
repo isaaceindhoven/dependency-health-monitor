@@ -5,7 +5,8 @@
     "packages/*"
   ],
   "scripts": {
-    "dev": "turbo run dev",
+    "dev": "swa start --app-location ./packages/frontend --api-location ./packages/backend  --output-location ./dist",
+    "predev": "npm run build",
     "build": "turbo run build",
     "test:unit": "turbo run test:unit",
     "test:e2e:ci": "turbo run test:e2e:ci --filter=frontend",
