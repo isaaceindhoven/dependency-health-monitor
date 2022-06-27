@@ -1,6 +1,6 @@
 <template>
   <ExecutionSteps class="mb-6" />
-  <router-view></router-view>
+  <NuxtPage />
   <div class="grid grid-nogutter justify-content-end pt-4">
     <Button v-if="store.getActiveStepIndex > 0" label="Back" @click="prevPage()" icon="pi pi-angle-left" />
     <Button

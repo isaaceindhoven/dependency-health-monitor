@@ -3,12 +3,10 @@ import NavBar from './components/NavBar.vue';
 </script>
 
 <template>
-  <NavBar />
-  <div class="p-container pt-4">
-    <router-view></router-view>
+  <div>
+    <NavBar />
+    <div class="p-container pt-4">
+      <NuxtPage />
+    </div>
   </div>
 </template>
-
-<style>
-@import '@/assets/base.css';
-</style>

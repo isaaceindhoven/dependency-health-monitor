@@ -12,7 +12,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "p-map": "^5.3.0",
+    "p-map": "^5.0.0",
     "pacote": "^13.3.0"
   },
   "devDependencies": {

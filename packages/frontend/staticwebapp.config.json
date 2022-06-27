@@ -1,0 +1,1 @@
+{"platform":{"apiRuntime":"node:16"},"routes":[{"route":"/404","rewrite":"/404/index.html"},{"route":"/200","rewrite":"/200/index.html"},{"route":"/","rewrite":"/index.html"}],"navigationFallback":{"rewrite":"/api/server"}}

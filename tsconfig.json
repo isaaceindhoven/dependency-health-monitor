@@ -14,10 +14,7 @@
   },
   "references": [
     {
-      "path": "./packages/frontend/tsconfig.vite-config.json"
-    },
-    {
-      "path": "./packages/frontend/tsconfig.app.json"
+      "path": "./packages/frontend/tsconfig.json"
     },
     {
       "path": "./packages/frontend/tsconfig.vitest.json"

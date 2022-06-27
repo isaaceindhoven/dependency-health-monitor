@@ -36,41 +36,47 @@ const getTotalFundingGoalCents = (fundingGoals: Record<string, unknown>[]): numb
   return totalFundingCents;
 };
 
-export const fetchOpenCollectiveData = (packageName: string): Promise<OpenCollectiveData> => {
-  const headers = new Headers();
-  headers.append('Content-Type', 'application/json');
-  headers.append('Api-Key', process.env.OPEN_COLLECTIVE_API_KEY);
+export const fetchOpenCollectiveDataFactory = (openCollectiveApiKey: string) => {
+  const fetchOpenCollectiveData = async (packageName: string): Promise<OpenCollectiveData> => {
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Api-Key', openCollectiveApiKey);
 
-  const body = {
-    query,
-    variables: {
-      slug: packageName,
-    },
-  };
+    const body = {
+      query,
+      variables: {
+        slug: packageName,
+      },
+    };
 
-  const options: RequestInit = {
-    method: 'POST',
-    body: JSON.stringify(body),
-    headers: headers,
-  };
+    const options: RequestInit = {
+      method: 'POST',
+      body: JSON.stringify(body),
+      headers: headers,
+    };
 
-  return fetch('https://api.opencollective.com/graphql/v2', options)
-    .then((response) => response.json())
-    .then(({ data }): OpenCollectiveData => {
-      if (!data.collective) {
+    return fetch('https://api.opencollective.com/graphql/v2', options)
+      .then((response) => response.json())
+      .then(({ data }): OpenCollectiveData => {
+        if (!data?.collective) {
+          return {
+            yearlyRevenueCents: 0,
+            fundingGoalCents: 0,
+            teamSize: 0,
+            currency: '',
+          };
+        }
+
         return {
-          yearlyRevenueCents: 0,
-          fundingGoalCents: 0,
-          teamSize: 0,
-          currency: '',
+          yearlyRevenueCents: data.collective.stats.yearlyBudget.value * 100,
+          fundingGoalCents: getTotalFundingGoalCents(data.collective.settings.goals || []),
+          teamSize: data.collective.contributors.totalCount,
+          currency: data.collective.currency,
         };
-      }
+      });
+  };
 
-      return {
-        yearlyRevenueCents: data.collective.stats.yearlyBudget.value * 100,
-        fundingGoalCents: getTotalFundingGoalCents(data.collective.settings.goals || []),
-        teamSize: data.collective.contributors.totalCount,
-        currency: data.collective.currency,
-      };
-    });
+  return {
+    fetchOpenCollectiveData,
+  };
 };
