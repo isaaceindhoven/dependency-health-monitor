@@ -56,6 +56,9 @@ export const fetchOpenCollectiveData = (packageName: string): Promise<OpenCollec
 
   return fetch('https://api.opencollective.com/graphql/v2', options)
     .then((response) => response.json())
+    .catch((err) => {
+      throw new Error(err);
+    })
     .then(({ data }): OpenCollectiveData => {
       if (!data.collective) {
         return {

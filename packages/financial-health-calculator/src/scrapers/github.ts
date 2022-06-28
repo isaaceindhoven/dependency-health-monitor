@@ -21,7 +21,8 @@ const getUserOrganizations = (gitHubProfile: HTMLElement): string[] => {
       // Line above assures the href attribute is not null, undefined or empty
       const hrefString = aTag.getAttribute('href') as string;
       const organisationString = hrefString[0] === '/' ? hrefString.substring(1) : hrefString;
-      organisations.push(organisationString);
+
+      organisations.push(organisationString.toLowerCase());
     }
   });
 

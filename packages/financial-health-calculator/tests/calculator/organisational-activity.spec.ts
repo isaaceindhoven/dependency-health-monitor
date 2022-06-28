@@ -2,6 +2,8 @@ import { CRITERIA_WEIGHTS } from '../../src/constants';
 import { calculateOrganisationalActivityScore } from '../../src/calculator/organisational-activity';
 import { describe, it, expect } from 'vitest';
 
+const locale = 'en-GB';
+
 describe('organisational activity score calculation', () => {
   it('gives a score of 100 whenever all contributions come from collaborators that are from the same organisation', async () => {
     expect(() => {
@@ -12,6 +14,7 @@ describe('organisational activity score calculation', () => {
         'eslint',
         totalCommits,
         commitsFromSameOrg,
+        locale,
       );
 
       expect(scoreCalculationResult.score).toBe(100);
@@ -28,6 +31,7 @@ describe('organisational activity score calculation', () => {
         'eslint',
         totalCommits,
         commitsFromSameOrg,
+        locale,
       );
 
       expect(scoreCalculationResult.score).toBe(50);
@@ -44,6 +48,7 @@ describe('organisational activity score calculation', () => {
         'eslint',
         totalCommits,
         commitsFromSameOrg,
+        locale,
       );
 
       expect(scoreCalculationResult.score).toBe(0);
@@ -60,6 +65,7 @@ describe('organisational activity score calculation', () => {
         'eslint',
         totalCommits,
         commitsFromSameOrg,
+        locale,
       );
 
       expect(scoreCalculationResult.score).toBe(0);
