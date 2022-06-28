@@ -80,6 +80,9 @@ jobs:
           name: backend-build
           path: packages/backend/dist
 
+      - name: Install dependencies
+        run: npm ci
+
       - name: Copy package-lock from root
         run: cp package-lock.json packages/backend
 
