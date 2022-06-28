@@ -14,8 +14,6 @@
         :paginator="true"
         :value="dependencies"
         :scrollable="true"
-        sortField="occurrence"
-        :sortOrder="-1"
         scrollHeight="450px"
         responsiveLayout="scroll"
         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} dependencies"
