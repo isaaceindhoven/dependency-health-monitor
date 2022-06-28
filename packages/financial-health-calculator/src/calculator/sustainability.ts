@@ -7,10 +7,11 @@ const calculateScoreWithFundingGoal = (
   yearlyRevenueCents: number,
   fundingGoalCents: number,
   currency: string,
+  userLocale: string,
 ): ScoreCalculationResult => {
   const score = Math.min(100, (yearlyRevenueCents / fundingGoalCents) * 100);
-  const formattedYearlyRevenue = formatCurrency(yearlyRevenueCents / 100, currency);
-  const formattedFundingGoal = formatCurrency(fundingGoalCents / 100, currency);
+  const formattedYearlyRevenue = formatCurrency(yearlyRevenueCents / 100, currency, userLocale);
+  const formattedFundingGoal = formatCurrency(fundingGoalCents / 100, currency, userLocale);
 
   return {
     score,
@@ -27,15 +28,16 @@ const calculateScoreWithTotalTeamCost = (
   yearlyRevenueCents: number,
   teamSize: number,
   currency: string,
+  userLocale: string,
 ): ScoreCalculationResult => {
   const averageSalaryCents = AVERAGE_SALARY_CENTS; // 50k
   const teamCostCents = averageSalaryCents * teamSize;
 
   const score = Math.min(100, (yearlyRevenueCents / teamCostCents) * 100);
 
-  const formattedYearlyRevenue = formatCurrency(yearlyRevenueCents / 100, currency);
-  const formattedAverageSalary = formatCurrency(averageSalaryCents / 100, currency);
-  const formattedTeamCost = formatCurrency(teamCostCents / 100, currency);
+  const formattedYearlyRevenue = formatCurrency(yearlyRevenueCents / 100, currency, userLocale);
+  const formattedAverageSalary = formatCurrency(averageSalaryCents / 100, currency, userLocale);
+  const formattedTeamCost = formatCurrency(teamCostCents / 100, currency, userLocale);
 
   return {
     score,
@@ -54,6 +56,7 @@ export const calculateSustainabilityScore = (
   fundingGoalCents: number,
   teamSize: number,
   currency: string,
+  userLocale: string,
 ): ScoreCalculationResult => {
   if (!yearlyRevenueCents) {
     return cannotCalculateWithMissingData(packageName, 'sustainability', ['Yearly revenue']);
@@ -64,8 +67,8 @@ export const calculateSustainabilityScore = (
   }
 
   if (fundingGoalCents) {
-    return calculateScoreWithFundingGoal(yearlyRevenueCents, fundingGoalCents, currency);
+    return calculateScoreWithFundingGoal(yearlyRevenueCents, fundingGoalCents, currency, userLocale);
   } else {
-    return calculateScoreWithTotalTeamCost(yearlyRevenueCents, teamSize, currency);
+    return calculateScoreWithTotalTeamCost(yearlyRevenueCents, teamSize, currency, userLocale);
   }
 };

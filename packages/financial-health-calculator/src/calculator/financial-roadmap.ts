@@ -6,6 +6,7 @@ export const calculateFinancialRoadmapScore = (
   packageName: string,
   fundingGoalCents: number,
   currency: string,
+  userLocale: string,
 ): ScoreCalculationResult => {
   if (!fundingGoalCents) {
     return {
@@ -14,7 +15,7 @@ export const calculateFinancialRoadmapScore = (
       explanation: `${packageName} has not set any funding goals. Therefore, they receive a score of 0.`,
     };
   }
-  const formattedCurrency = formatCurrency(fundingGoalCents / 100, currency);
+  const formattedCurrency = formatCurrency(fundingGoalCents / 100, currency, userLocale);
 
   return {
     score: 100,

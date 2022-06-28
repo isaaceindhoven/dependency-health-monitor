@@ -1,4 +1,5 @@
 import { Octokit } from '@octokit/core';
+import * as parser from 'accept-language-parser';
 import { calculateEquityScore } from '@dependency-health-monitor/equity-score-calculator';
 import { calculateFinancialHealthScore } from '@dependency-health-monitor/financial-health-calculator';
 import type { AzureFunction, Context, HttpRequest } from '@azure/functions';
@@ -24,7 +25,15 @@ const httpTrigger: AzureFunction = async function (context: Context, req: HttpRe
   }
 
   const packageName = req.body.packageName;
-  const financialHealthReport = await calculateFinancialHealthScore(packageName);
+
+  let localeString = 'en-GB';
+
+  if (req.headers['accept-language']) {
+    const localeObject: parser.Language = parser.parse(req.headers['accept-language'])[0];
+    localeString = localeObject.code + localeObject.region || '';
+  }
+
+  const financialHealthReport = await calculateFinancialHealthScore(packageName, localeString);
   const equityReport = await calculateEquityScore(packageName, financialHealthReport.finalScore);
   const rateLimitLeft = await octokit.request('GET /rate_limit', {});
 

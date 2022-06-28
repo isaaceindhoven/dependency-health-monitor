@@ -1,7 +1,7 @@
-export const formatCurrency = (number: number, currency: string) => {
-  return new Intl.NumberFormat('en-GB', { style: 'currency', currency }).format(number);
+export const formatCurrency = (number: number, currency: string, userLocale: string) => {
+  return new Intl.NumberFormat(userLocale, { style: 'currency', currency }).format(number);
 };
 
-export const formatNumber = (number: number) => {
-  return new Intl.NumberFormat('en-GB').format(number);
+export const formatNumber = (number: number, userLocale: string) => {
+  return new Intl.NumberFormat(userLocale).format(number);
 };

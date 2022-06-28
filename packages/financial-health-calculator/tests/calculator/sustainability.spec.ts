@@ -2,6 +2,8 @@ import { AVERAGE_SALARY_CENTS, CRITERIA_WEIGHTS } from '../../src/constants';
 import { calculateSustainabilityScore } from '../../src/calculator/sustainability';
 import { describe, it, expect } from 'vitest';
 
+const locale = 'en-GB';
+
 describe('sustainability score calculation', () => {
   it('returns 0 when yearly revenue is empty or 0', async () => {
     expect(() => {
@@ -15,6 +17,7 @@ describe('sustainability score calculation', () => {
         fundingGoalCents,
         teamSize,
         'EUR',
+        locale,
       );
 
       expect(scoreCalculationResult.score).toBe(0);
@@ -34,6 +37,7 @@ describe('sustainability score calculation', () => {
         fundingGoalCents,
         teamSize,
         'EUR',
+        locale,
       );
 
       expect(scoreCalculationResult.score).toBe(0);
@@ -53,6 +57,7 @@ describe('sustainability score calculation', () => {
         fundingGoalCents,
         teamSize,
         'EUR',
+        locale,
       );
 
       expect(scoreCalculationResult.score).toBe(0);
@@ -72,6 +77,7 @@ describe('sustainability score calculation', () => {
         fundingGoalCents,
         teamSize,
         'EUR',
+        locale,
       );
 
       expect(scoreCalculationResult.score).toBe(100);
@@ -91,6 +97,7 @@ describe('sustainability score calculation', () => {
         fundingGoalCents,
         teamSize,
         'EUR',
+        locale,
       );
 
       expect(scoreCalculationResult.score).toBe(100);
@@ -110,6 +117,7 @@ describe('sustainability score calculation', () => {
         fundingGoalCents,
         teamSize,
         'EUR',
+        locale,
       );
 
       expect(scoreCalculationResult.score).toBe(100);
@@ -129,6 +137,7 @@ describe('sustainability score calculation', () => {
         fundingGoalCents,
         teamSize,
         'EUR',
+        locale,
       );
 
       expect(scoreCalculationResult.score).toBe(100);

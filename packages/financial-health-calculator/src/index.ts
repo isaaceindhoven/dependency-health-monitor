@@ -11,6 +11,7 @@ import type { FinancialHealthScoreCalculationResult } from './types/score/financ
 
 export const calculateFinancialHealthScore = async (
   packageName: string,
+  userLocale: string,
 ): Promise<FinancialHealthScoreCalculationResult> => {
   const npmData = await fetchNpmData(packageName);
 
@@ -31,17 +32,20 @@ export const calculateFinancialHealthScore = async (
     openCollectiveData.fundingGoalCents,
     openCollectiveData.teamSize,
     openCollectiveData.currency,
+    userLocale,
   );
   const financialRoadmapScore = calculateFinancialRoadmapScore(
     packageName,
     openCollectiveData.fundingGoalCents,
     openCollectiveData.currency,
+    userLocale,
   );
   const organisationalActivityScore = await calculateOrganisationalActivityScore(
     packageName,
     npmData.gitHubRepositoryIdentifier.organisation,
     gitHubData.totalContributions,
     gitHubData.contributionsFromSameOrganisation,
+    userLocale,
   );
 
   const totalScore =
