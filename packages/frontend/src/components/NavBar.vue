@@ -5,7 +5,7 @@ import type { MenuItem } from 'primevue/menuitem';
 let items: MenuItem[] = [
   {
     label: 'Run report',
-    to: '/run-report/select',
+    to: '/run-report',
   },
   {
     label: 'About us',
