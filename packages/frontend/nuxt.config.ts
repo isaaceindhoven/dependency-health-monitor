@@ -16,7 +16,4 @@ export default defineNuxtConfig({
     gitHubAccessToken: process.env.NUXT_GITHUB_PERSONAL_ACCESS_TOKEN || '',
     openCollectiveApiKey: process.env.NUXT_OPEN_COLLECTIVE_API_KEY || '',
   },
-  nitro: {
-    preset: 'azure',
-  },
 });
