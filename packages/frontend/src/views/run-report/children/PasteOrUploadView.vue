@@ -24,6 +24,15 @@
       <span class="p-error" v-if="uploadError">{{ uploadError }}</span>
     </div>
   </div>
+  <div class="grid grid-nogutter justify-content-end">
+    <Button
+      :disabled="!allowAdvance"
+      @click="advanceToResultsView"
+      label="Submit & Execute report"
+      icon="pi pi-angle-right"
+      icon-pos="right"
+    />
+  </div>
 </template>
 
 <script setup type="module" lang="ts">
@@ -32,13 +41,15 @@ import type { FileUploadUploaderEvent } from 'primevue/fileupload';
 
 import TextArea from 'primevue/textarea';
 import FileUpload from 'primevue/fileupload';
+import Button from 'primevue/button';
 
-import { useStepperStore } from '@/stores/stepper';
 import { useFinancialReportStore } from '@/stores/financial-report';
 import { parsePackageJSONStringToObject } from '@/helpers/json-parser';
+import { useRouter } from 'vue-router';
 
-const stepStore = useStepperStore();
+const router = useRouter();
 const financialReportStore = useFinancialReportStore();
+const allowAdvance = ref(false);
 
 let inputValue = ref(JSON.stringify(financialReportStore.getPackageJSON, undefined, 2));
 let textInputError = ref('');
@@ -46,7 +57,7 @@ let uploadError = ref('');
 
 onMounted(() => {
   if (financialReportStore.getPackageJSON && Object.keys(financialReportStore.getPackageJSON).length > 0) {
-    stepStore.setAllowAdvance(true);
+    allowAdvance.value = true;
   }
 });
 
@@ -67,7 +78,7 @@ const fileUploaded = (uploadEvent: FileUploadUploaderEvent) => {
 
       inputValue.value = JSON.stringify(result, undefined, 2);
       financialReportStore.setPackageJSON(result);
-      stepStore.setAllowAdvance(true);
+      allowAdvance.value = true;
     })
     .catch((err) => {
       uploadError.value = err;
@@ -80,10 +91,14 @@ const onBlur = () => {
     textInputError.value = '';
 
     financialReportStore.setPackageJSON(result);
-    stepStore.setAllowAdvance(true);
+    allowAdvance.value = true;
   } catch (error: any) {
     textInputError.value = error;
   }
+};
+
+const advanceToResultsView = () => {
+  router.push('/financial-report');
 };
 </script>
 

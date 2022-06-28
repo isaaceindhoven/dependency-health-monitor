@@ -1,5 +1,8 @@
 <template>
-  <div class="grid">
+  <div v-if="Object.keys(financialStore.getPackageJSON).length === 0" class="grid">
+    <h4>Please <a href="/run-report">upload or paste your package.json</a> first!</h4>
+  </div>
+  <div v-else class="grid">
     <div v-if="calculationInProgress" class="col-12 align-items-center flex flex-column">
       <p class="text-center mb-5">
         Financial health calculation is in progress. Please wait, this may take up to x minutes...
