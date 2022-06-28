@@ -29,12 +29,6 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Create .env file in packages/financial-health-calculator
-        run: | 
-          cd packages/financial-health-calculator
-          touch .env
-          echo OPEN_COLLECTIVE_API_KEY="${{ secrets.OPEN_COLLECTIVE_API_KEY }}" >> .env
-
       - name: Build
         run: npm run build
 
@@ -43,3 +37,17 @@ jobs:
 
       - name: Test e2e
         run: npm run test:e2e:ci
+
+      - name: Deploy to Azure SWA (Preview)
+        if: github.ref != 'refs/heads/main'
+        env: 
+          AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          SWA_CLI_DEPLOYMENT_TOKEN: ${{ secrets.SWA_CLI_DEPLOYMENT_TOKEN }}
+        run: npx @azure/static-web-apps-cli deploy ./.output/public --app-location ./packages/frontend --api-location ./packages/frontend/.output/server --env preview
+
+      - name: Deploy to Azure SWA (Production)
+        if: github.ref == 'refs/heads/main'
+        env: 
+          AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          SWA_CLI_DEPLOYMENT_TOKEN: ${{ secrets.SWA_CLI_DEPLOYMENT_TOKEN }}
+        run: npx @azure/static-web-apps-cli deploy ./.output/public --app-location ./packages/frontend --api-location ./packages/frontend/.output/server --env production
