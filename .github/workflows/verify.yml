@@ -30,6 +30,8 @@ jobs:
         run: npm ci
 
       - name: Build
+        env:
+          NITRO_PRESET: azure
         run: npm run build
 
       - name: Test unit
