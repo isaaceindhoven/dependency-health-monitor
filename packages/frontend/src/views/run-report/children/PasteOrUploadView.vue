@@ -1,27 +1,30 @@
 <template>
   <div class="grid">
-    <div class="col-6">
-      <TextArea
-        @blur="onBlur"
-        class="package-json-input"
-        v-model="inputValue"
-        placeholder="Paste your package.json here"
-        rows="30"
-      />
-      <span class="p-error" v-if="textInputError">{{ textInputError }}</span>
-    </div>
-    <div class="col-1 text-center flex align-items-center justify-content-center">
-      <p class="text-2xl">or</p>
-    </div>
-    <div class="col-5 align-items-center flex">
-      <FileUpload accept=".json" :fileLimit="1" :customUpload="true" @uploader="fileUploaded">
-        <template #empty>
-          <p class="text-center">
-            Drag and drop file here to upload or click the button above and select the file to upload.
-          </p>
-        </template>
-      </FileUpload>
-      <span class="p-error" v-if="uploadError">{{ uploadError }}</span>
+    <div class="p-fileupload p-fileupload-advanced p-component col-12">
+      <div class="p-fileupload-buttonbar flex justify-content-between align-items-center">
+        <span>Paste or upload package.json file</span>
+        <FileUpload
+          ref="fileUploadRef"
+          mode="basic"
+          @uploader="customUpload"
+          @clear="resetUploadedFileCount"
+          :fileLimit="1"
+          :customUpload="true"
+          :auto="true"
+          chooseLabel="Upload"
+          accept=".json"
+        />
+      </div>
+      <div class="p-fileupload-content">
+        <TextArea
+          @blur="onBlur"
+          class="package-json-input"
+          v-model="inputValue"
+          placeholder="Paste your package.json here"
+          rows="30"
+        />
+        <span class="p-error" v-if="pasteOrUploadError">{{ pasteOrUploadError }}</span>
+      </div>
     </div>
   </div>
   <div class="grid grid-nogutter justify-content-end">
@@ -50,10 +53,10 @@ import { useRouter } from 'vue-router';
 const router = useRouter();
 const financialReportStore = useFinancialReportStore();
 const allowAdvance = ref(false);
+const fileUploadRef = ref();
 
 let inputValue = ref(JSON.stringify(financialReportStore.getPackageJSON, undefined, 2));
-let textInputError = ref('');
-let uploadError = ref('');
+let pasteOrUploadError = ref('');
 
 onMounted(() => {
   if (financialReportStore.getPackageJSON && Object.keys(financialReportStore.getPackageJSON).length > 0) {
@@ -61,7 +64,7 @@ onMounted(() => {
   }
 });
 
-const fileUploaded = (uploadEvent: FileUploadUploaderEvent) => {
+const customUpload = (uploadEvent: FileUploadUploaderEvent) => {
   let file: File;
 
   if (uploadEvent.files instanceof File) {
@@ -74,26 +77,32 @@ const fileUploaded = (uploadEvent: FileUploadUploaderEvent) => {
     .text()
     .then((value) => {
       const result = parsePackageJSONStringToObject(value);
-      uploadError.value = '';
+      pasteOrUploadError.value = '';
 
       inputValue.value = JSON.stringify(result, undefined, 2);
       financialReportStore.setPackageJSON(result);
       allowAdvance.value = true;
     })
     .catch((err) => {
-      uploadError.value = err;
+      pasteOrUploadError.value = err;
+      allowAdvance.value = false;
     });
 };
+
+const resetUploadedFileCount = () => {
+  fileUploadRef.value.uploadedFileCount = 0;
+}
 
 const onBlur = () => {
   try {
     const result = parsePackageJSONStringToObject(inputValue.value);
-    textInputError.value = '';
+    pasteOrUploadError.value = '';
 
     financialReportStore.setPackageJSON(result);
     allowAdvance.value = true;
   } catch (error: any) {
-    textInputError.value = error;
+    pasteOrUploadError.value = error;
+    allowAdvance.value = false;
   }
 };
 
@@ -107,5 +116,6 @@ const advanceToResultsView = () => {
   width: 100%;
   height: 100%;
   font-family: monospace;
+  resize: none;
 }
 </style>
