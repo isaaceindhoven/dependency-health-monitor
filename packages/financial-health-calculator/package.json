@@ -6,7 +6,7 @@
   "types": "./src/index.ts",
   "type": "module",
   "scripts": {
-    "test:unit": "vitest",
+    "test:unit": "vitest run",
     "build": "tsc"
   },
   "author": "",
@@ -18,9 +18,6 @@
     "spdx-license-list": "^6.5.0"
   },
   "devDependencies": {
-    "@types/pacote": "^11.1.3",
-    "msw": "^0.41.0",
-    "typescript": "^4.6.4",
-    "vitest": "^0.12.9"
+    "@types/pacote": "^11.1.3"
   }
 }

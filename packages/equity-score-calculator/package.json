@@ -5,13 +5,12 @@
   "main": "./src/index.ts",
   "types": "./src/index.ts",
   "scripts": {
-    "test:unit": "vitest",
+    "test:unit": "vitest run",
     "build": "tsc"
   },
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "msw": "^0.42.1",
-    "vitest": "^0.14.1"
+    "msw": "^0.42.1"
   }
 }

@@ -22,6 +22,10 @@
       "dependsOn": ["^build"],
       "outputs": []
     },
+    "preview": {
+      "dependsOn": ["build"],
+      "outputs": []
+    },
     "test:lint": {
       "dependsOn": ["^build"],
       "outputs": []
