@@ -7,34 +7,24 @@
         due to a lack of resources. Use the Dependency Health Monitor to view the financial state of your dependencies
         and support your dependency!
       </h4>
-      <Button @click="redirectToExecuteReportPage" label="Execute the report!" icon="pi pi-heart" />
+      <a class="no-underline" href="/run-report/select">
+        <Button label="Execute the report!" icon="pi pi-heart" />
+      </a>
     </div>
     <div id="help-improve" class="col-6">
       <IconHelpImproveVue />
       <div class="flex justify-content-center">
-        <Button
-          @click="openStorySetPage"
-          label="People illustrations by Storyset"
-          class="p-button-text"
-          icon="pi pi-external-link"
-        />
+        <a class="no-underline" href="https://storyset.com/people" target="_blank" rel="noopener noreferer">
+          <Button label="People illustrations by Storyset" class="p-button-text" icon="pi pi-external-link" />
+        </a>
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import router from '@/router';
 import Button from 'primevue/button';
 import IconHelpImproveVue from '@/components/icons/IconHelpImprove.vue';
-
-const redirectToExecuteReportPage = () => {
-  router.push({ path: '/run-report/select' });
-};
-
-const openStorySetPage = () => {
-  window.open('https://storyset.com/people');
-};
 </script>
 
 <style lang="scss" scoped></style>
