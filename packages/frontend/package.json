@@ -16,7 +16,6 @@
     "pinia": "^2.0.13",
     "primeflex": "^3.2.1",
     "primevue": "^3.15.0",
-    "vite-plugin-markdown": "^2.0.2",
     "vue": "^3.2.31",
     "vue-router": "^4.0.14"
   },
@@ -31,11 +30,13 @@
     "eslint": "^8.5.0",
     "jsdom": "^19.0.0",
     "lint-staged": "^12.3.8",
+    "markdown-it-anchor": "^8.6.4",
     "sass": "^1.50.1",
     "sass-loader": "^12.6.0",
     "start-server-and-test": "^1.14.0",
     "typescript": "~4.6.3",
     "vite": "^2.9.1",
+    "vite-plugin-md": "^0.18.1",
     "vitest": "^0.8.1",
     "vue-tsc": "^0.33.9"
   }

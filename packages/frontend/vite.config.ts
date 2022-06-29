@@ -2,14 +2,22 @@ import { fileURLToPath, URL } from 'url';
 
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
-import mdPlugin, { Mode } from 'vite-plugin-markdown';
+import Markdown from 'vite-plugin-md';
+import anchor from 'markdown-it-anchor';
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
-    vue(),
-    mdPlugin({
-      mode: [Mode.VUE],
+    vue({
+      include: [/\.vue$/, /\.md$/],
+    }),
+    Markdown({
+      markdownItSetup(md) {
+        // add anchor links to your H[x] tags
+        md.use(anchor, {
+          permalink: anchor.permalink.headerLink(),
+        });
+      },
     }),
   ],
   resolve: {

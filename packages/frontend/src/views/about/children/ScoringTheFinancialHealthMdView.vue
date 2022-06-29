@@ -1,7 +1,13 @@
 <template>
-  <VueComponent />
+  <ScoringTheFinancialHealthMd />
 </template>
 
 <script setup lang="ts">
-import { VueComponent } from '~docs/scoring/Scoring financial health.md';
+import ScoringTheFinancialHealthMd from '~docs/scoring/Scoring financial health.md';
 </script>
+
+<style scoped lang="scss">
+:deep() {
+  @import '@/assets/markdown.scss';
+}
+</style>

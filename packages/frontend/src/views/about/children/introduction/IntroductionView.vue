@@ -1,7 +1,13 @@
 <template>
-  <VueComponent />
+  <IntroductionMd />
 </template>
 
 <script setup lang="ts">
-import { VueComponent } from './introduction.md';
+import IntroductionMd from './introduction.md';
 </script>
+
+<style scoped lang="scss">
+:deep() {
+  @import '@/assets/markdown.scss';
+}
+</style>
