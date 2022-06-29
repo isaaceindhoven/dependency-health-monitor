@@ -1,7 +1,9 @@
 <template>
   <div class="grid pt-6">
     <div class="col-6">
-      <h1 class="text-6xl line-height-2 font-semibold mb-2">Help improve Open-Source sustainability!</h1>
+      <h1 class="text-6xl line-height-2 font-semibold mb-2">
+        <a href="#">Help improve Open-Source sustainability!</a>
+      </h1>
       <h4 class="text-2xl font-light mb-4">
         A lot of Open-Source projects suffer from financial sustainability and face the risk of not getting maintained
         due to a lack of resources. Use the Dependency Health Monitor to view the financial state of your dependencies
