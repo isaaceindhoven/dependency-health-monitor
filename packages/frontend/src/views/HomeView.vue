@@ -7,7 +7,7 @@
         due to a lack of resources. Use the Dependency Health Monitor to view the financial state of your dependencies
         and support your dependency!
       </h4>
-      <a class="p-button p-component no-underline" href="/run-report/select">
+      <a class="p-button p-component no-underline" href="/run-report">
         <span class="pi pi-heart p-button-icon p-button-icon-left"></span
         ><span class="p-button-label">Execute the report!</span>
       </a>
