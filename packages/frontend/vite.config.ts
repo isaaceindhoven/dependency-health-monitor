@@ -29,4 +29,12 @@ export default defineConfig({
       '~docs': fileURLToPath(new URL('../../docs', import.meta.url)),
     },
   },
+  server: {
+    proxy: {
+      '/api': {
+        target: 'http://localhost:7071',
+        changeOrigin: true,
+      },
+    },
+  },
 });
