@@ -5,6 +5,8 @@ import vue from '@vitejs/plugin-vue';
 import Markdown from 'vite-plugin-md';
 import anchor from 'markdown-it-anchor';
 
+const slugify = (s: string) => encodeURIComponent(String(s).trim().toLowerCase().replace('/', '').replace(/\s+/g, '-'));
+
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
@@ -16,6 +18,7 @@ export default defineConfig({
         // add anchor links to your H[x] tags
         md.use(anchor, {
           permalink: anchor.permalink.headerLink(),
+          slugify,
         });
       },
     }),
