@@ -92,9 +92,6 @@ jobs:
       - name: Remove @dependency-health-monitor from node_modules in backend
         run: cd packages/backend && rm -rf node_modules/@dependency-health-monitor
 
-      - name: Install SWA
-        run: npm install -g @azure/static-web-apps-cli
-
       - name: Deploy Azure Static Web App
         env:
           DEPLOYMENT_TOKEN: ${{ secrets.SWA_CLI_DEPLOYMENT_TOKEN }}
@@ -103,4 +100,4 @@ jobs:
           APP_NAME: ${{ secrets.SWA_CLI_APP_NAME }}
           RESOURCE_GROUP: ${{ secrets.AZURE_RESOURCE_GROUP }}
 
-        run: swa deploy -a ./packages/frontend -i ./packages/backend -O ./dist -d $DEPLOYMENT_TOKEN -S $SUBSCRIPTION_ID -T $TENANT_ID -n $APP_NAME -R $RESOURCE_GROUP
+        run: npx @azure/static-web-apps-cli deploy -a ./packages/frontend -i ./packages/backend -O ./dist -d $DEPLOYMENT_TOKEN -S $SUBSCRIPTION_ID -T $TENANT_ID -n $APP_NAME -R $RESOURCE_GROUP
