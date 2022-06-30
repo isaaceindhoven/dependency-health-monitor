@@ -1,12 +1,26 @@
 {
   "extends": "@vue/tsconfig/tsconfig.web.json",
-  "include": ["env.d.ts", "src/**/*", "src/**/*.vue"],
+  "include": ["env.d.ts", "src/**/*", "src/**/*.vue", "src/**/*.md"],
   "exclude": ["src/**/__tests__/*"],
+  "module": "es2022",
   "compilerOptions": {
     "composite": true,
-    "baseUrl": ".",
+    "lib": ["ES2021"],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@dependency-health-monitor/financial-health-calculator": ["./packages/financial-health-calculator"],
+      "@dependency-health-monitor/financial-health-calculator/*": ["./packages/financial-health-calculator/*"],
+      "@dependency-health-monitor/equity-score-calculator": ["./packages/equity-score-calculator"],
+      "@dependency-health-monitor/equity-score-calculator/*": ["./packages/equity-score-calculator/*"],
+      "@docs/*": ["./docs/*"],
     }
-  }
+  },
+  "references": [
+    {
+      "path": "../financial-health-calculator/tsconfig.json"
+    },
+    {
+      "path": "../equity-score-calculator/tsconfig.json"
+    }
+  ]
 }

@@ -2,6 +2,8 @@ import { AVERAGE_SALARY_CENTS, CRITERIA_WEIGHTS } from '../../src/constants';
 import { calculateSustainabilityScore } from '../../src/calculator/sustainability';
 import { describe, it, expect } from 'vitest';
 
+const locale = 'en-GB';
+
 describe('sustainability score calculation', () => {
   it('returns 0 when yearly revenue is empty or 0', async () => {
     expect(() => {
@@ -9,7 +11,14 @@ describe('sustainability score calculation', () => {
       const fundingGoalCents = 100;
       const teamSize = 100;
 
-      const scoreCalculationResult = calculateSustainabilityScore('eslint', yearlyRevenue, fundingGoalCents, teamSize);
+      const scoreCalculationResult = calculateSustainabilityScore(
+        'eslint',
+        yearlyRevenue,
+        fundingGoalCents,
+        teamSize,
+        'EUR',
+        locale,
+      );
 
       expect(scoreCalculationResult.score).toBe(0);
       expect(scoreCalculationResult.weightedScore).toBe(0 * CRITERIA_WEIGHTS.SUSTAINABILITY);
@@ -22,7 +31,14 @@ describe('sustainability score calculation', () => {
       const fundingGoalCents = 0;
       const teamSize = 0;
 
-      const scoreCalculationResult = calculateSustainabilityScore('eslint', yearlyRevenue, fundingGoalCents, teamSize);
+      const scoreCalculationResult = calculateSustainabilityScore(
+        'eslint',
+        yearlyRevenue,
+        fundingGoalCents,
+        teamSize,
+        'EUR',
+        locale,
+      );
 
       expect(scoreCalculationResult.score).toBe(0);
       expect(scoreCalculationResult.weightedScore).toBe(0 * CRITERIA_WEIGHTS.SUSTAINABILITY);
@@ -35,7 +51,14 @@ describe('sustainability score calculation', () => {
       const fundingGoalCents = 0;
       const teamSize = 0;
 
-      const scoreCalculationResult = calculateSustainabilityScore('eslint', yearlyRevenue, fundingGoalCents, teamSize);
+      const scoreCalculationResult = calculateSustainabilityScore(
+        'eslint',
+        yearlyRevenue,
+        fundingGoalCents,
+        teamSize,
+        'EUR',
+        locale,
+      );
 
       expect(scoreCalculationResult.score).toBe(0);
       expect(scoreCalculationResult.weightedScore).toBe(0 * CRITERIA_WEIGHTS.SUSTAINABILITY);
@@ -48,7 +71,14 @@ describe('sustainability score calculation', () => {
       const fundingGoalCents = 100;
       const teamSize = 0;
 
-      const scoreCalculationResult = calculateSustainabilityScore('eslint', yearlyRevenue, fundingGoalCents, teamSize);
+      const scoreCalculationResult = calculateSustainabilityScore(
+        'eslint',
+        yearlyRevenue,
+        fundingGoalCents,
+        teamSize,
+        'EUR',
+        locale,
+      );
 
       expect(scoreCalculationResult.score).toBe(100);
       expect(scoreCalculationResult.weightedScore).toBe(100 * CRITERIA_WEIGHTS.SUSTAINABILITY);
@@ -61,7 +91,14 @@ describe('sustainability score calculation', () => {
       const fundingGoalCents = 50;
       const teamSize = 0;
 
-      const scoreCalculationResult = calculateSustainabilityScore('eslint', yearlyRevenue, fundingGoalCents, teamSize);
+      const scoreCalculationResult = calculateSustainabilityScore(
+        'eslint',
+        yearlyRevenue,
+        fundingGoalCents,
+        teamSize,
+        'EUR',
+        locale,
+      );
 
       expect(scoreCalculationResult.score).toBe(100);
       expect(scoreCalculationResult.weightedScore).toBe(100 * CRITERIA_WEIGHTS.SUSTAINABILITY);
@@ -74,7 +111,14 @@ describe('sustainability score calculation', () => {
       const fundingGoalCents = 100;
       const teamSize = 75;
 
-      const scoreCalculationResult = calculateSustainabilityScore('eslint', yearlyRevenue, fundingGoalCents, teamSize);
+      const scoreCalculationResult = calculateSustainabilityScore(
+        'eslint',
+        yearlyRevenue,
+        fundingGoalCents,
+        teamSize,
+        'EUR',
+        locale,
+      );
 
       expect(scoreCalculationResult.score).toBe(100);
       expect(scoreCalculationResult.weightedScore).toBe(100 * CRITERIA_WEIGHTS.SUSTAINABILITY);
@@ -87,7 +131,14 @@ describe('sustainability score calculation', () => {
       const teamSize = 5;
       const yearlyRevenue = AVERAGE_SALARY_CENTS * teamSize;
 
-      const scoreCalculationResult = calculateSustainabilityScore('eslint', yearlyRevenue, fundingGoalCents, teamSize);
+      const scoreCalculationResult = calculateSustainabilityScore(
+        'eslint',
+        yearlyRevenue,
+        fundingGoalCents,
+        teamSize,
+        'EUR',
+        locale,
+      );
 
       expect(scoreCalculationResult.score).toBe(100);
       expect(scoreCalculationResult.weightedScore).toBe(100 * CRITERIA_WEIGHTS.SUSTAINABILITY);

@@ -36,7 +36,7 @@ const fetchRateLimitLeft = async (url: string): Promise<GitHubRateLimitData> => 
 };
 
 const collaboratorIsPartOfOrganisation = (organisations: string[], organisation: string): boolean => {
-  return organisations.includes(organisation);
+  return organisations.includes(organisation.toLowerCase());
 };
 
 const getCollaboratorData = async (collaborator: GitHubCollaborator) => {

@@ -17,10 +17,8 @@ export const calculateAcceptanceOfFundingScore = (
   return {
     score: 100,
     weightedScore: 100 * CRITERIA_WEIGHTS.ACCEPTANCE_OF_FUNDING,
-    explanation: `
-            As ${packageName} accepts funding, they receive a score of 100. ${packageName} promotes their funding on:
-            ${npmFundingUrl ? ` - NPM: ${npmFundingUrl} \n` : ''}
-            ${githubFundingUrl ? `  - GitHub: ${githubFundingUrl} \n` : ''}
-        `,
+    explanation: `As ${packageName} accepts funding, they receive a score of 100. ${packageName} promotes their funding on: ${
+      npmFundingUrl ? `\n - NPM: ${npmFundingUrl}` : ''
+    }${githubFundingUrl ? `\n - GitHub: ${githubFundingUrl} \n` : ''}`,
   };
 };
