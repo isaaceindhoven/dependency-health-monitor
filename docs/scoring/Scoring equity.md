@@ -20,8 +20,8 @@ The equity score indicates if the received financial health score is fair compar
 
 - Financial health score: Measured by [these criteria](Scoring%20financial%20health.md)
 - Usage: Measured by taking the NPM weekly downloads
-  <br></br>
-  > **_NOTE:_** _Deciding the relation of financial health and usage of the project to measure the equity is quite hard to do. We are open to suggestions, if you think you can improve the measurement of the equity score, please contribute!_
+
+> **_NOTE:_** _Deciding the relation of financial health and usage of the project to measure the equity is quite hard to do. We are open to suggestions, if you think you can improve the measurement of the equity score, please contribute!_
 
 To measure the equity of a project's financial health, the following scale has been created:
 

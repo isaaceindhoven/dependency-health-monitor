@@ -65,3 +65,14 @@ th {
   padding: 0.125rem 0.5rem;
   border: 1px solid var(--text-color-secondary);
 }
+
+blockquote {
+  border-left: 6px solid var(--text-color-secondary);
+  background-color: var(--primary-color-text);
+  padding: 0.125rem 0.125rem 0.125rem 1rem;
+  margin-bottom: 0.5rem;
+
+  p {
+    margin: 0;
+  }
+}
