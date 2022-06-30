@@ -4,7 +4,7 @@
   "scripts": {
     "build": "node esbuild.config.mjs",
     "predev": "npm run build",
-    "dev": "func start",
+    "dev": "func start -p 7071",
     "test:unit": "echo \"No tests yet...\""
   },
   "dependencies": {
