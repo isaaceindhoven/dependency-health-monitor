@@ -30,7 +30,6 @@
 </template>
 
 <script setup lang="ts">
-import Button from 'primevue/button';
 import IconHelpImproveVue from '@/components/icons/IconHelpImprove.vue';
 </script>
 
