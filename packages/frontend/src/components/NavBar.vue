@@ -19,7 +19,6 @@ let items: MenuItem[] = [
     <template #start>
       <a class="text-900 no-underline pl-3 pr-8" href="/"> DPM </a>
     </template>
-    <template #end> Log in / log out </template>
   </Menubar>
 </template>
 
