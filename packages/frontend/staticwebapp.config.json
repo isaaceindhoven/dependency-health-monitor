@@ -1,0 +1,12 @@
+{
+    "platform": {
+        "apiRuntime": "node:16"
+    },
+    "navigationFallback": {
+        "rewrite": "/index.html",
+        "exclude": [
+            "*.{css,scss,js,ico,svg,jpg,gif,png}",
+            "assets/*"
+        ]
+    }
+}

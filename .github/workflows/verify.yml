@@ -1,4 +1,4 @@
-name: Verify & Test code
+name: Verify, Test & Deploy application
 
 on:
   push:
@@ -43,3 +43,61 @@ jobs:
 
       - name: Test e2e
         run: npm run test:e2e:ci
+
+      - name: Archive frontend build output
+        uses: actions/upload-artifact@v3
+        with:
+          name: frontend-build
+          path: packages/frontend/dist
+          retention-days: 1
+
+      - name: Archive backend build artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: backend-build
+          path: packages/backend/dist
+          retention-days: 1
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: [verify]
+    strategy:
+      matrix:
+        node-version: [16.x]
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Download frontend build artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: frontend-build
+          path: packages/frontend/dist
+
+      - name: Download backend build artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: backend-build
+          path: packages/backend/dist
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Copy package-lock from root
+        run: cp package-lock.json packages/backend
+
+      - name: Copy node_modules from root
+        run: cp -R node_modules packages/backend
+
+      - name: Remove @dependency-health-monitor from node_modules in backend
+        run: cd packages/backend && rm -rf node_modules/@dependency-health-monitor
+
+      - name: Deploy Azure Static Web App
+        env:
+          DEPLOYMENT_TOKEN: ${{ secrets.SWA_CLI_DEPLOYMENT_TOKEN }}
+          SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+          APP_NAME: ${{ secrets.SWA_CLI_APP_NAME }}
+          RESOURCE_GROUP: ${{ secrets.AZURE_RESOURCE_GROUP }}
+
+        run: npx @azure/static-web-apps-cli deploy -a ./packages/frontend -i ./packages/backend -O ./dist -d $DEPLOYMENT_TOKEN -S $SUBSCRIPTION_ID -T $TENANT_ID -n $APP_NAME -R $RESOURCE_GROUP
