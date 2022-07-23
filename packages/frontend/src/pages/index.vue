@@ -1,7 +1,36 @@
 <template>
-  <div>This is a cool home page maybe</div>
+  <div class="grid pt-6">
+    <div class="col-6">
+      <h1 class="text-6xl line-height-2 font-semibold mb-2">Help improve Open-Source sustainability!</h1>
+      <h4 class="text-2xl font-light mb-4">
+        A lot of Open-Source projects suffer from financial sustainability and face the risk of not getting maintained
+        due to a lack of resources. Use the Dependency Health Monitor to view the financial state of your dependencies
+        and support your dependency!
+      </h4>
+      <a class="p-button p-component no-underline" href="/run-report">
+        <span class="pi pi-heart p-button-icon p-button-icon-left"></span
+        ><span class="p-button-label">Execute the report!</span>
+      </a>
+    </div>
+    <div id="help-improve" class="col-6">
+      <IconHelpImproveVue />
+      <div class="flex justify-content-center">
+        <a
+          class="p-button p-component p-button-text no-underline"
+          href="https://storyset.com/people"
+          target="_blank"
+          rel="noopener noreferer"
+        >
+          <span class="pi pi-external-link p-button-icon p-button-icon-left mr-3"></span
+          ><span class="p-button-label">People illustrations by Storyset</span>
+        </a>
+      </div>
+    </div>
+  </div>
 </template>
 
-<script setup></script>
+<script setup lang="ts">
+import IconHelpImproveVue from '@/components/icons/IconHelpImprove.vue';
+</script>
 
 <style lang="scss" scoped></style>

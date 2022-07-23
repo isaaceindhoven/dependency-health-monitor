@@ -43,7 +43,7 @@ export const fetchGitHubDataFactory = (gitHubAccessToken: string) => {
   };
 
   const collaboratorIsPartOfOrganisation = (organisations: string[], organisation: string): boolean => {
-    return organisations.includes(organisation);
+    return organisations.includes(organisation.toLowerCase());
   };
 
   const getCollaboratorData = async (collaborator: GitHubCollaborator) => {

@@ -1,4 +1,4 @@
-name: Verify & Test code
+name: Verify, Test & Deploy application
 
 on:
   push:
@@ -11,7 +11,7 @@ on:
       - "reopened"
 
 jobs:
-  verify:
+  default:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -43,13 +43,19 @@ jobs:
       - name: Deploy to Azure SWA (Preview)
         if: github.ref != 'refs/heads/main'
         env: 
-          AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-          SWA_CLI_DEPLOYMENT_TOKEN: ${{ secrets.SWA_CLI_DEPLOYMENT_TOKEN }}
+          DEPLOYMENT_TOKEN: ${{ secrets.SWA_CLI_DEPLOYMENT_TOKEN }}
+          SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+          APP_NAME: ${{ secrets.SWA_CLI_APP_NAME }}
+          RESOURCE_GROUP: ${{ secrets.AZURE_RESOURCE_GROUP }}
         run: npx @azure/static-web-apps-cli deploy ./.output/public --app-location ./packages/frontend --api-location ./packages/frontend/.output/server --env preview
 
       - name: Deploy to Azure SWA (Production)
         if: github.ref == 'refs/heads/main'
         env: 
-          AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-          SWA_CLI_DEPLOYMENT_TOKEN: ${{ secrets.SWA_CLI_DEPLOYMENT_TOKEN }}
+          DEPLOYMENT_TOKEN: ${{ secrets.SWA_CLI_DEPLOYMENT_TOKEN }}
+          SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+          APP_NAME: ${{ secrets.SWA_CLI_APP_NAME }}
+          RESOURCE_GROUP: ${{ secrets.AZURE_RESOURCE_GROUP }}
         run: npx @azure/static-web-apps-cli deploy ./.output/public --app-location ./packages/frontend --api-location ./packages/frontend/.output/server --env production
