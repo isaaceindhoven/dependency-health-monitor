@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Menubar from 'primevue/menubar/menubar.vue';
+import Menubar from 'primevue/menubar/Menubar.vue';
 import type { MenuItem } from 'primevue/menuitem';
 
 let items: MenuItem[] = [

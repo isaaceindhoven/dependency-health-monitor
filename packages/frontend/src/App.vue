@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import NavBar from './components/NavBar.vue';
-import DynamicDialog from 'primevue/dynamicdialog/dynamicdialog.vue';
+import DynamicDialog from 'primevue/dynamicdialog/DynamicDialog.vue';
 import Toast from 'primevue/toast';
 </script>
 

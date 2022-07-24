@@ -43,10 +43,9 @@
 <script setup type="module" lang="ts">
 import { ref, onMounted } from 'vue';
 import type { FileUploadUploaderEvent } from 'primevue/fileupload';
-
-import TextArea from 'primevue/textarea//textarea.vue';
-import FileUpload from 'primevue/fileupload/fileupload.vue';
-import Button from 'primevue/button/button.vue';
+import TextArea from 'primevue/textarea/Textarea.vue';
+import FileUpload from 'primevue/fileupload/FileUpload.vue';
+import Button from 'primevue/button/Button.vue';
 
 import { useFinancialReportStore } from '@/stores/financial-report';
 import { parsePackageJSONStringToObject } from '@/helpers/json-parser';
