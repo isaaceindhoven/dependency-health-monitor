@@ -14,6 +14,7 @@ module.exports = {
     {
       files: ['packages/frontend/src/**/*', 'packages/frontend/src/**/*.vue', 'packages/frontend/env.d.ts'],
       extends: ['plugin:vue/vue3-essential'],
+      rules: { 'vue/multi-word-component-names': 'off', '@typescript-eslint/no-explicit-any': 'off' },
     },
     {
       files: ['packages/frontend/cypress/integration/**.spec.{js,ts,jsx,tsx}'],

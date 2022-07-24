@@ -1,18 +1,16 @@
 <script setup lang="ts">
 import NavBar from './components/NavBar.vue';
-import DynamicDialog from 'primevue/dynamicdialog';
+import DynamicDialog from 'primevue/dynamicdialog/DynamicDialog.vue';
 import Toast from 'primevue/toast';
 </script>
 
 <template>
-  <NavBar />
-  <div class="p-container pt-4">
-    <DynamicDialog />
-    <Toast />
-    <router-view></router-view>
+  <div>
+    <NavBar />
+    <div class="p-container pt-4">
+      <DynamicDialog />
+      <Toast />
+      <NuxtPage />
+    </div>
   </div>
 </template>
-
-<style>
-@import '@/assets/base.css';
-</style>

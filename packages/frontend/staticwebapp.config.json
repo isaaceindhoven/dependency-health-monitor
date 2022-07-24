@@ -1,12 +1,1 @@
-{
-    "platform": {
-        "apiRuntime": "node:16"
-    },
-    "navigationFallback": {
-        "rewrite": "/index.html",
-        "exclude": [
-            "*.{css,scss,js,ico,svg,jpg,gif,png}",
-            "assets/*"
-        ]
-    }
-}
+{"platform":{"apiRuntime":"node:16"},"routes":[{"route":"/index.html","redirect":"/"},{"route":"/","rewrite":"/api/server"}],"navigationFallback":{"rewrite":"/api/server"}}
