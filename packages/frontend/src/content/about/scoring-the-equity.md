@@ -18,7 +18,7 @@ There are three differences with André Staltz' Software below the poverty line.
 
 The equity score indicates if the received financial health score is fair compared to the usage of that project. The equity score, thus, is in need of the following data:
 
-- Financial health score: Measured by [these criteria](Scoring%20financial%20health.md)
+- Financial health score: Measured by [these criteria](/about/scoring-the-financial-health)
 - Usage: Measured by taking the NPM weekly downloads
 
 > **_NOTE:_** _Deciding the relation of financial health and usage of the project to measure the equity is quite hard to do. We are open to suggestions, if you think you can improve the measurement of the equity score, please contribute!_

@@ -1,40 +1,42 @@
 <template>
-  <div class="grid">
-    <div class="p-fileupload p-fileupload-advanced p-component col-12">
-      <div class="p-fileupload-buttonbar flex justify-content-between align-items-center">
-        <span>Paste or upload package.json file</span>
-        <FileUpload
-          ref="fileUploadRef"
-          mode="basic"
-          @uploader="customUpload"
-          @clear="resetUploadedFileCount"
-          :fileLimit="1"
-          :customUpload="true"
-          :auto="true"
-          chooseLabel="Upload"
-          accept=".json"
-        />
-      </div>
-      <div class="p-fileupload-content">
-        <TextArea
-          @blur="onBlur"
-          class="package-json-input"
-          v-model="inputValue"
-          placeholder="Paste your package.json here"
-          rows="30"
-        />
-        <span class="p-error" v-if="pasteOrUploadError">{{ pasteOrUploadError }}</span>
+  <div>
+    <div class="grid">
+      <div class="p-fileupload p-fileupload-advanced p-component col-12">
+        <div class="p-fileupload-buttonbar flex justify-content-between align-items-center">
+          <span>Paste or upload package.json file</span>
+          <FileUpload
+            ref="fileUploadRef"
+            mode="basic"
+            @uploader="customUpload"
+            @clear="resetUploadedFileCount"
+            :fileLimit="1"
+            :customUpload="true"
+            :auto="true"
+            chooseLabel="Upload"
+            accept=".json"
+          />
+        </div>
+        <div class="p-fileupload-content">
+          <TextArea
+            @blur="onBlur"
+            class="package-json-input"
+            v-model="inputValue"
+            placeholder="Paste your package.json here"
+            rows="30"
+          />
+          <span class="p-error" v-if="pasteOrUploadError">{{ pasteOrUploadError }}</span>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="grid grid-nogutter justify-content-end">
-    <Button
-      :disabled="!allowAdvance"
-      @click="advanceToResultsView"
-      label="Submit & Execute report"
-      icon="pi pi-angle-right"
-      icon-pos="right"
-    />
+    <div class="grid grid-nogutter justify-content-end">
+      <Button
+        :disabled="!allowAdvance"
+        @click="advanceToResultsView"
+        label="Submit & Execute report"
+        icon="pi pi-angle-right"
+        icon-pos="right"
+      />
+    </div>
   </div>
 </template>
 
@@ -42,9 +44,9 @@
 import { ref, onMounted } from 'vue';
 import type { FileUploadUploaderEvent } from 'primevue/fileupload';
 
-import TextArea from 'primevue/textarea';
-import FileUpload from 'primevue/fileupload';
-import Button from 'primevue/button';
+import TextArea from 'primevue/textarea//textarea.vue';
+import FileUpload from 'primevue/fileupload/fileupload.vue';
+import Button from 'primevue/button/button.vue';
 
 import { useFinancialReportStore } from '@/stores/financial-report';
 import { parsePackageJSONStringToObject } from '@/helpers/json-parser';
@@ -107,7 +109,7 @@ const onBlur = () => {
 };
 
 const advanceToResultsView = () => {
-  router.push('/financial-report');
+  router.push('/run-report/results');
 };
 </script>
 

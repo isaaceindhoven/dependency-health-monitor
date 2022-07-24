@@ -8,10 +8,10 @@
     "dev": "turbo run dev",
     "build": "turbo run build",
     "preview": "turbo run preview",
-    "test:unit": "turbo run test:unit --parallel",
-    "test:e2e:ci": "turbo run test:e2e:ci --filter=frontend",
-    "lint": "turbo run lint",
     "test:lint": "turbo run test:lint",
+    "test:unit": "turbo run test:unit --parallel",
+    "test:e2e": "turbo run test:e2e --filter=frontend",    
+    "test:e2e:watch": "turbo run test:e2e:watch --filter=frontend",    
     "prepare": "husky install"
   },
   "devDependencies": {

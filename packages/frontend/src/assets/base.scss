@@ -1,13 +1,5 @@
-@import './_container.css';
-/* @import 'primevue/resources/themes/bootstrap4-light-blue/theme.css'; */
-
-/* @media (prefers-color-scheme: dark) {
-  
-}
-
-@media (prefers-color-scheme: light) {
-  @import 'primevue/resources/themes/bootstrap4-dark-blue/theme.css';
-} */
+@import "./_markdown";
+@import './_container';
 
 /* Scaling for PrimeVue */
 html {

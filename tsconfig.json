@@ -14,9 +14,6 @@
   "references": [
     {
       "path": "./packages/frontend/tsconfig.json"
-    },
-    {
-      "path": "./packages/frontend/tsconfig.vitest.json"
     }
   ]
 }

@@ -75,7 +75,7 @@
 </template>
 
 <script setup lang="ts">
-import ScoreCalculationClarificationVue from './score-calculation-clarification.vue';
+import ScoreCalculationClarificationVue from '../../components/ScoreCalculationClarification.vue';
 import ProgressSpinner from 'primevue/progressspinner';
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
@@ -128,7 +128,6 @@ const showExtraInformationColumn = ref(false);
 const dependencies: Ref<Record<string, unknown>[]> = ref([]);
 const calculationInProgress = ref(true);
 const financialStore = useFinancialReportStore();
-const dialog = useDialog();
 const financialReportStatus = ref(FinancialReportStatus.NotExecuted);
 
 let newDataTableValues: Record<string, unknown>[] = [];
@@ -233,6 +232,7 @@ const resetColumns = () => {
 };
 
 const moreInformationClicked = (packageName: string) => {
+  const dialog = useDialog();
   const calculationReport = executedHealthReports.value.get(packageName);
 
   dialog.open(ScoreCalculationClarificationVue, {

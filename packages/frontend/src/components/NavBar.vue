@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Menubar from 'primevue/menubar';
+import Menubar from 'primevue/menubar/menubar.vue';
 import type { MenuItem } from 'primevue/menuitem';
 
 let items: MenuItem[] = [
@@ -17,9 +17,7 @@ let items: MenuItem[] = [
 <template>
   <Menubar class="border-noround" :model="items">
     <template #start>
-      <a class="text-900 no-underline pl-3 pr-8" href="/"> DPM </a>
+      <a class="text-900 no-underline pl-3 pr-8" href="/">DPM</a>
     </template>
   </Menubar>
 </template>
-
-<style scoped></style>

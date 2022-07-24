@@ -84,5 +84,3 @@ onMounted(() => {
   calculationResults.value = resultsToText;
 });
 </script>
-
-<style scoped></style>
