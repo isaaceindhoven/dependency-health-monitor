@@ -1,0 +1,63 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["referentialIntegrity"]
+  binaryTargets   = ["native", "rhel-openssl-1.0.x"]
+}
+
+datasource db {
+  provider             = "mysql"
+  url                  = env("DATABASE_URL")
+  referentialIntegrity = "prisma"
+}
+
+generator zod {
+  provider              = "zod-prisma"
+  output                = "../src/zod"
+  relationModel         = true
+  modelCase             = "PascalCase"
+  modelSuffix           = "Model"
+  useDecimalJs          = true
+  prismaJsonNullability = true
+}
+
+model Package {
+  id        String            @id @default(uuid())
+  createdAt DateTime          @default(now())
+  updatedAt DateTime          @updatedAt
+  name      String            @unique
+  version   String
+  funding   Json?
+  author    Json?
+  edgesIn   PackageEdges[]    @relation("fromEdge")
+  edgesOut  PackageEdges[]    @relation("toEdge")
+  reports   ReportsPackages[]
+}
+
+enum PackageEdgeType {
+  IN
+  OUT
+}
+
+model PackageEdges {
+  id     String  @id @default(uuid())
+  from   Package @relation(name: "fromEdge", fields: [fromId], references: [id], onUpdate: NoAction)
+  fromId String
+  to     Package @relation(name: "toEdge", fields: [toId], references: [id], onUpdate: NoAction)
+  toId   String
+}
+
+model Report {
+  id        String            @id @default(uuid())
+  checksum  String            @unique
+  createdAt DateTime          @default(now())
+  updatedAt DateTime          @updatedAt
+  packages  ReportsPackages[]
+}
+
+model ReportsPackages {
+  id        String  @id @default(uuid())
+  reportId  String
+  Report    Report  @relation(fields: [reportId], references: [id])
+  packageId String
+  Package   Package @relation(fields: [packageId], references: [id])
+}

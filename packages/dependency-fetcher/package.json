@@ -1,0 +1,23 @@
+{
+  "name": "@dependency-health-monitor/dependency-fetcher",
+  "version": "1.0.0",
+  "description": "Dependency fetcher that is able to fetch in depth",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "p-limit": "^4.0.0",
+    "p-map": "^5.5.0",
+    "pacote": "^13.3.0",
+    "zod": "^3.17.10"
+  },
+  "devDependencies": {
+    "@types/pacote": "^11.1.3"
+  }
+}
