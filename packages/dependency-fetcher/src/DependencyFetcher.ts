@@ -1,5 +1,5 @@
 import { Package } from './Package/PackageModel.js';
-import NpmPackageManager from './PackageManager/NpmPackageManager.js';
+import NpmPackageManager from './PackageManager/npm/NpmIoPackageManager';
 
 export class DependencyFetcher {
   private input: string;
@@ -22,7 +22,7 @@ export class DependencyFetcher {
     // if (MavenPackageManager.validateIfNpmByInput(input)) {
     //   return MavenPackageManager;
     // }
-    throw new Error('No package manager found');
+    throw new Error('Invalid input. No package manager found.');
   }
 
   getPackageManagerByFileName(fileName: string) {
@@ -34,7 +34,7 @@ export class DependencyFetcher {
       // case 'pom.xml':
       //   return MavenPackageManager;
       default:
-        throw new Error(`No package manager found for file name ${fileName}`);
+        throw new Error(`Invalid input. No package manager found for file name ${fileName}`);
     }
   }
 
@@ -44,21 +44,40 @@ export class DependencyFetcher {
         ...acc,
         [key]: {
           ...value,
-          edgesOut: [...value.edgesOut],
-          edgesIn: [...value.edgesIn],
+          dependents: [...value.dependents],
+          dependencies: [...value.dependencies],
         },
       };
     }, {} as Record<string, any>);
   }
 
-  async aggregate(): Promise<{
-    packages: Record<string, any>;
-    errors: Record<string, any>;
-  }> {
-    const { packages, errors } = await this.packageManager.aggregate(this.input);
+  async fetch() {
+    const { packages } = await this.packageManager.fetch(this.input);
     return {
       packages: this.transformPackagesToObject(packages),
-      errors: Object.fromEntries(errors),
+      // errors: Object.fromEntries(errors),
     };
+  }
+
+  async aggregate(): Promise<{
+    packages: Record<string, any>;
+    // errors: Record<string, any>;
+  }> {
+    const { packages } = await this.packageManager.aggregate(this.input);
+    return {
+      packages: this.transformPackagesToObject(packages),
+      // errors: Object.fromEntries(errors),
+    };
+  }
+
+  async fetchOrAggregate() {
+    // const exists = await this.packageManager.exists(this.input);
+    // if (exists) {
+    //   return this.fetch();
+    // } else {
+
+    // }
+
+    return this.aggregate();
   }
 }

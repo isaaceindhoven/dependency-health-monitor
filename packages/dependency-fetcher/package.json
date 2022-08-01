@@ -12,10 +12,13 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "lodash-es": "^4.17.21",
+    "npms.io": "^2.2.2",
     "p-limit": "^4.0.0",
     "p-map": "^5.5.0",
     "pacote": "^13.3.0",
-    "zod": "^3.17.10"
+    "zod": "^3.17.10",
+    "date-fns": "^2.29.1"
   },
   "devDependencies": {
     "@types/pacote": "^11.1.3"

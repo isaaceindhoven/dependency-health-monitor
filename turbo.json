@@ -34,6 +34,23 @@
     "test:lint": {
       "dependsOn": ["^build"],
       "outputs": []
+    },
+
+    "push": {
+      "outputs": []
+    },
+    "push:acceptdataloss": {
+      "outputs": []
+    },
+    "push:reset": {
+      "outputs": []
+    },
+    "generate": {
+      "outputs": []
+    },
+    "studio": {
+      "outputs": []
     }
-  }
+  },
+  "globalDependencies": [".env"]
 }

@@ -21,16 +21,16 @@ generator zod {
 }
 
 model Package {
-  id        String            @id @default(uuid())
-  createdAt DateTime          @default(now())
-  updatedAt DateTime          @updatedAt
-  name      String            @unique
-  version   String
-  funding   Json?
-  author    Json?
-  edgesIn   PackageEdges[]    @relation("fromEdge")
-  edgesOut  PackageEdges[]    @relation("toEdge")
-  reports   ReportsPackages[]
+  id           String             @id @default(uuid())
+  createdAt    DateTime           @default(now())
+  updatedAt    DateTime           @updatedAt
+  name         String             @unique
+  version      String
+  funding      Json?
+  author       Json?
+  dependents   PackageRelations[] @relation("dependency")
+  dependencies PackageRelations[] @relation("dependent")
+  reports      ReportsPackages[]
 }
 
 enum PackageEdgeType {
@@ -38,12 +38,14 @@ enum PackageEdgeType {
   OUT
 }
 
-model PackageEdges {
-  id     String  @id @default(uuid())
-  from   Package @relation(name: "fromEdge", fields: [fromId], references: [id], onUpdate: NoAction)
-  fromId String
-  to     Package @relation(name: "toEdge", fields: [toId], references: [id], onUpdate: NoAction)
-  toId   String
+model PackageRelations {
+  dependent      Package @relation(name: "dependent", fields: [dependentName], references: [name], onUpdate: NoAction)
+  dependentName  String
+  dependency     Package @relation(name: "dependency", fields: [dependencyName], references: [name], onUpdate: NoAction)
+  dependencyName String
+
+  @@id([dependentName, dependencyName])
+  @@unique([dependentName, dependencyName])
 }
 
 model Report {
