@@ -1,5 +1,5 @@
 <template>
-  <div v-if="Object.keys(financialStore.getPackageJSON).length === 0" class="grid">
+  <div v-if="Object.keys(financialReportState.packageJSON).length === 0" class="grid">
     <h4>Please <a href="/run-report">upload or paste your package.json</a> first!</h4>
   </div>
   <div v-else class="grid">
@@ -24,7 +24,7 @@
       >
         <template #header>
           <div class="flex justify-content-between align-items-center">
-            <h4>Dependencies found for {{ financialStore.getPackageJSON.name }}</h4>
+            <h4>Dependencies found for {{ financialReportState.packageJSON.name }}</h4>
             <Button
               v-if="financialReportStatus === FinancialReportStatus.NotExecuted"
               @click="executeFinancialHealthReportOnPage"
@@ -62,7 +62,7 @@
           <template #body="{ data }">
             <Button
               v-if="executedHealthReports.has(data.dependency)"
-              @click="moreInformationClicked(data.dependency)"
+              @click="() => moreInformationClicked(data.dependency)"
               class="p-button-rounded p-button-text p-button-secondary"
               type="button"
               icon="pi pi-angle-right"
@@ -83,7 +83,7 @@ import Button from 'primevue/button';
 import { ref, onMounted, type Ref } from 'vue';
 import { fetchNPMDependenciesForPackageJSON } from '@/services/fetch-dependencies';
 import { executeFinancialHealthReport } from '@/services/execute-financial-health-report';
-import { useFinancialReportStore } from '@/stores/financial-report';
+import { useFinancialReportState } from '@/composables/financial-report';
 import { useDialog } from 'primevue/usedialog';
 import type { DataTablePageEvent } from 'primevue/datatable';
 import type { ColumnProps } from 'primevue/column';
@@ -127,7 +127,7 @@ const executedHealthReports: Ref<Map<string, FinancialHealthReportResponse>> = r
 const showExtraInformationColumn = ref(false);
 const dependencies: Ref<Record<string, unknown>[]> = ref([]);
 const calculationInProgress = ref(true);
-const financialStore = useFinancialReportStore();
+const financialReportState = useFinancialReportState();
 const financialReportStatus = ref(FinancialReportStatus.NotExecuted);
 
 let newDataTableValues: Record<string, unknown>[] = [];
@@ -135,7 +135,7 @@ let currentPageValues: Record<string, unknown>[] = [];
 let currentPage = 1;
 
 onMounted(() => {
-  const packageJSON = financialStore.getPackageJSON;
+  const packageJSON = financialReportState.value.packageJSON;
 
   fetchNPMDependenciesForPackageJSON(packageJSON).then((data: Record<string, number>) => {
     dependencies.value = Object.keys(data).map((dependency) => ({

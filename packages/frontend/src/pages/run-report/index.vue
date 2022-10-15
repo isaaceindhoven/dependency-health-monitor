@@ -46,21 +46,20 @@ import type { FileUploadUploaderEvent } from 'primevue/fileupload';
 import TextArea from 'primevue/textarea/Textarea.vue';
 import FileUpload from 'primevue/fileupload/FileUpload.vue';
 import Button from 'primevue/button/Button.vue';
-
-import { useFinancialReportStore } from '@/stores/financial-report';
 import { parsePackageJSONStringToObject } from '@/helpers/json-parser';
 import { useRouter } from 'vue-router';
+import { useFinancialReportState } from '@/composables/financial-report';
 
 const router = useRouter();
-const financialReportStore = useFinancialReportStore();
+const financialReportState = useFinancialReportState();
 const allowAdvance = ref(false);
 const fileUploadRef = ref();
 
-let inputValue = ref(JSON.stringify(financialReportStore.getPackageJSON, undefined, 2));
+let inputValue = ref(JSON.stringify(financialReportState.value.packageJSON, undefined, 2));
 let pasteOrUploadError = ref('');
 
 onMounted(() => {
-  if (financialReportStore.getPackageJSON && Object.keys(financialReportStore.getPackageJSON).length > 0) {
+  if (financialReportState.value.packageJSON && Object.keys(financialReportState.value.packageJSON).length > 0) {
     allowAdvance.value = true;
   }
 });
@@ -81,7 +80,7 @@ const customUpload = (uploadEvent: FileUploadUploaderEvent) => {
       pasteOrUploadError.value = '';
 
       inputValue.value = JSON.stringify(result, undefined, 2);
-      financialReportStore.setPackageJSON(result);
+      financialReportState.value.packageJSON = result;
       allowAdvance.value = true;
     })
     .catch((err) => {
@@ -99,7 +98,7 @@ const onBlur = () => {
     const result = parsePackageJSONStringToObject(inputValue.value);
     pasteOrUploadError.value = '';
 
-    financialReportStore.setPackageJSON(result);
+    financialReportState.value.packageJSON = result;
     allowAdvance.value = true;
   } catch (error: any) {
     pasteOrUploadError.value = error;

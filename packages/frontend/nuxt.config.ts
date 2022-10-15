@@ -1,4 +1,4 @@
-import { defineNuxtConfig } from 'nuxt';
+import { defineNuxtConfig } from 'nuxt/config';
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
@@ -11,7 +11,6 @@ export default defineNuxtConfig({
     'primeicons/primeicons.css',
     '@/assets/base.scss',
   ],
-  buildModules: ['@pinia/nuxt'],
   runtimeConfig: {
     gitHubAccessToken: process.env.NUXT_GITHUB_PERSONAL_ACCESS_TOKEN || '',
     openCollectiveApiKey: process.env.NUXT_OPEN_COLLECTIVE_API_KEY || '',
