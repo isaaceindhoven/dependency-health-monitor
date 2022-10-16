@@ -6,7 +6,7 @@ export const fetchNPMDependenciesForPackageJSON = async (packageJSON: Record<str
   const body = JSON.stringify(packageJSON);
   const requestOptions: RequestInit = {
     method: 'POST',
-    headers: headers,
+    headers,
     body,
   };
 

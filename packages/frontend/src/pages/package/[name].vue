@@ -1,6 +1,6 @@
 <template>
   <div>
-    <DataTable :value="data" responsiveLayout="scroll">
+    <DataTable :value="data" responsive-layout="scroll">
       <Column field="name" header="Name"></Column>
       <Column field="quantity" header="Quantity"></Column>
     </DataTable>
@@ -11,13 +11,9 @@
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
 
-interface PackageResponse {
-  packages: Record<string, any>;
-}
-
 const router = useRouter();
 const packageName = router.currentRoute.value.params.name;
 if (!packageName) createError('No package name provided');
-const url = '/api/run-report/' + packageName;
-const { data } = await useFetch<PackageResponse>(url);
+const url = `/api/run-report/${packageName}`;
+const { data } = await useFetch<any[]>(url);
 </script>

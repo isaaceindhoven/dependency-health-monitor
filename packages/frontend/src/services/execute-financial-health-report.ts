@@ -8,7 +8,7 @@ export const executeFinancialHealthReport = async (packageName: string) => {
   });
   const requestOptions: RequestInit = {
     method: 'POST',
-    headers: headers,
+    headers,
     body,
   };
 

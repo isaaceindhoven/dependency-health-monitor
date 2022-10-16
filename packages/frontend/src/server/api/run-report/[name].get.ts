@@ -1,9 +1,4 @@
-import * as z from 'zod';
 import { DependencyFetcher } from '@dependency-health-monitor/dependency-fetcher';
-
-export const RunReportByPackageNameRequestModel = z.object({
-  packageName: z.string(),
-});
 
 export default defineEventHandler(async (event) => {
   try {

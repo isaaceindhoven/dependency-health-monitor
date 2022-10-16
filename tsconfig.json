@@ -1,20 +1,10 @@
 {
-  "files": [],
-  "compilerOptions": {
-    "declaration": true,
-    "paths": {
-      "@dependency-health-monitor/financial-health-calculator": ["./packages/financial-health-calculator"],
-      "@dependency-health-monitor/financial-health-calculator/*": ["./packages/financial-health-calculator/*"],
-      "@dependency-health-monitor/npm-dependency-fetcher": ["./packages/npm-dependency-fetcher"],
-      "@dependency-health-monitor/npm-dependency-fetcher/*": ["./packages/npm-dependency-fetcher/*"],
-      "@dependency-health-monitor/equity-score-calculator": ["./packages/equity-score-calculator"],
-      "@dependency-health-monitor/equity-score-calculator/*": ["./packages/equity-score-calculator/*"],
-      "@dependency-health-monitor/dependency-fetcher": ["./packages/dependency-fetcher/src"]
-    }
-  },
-  "references": [
-    {
-      "path": "./packages/frontend/tsconfig.json"
-    }
-  ]
+	"compilerOptions": {
+		"target": "ESNext",
+		"module": "ESNext",
+		"strict": true,
+		"noEmit": true,
+		"resolveJsonModule": true,
+		"forceConsistentCasingInFileNames": true
+	}
 }
