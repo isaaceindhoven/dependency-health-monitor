@@ -17,15 +17,17 @@ type Manifest = {
 export default class NpmPackageManager {
   private iterationDepth = 3;
   private concurrency = 50;
-  protected input: string;
+  protected pkgFile: string;
   protected packages: Map<string, Package>;
-  protected npmsIO: NpmsIO;
 
-  constructor(input: string) {
-    this.input = input;
+  public static npmsIO = new NpmsIO();
+  // protected static npmsIO = new NpmsIO();
+
+  constructor(pkgFile: string) {
+    this.pkgFile = pkgFile;
     this.packages = new Map();
     // this.packageErrors = new Map();
-    this.npmsIO = new NpmsIO();
+    // this.npmsIO = new NpmsIO();
   }
 
   getDependenciesFromManifest(manifest: Manifest) {
@@ -60,8 +62,8 @@ export default class NpmPackageManager {
     }
   }
 
-  getPackageDataFromInput(input: string): Package | undefined {
-    const data = JSON.parse(input);
+  getPackageDataFromPkgFile(pkgFile: string): Package | undefined {
+    const data = JSON.parse(pkgFile);
     return this.transformPackageDataToPackage(data);
   }
 
@@ -138,7 +140,7 @@ export default class NpmPackageManager {
   }
 
   async getPackagesDataFromRegistry(pkgs: string[]) {
-    return this.npmsIO.api.package
+    return NpmPackageManager.npmsIO.api.package
       .multiPackageInfo(pkgs)
       .then((data) => {
         return Object.values(data).map((pkgData) => {
@@ -214,37 +216,37 @@ export default class NpmPackageManager {
     return orderBy([...packages]);
   }
 
-  async fetch(input: string) {
-    const startDate = new Date();
-    const inputPackage = this.getPackageDataFromInput(input);
-    if (inputPackage) {
-      const relations = await this.getPackageRelationsFromDatabase(inputPackage.dependencies);
+  async fetch(pkgFile: string) {
+    // const startDate = new Date();
+    const pkgFilePackage = this.getPackageDataFromPkgFile(pkgFile);
+    if (pkgFilePackage) {
+      const relations = await this.getPackageRelationsFromDatabase(pkgFilePackage.dependencies);
       const uniquePackages = this.getPackagesFromRelations(relations);
       const packages = await this.getPackagesDataFromDatabase(uniquePackages);
       const parsedPackages = z.array(PackageModel).parse(packages);
       this.packages = new Map(parsedPackages.map((pkg) => [pkg.name, pkg]));
     }
-    const endDate = new Date();
-    console.log(
-      formatDuration(
-        intervalToDuration({
-          start: startDate,
-          end: endDate,
-        }),
-      ),
-    );
+    // const endDate = new Date();
+    // console.log(
+    //   formatDuration(
+    //     intervalToDuration({
+    //       start: startDate,
+    //       end: endDate,
+    //     }),
+    //   ),
+    // );
 
     return { packages: this.packages };
   }
 
-  async aggregate(input: string): Promise<{
+  async aggregate(pkgFile: string): Promise<{
     packages: Map<string, Package>;
   }> {
     const startDate = new Date();
-    const inputPackage = this.getPackageDataFromInput(input);
-    if (inputPackage) {
-      await this.aggregatePackages(inputPackage);
-      await this.fetch(input);
+    const pkgFilePackage = this.getPackageDataFromPkgFile(pkgFile);
+    if (pkgFilePackage) {
+      await this.aggregatePackages(pkgFilePackage);
+      await this.fetch(pkgFile);
     }
     const endDate = new Date();
     console.log(
@@ -258,27 +260,31 @@ export default class NpmPackageManager {
     return { packages: this.packages };
   }
 
-  async exists(input: string): Promise<boolean> {
-    const inputPackage = this.getPackageDataFromInput(input);
-    if (inputPackage) {
+  async exists(pkgFile: string): Promise<boolean> {
+    const pkgFilePackage = this.getPackageDataFromPkgFile(pkgFile);
+    if (pkgFilePackage) {
       const packageAmount = await db.package.count({
-        where: { name: { in: [...inputPackage.dependencies] } },
+        where: { name: { in: [...pkgFilePackage.dependencies] } },
       });
-      return packageAmount === inputPackage.dependencies.size;
+      return packageAmount === pkgFilePackage.dependencies.size;
     }
-    throw new Error("Can't parse inputPackage");
+    throw new Error("Can't parse pkgFilePackage");
   }
 
-  static validateIfNpmByInput(input: string) {
+  static validateIfNpmByPkgFile(pkgFile: string) {
     const requiredKeys = ['name', 'version'];
     const atLeastKeys = ['dependencies', 'devDependencies'];
     try {
-      const json = JSON.parse(input);
+      const json = JSON.parse(pkgFile);
       const hasRequiredKeys = requiredKeys.every((key) => Object.keys(json).includes(key));
       const hasAtLeast = atLeastKeys.some((key) => Object.keys(json).includes(key));
       return hasRequiredKeys && hasAtLeast;
     } catch {
       return false;
     }
+  }
+
+  static async fetchPackageFile(pkgName: string) {
+    return this.npmsIO.api.package.packageInfo(pkgName).then((data) => data.collected.metadata as any);
   }
 }

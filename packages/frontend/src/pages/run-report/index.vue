@@ -1,43 +1,27 @@
 <template>
-  <div>
-    <div class="grid">
-      <div class="p-fileupload p-fileupload-advanced p-component col-12">
-        <div class="p-fileupload-buttonbar flex justify-content-between align-items-center">
-          <span>Paste or upload package.json file</span>
-          <FileUpload
-            ref="fileUploadRef"
-            mode="basic"
-            @uploader="customUpload"
-            @clear="resetUploadedFileCount"
-            :fileLimit="1"
-            :customUpload="true"
-            :auto="true"
-            chooseLabel="Upload"
-            accept=".json"
-          />
-        </div>
-        <div class="p-fileupload-content">
-          <TextArea
-            @blur="onBlur"
-            class="package-json-input"
-            v-model="inputValue"
-            placeholder="Paste your package.json here"
-            rows="30"
-          />
-          <span class="p-error" v-if="pasteOrUploadError">{{ pasteOrUploadError }}</span>
-        </div>
-      </div>
-    </div>
-    <div class="grid grid-nogutter justify-content-end">
-      <Button
-        :disabled="!allowAdvance"
-        @click="advanceToResultsView"
-        label="Submit & Execute report"
-        icon="pi pi-angle-right"
-        icon-pos="right"
+  <TabView class="p-tabview">
+    <TabPanel header="By package name">
+      <RunReportByPackageNameForm />
+    </TabPanel>
+    <TabPanel header="By text input">
+      <span>Paste your package.json here</span>
+      <TextArea @blur="onBlur" class="package-json-input" v-model="inputValue" rows="30" />
+    </TabPanel>
+    <TabPanel header="By upload">
+      <span>Paste or upload package.json file</span>
+      <FileUpload
+        ref="fileUploadRef"
+        mode="basic"
+        @uploader="customUpload"
+        @clear="resetUploadedFileCount"
+        :fileLimit="1"
+        :customUpload="true"
+        :auto="true"
+        chooseLabel="Upload"
+        accept=".json"
       />
-    </div>
-  </div>
+    </TabPanel>
+  </TabView>
 </template>
 
 <script setup type="module" lang="ts">
@@ -45,10 +29,12 @@ import { ref, onMounted } from 'vue';
 import type { FileUploadUploaderEvent } from 'primevue/fileupload';
 import TextArea from 'primevue/textarea/Textarea.vue';
 import FileUpload from 'primevue/fileupload/FileUpload.vue';
-import Button from 'primevue/button/Button.vue';
 import { parsePackageJSONStringToObject } from '@/helpers/json-parser';
 import { useRouter } from 'vue-router';
 import { useFinancialReportState } from '@/composables/financial-report';
+
+import TabView from 'primevue/tabview';
+import TabPanel from 'primevue/tabpanel';
 
 const router = useRouter();
 const financialReportState = useFinancialReportState();
@@ -117,5 +103,17 @@ const advanceToResultsView = () => {
   height: 100%;
   font-family: monospace;
   resize: none;
+}
+
+.p-tabview::v-deep {
+  .p-tabview-nav {
+    border-top-right-radius: 6px;
+    border-top-left-radius: 6px;
+  }
+
+  .p-tabview-title {
+    font-weight: 600;
+    font-size: 0.875rem;
+  }
 }
 </style>

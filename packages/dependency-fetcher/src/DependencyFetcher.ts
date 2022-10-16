@@ -1,28 +1,32 @@
 import { Package } from './Package/PackageModel.js';
 import NpmPackageManager from './PackageManager/npm/NpmIoPackageManager';
 
+const PackageManagerNames = ['npm'] as const;
+
 export class DependencyFetcher {
-  private input: string;
+  private pkgFile: string;
 
   private packageManager;
 
-  constructor(input: string, fileName?: string) {
-    const packageManager = fileName ? this.getPackageManagerByFileName(fileName) : this.getPackageManagerByInput(input);
-    this.input = input;
-    this.packageManager = new packageManager(input);
+  constructor(pkgFile: string, fileName?: string) {
+    const packageManager = fileName
+      ? this.getPackageManagerByFileName(fileName)
+      : this.getPackageManagerByPkgFile(pkgFile);
+    this.pkgFile = pkgFile;
+    this.packageManager = new packageManager(pkgFile);
   }
 
-  getPackageManagerByInput(input: string) {
-    if (NpmPackageManager.validateIfNpmByInput(input)) {
+  getPackageManagerByPkgFile(pkgFile: string) {
+    if (NpmPackageManager.validateIfNpmByPkgFile(pkgFile)) {
       return NpmPackageManager;
     }
-    // if (ComposerPackageManager.validateIfNpmByInput(input)) {
+    // if (ComposerPackageManager.validateIfNpmByPkgFile(pkgFile)) {
     //   return ComposerPackageManager;
     // }
-    // if (MavenPackageManager.validateIfNpmByInput(input)) {
+    // if (MavenPackageManager.validateIfNpmByPkgFile(pkgFile)) {
     //   return MavenPackageManager;
     // }
-    throw new Error('Invalid input. No package manager found.');
+    throw new Error('Invalid pkgFile. No package manager found.');
   }
 
   getPackageManagerByFileName(fileName: string) {
@@ -34,11 +38,11 @@ export class DependencyFetcher {
       // case 'pom.xml':
       //   return MavenPackageManager;
       default:
-        throw new Error(`Invalid input. No package manager found for file name ${fileName}`);
+        throw new Error(`Invalid pkgFile. No package manager found for file name ${fileName}`);
     }
   }
 
-  transformPackagesToObject(packages: Map<string, Package>) {
+  transformPackagesToObject(packages: Map<string, Package>): Record<string, Package> {
     return [...packages].reduce((acc, [key, value]) => {
       return {
         ...acc,
@@ -52,7 +56,7 @@ export class DependencyFetcher {
   }
 
   async fetch() {
-    const { packages } = await this.packageManager.fetch(this.input);
+    const { packages } = await this.packageManager.fetch(this.pkgFile);
     return {
       packages: this.transformPackagesToObject(packages),
       // errors: Object.fromEntries(errors),
@@ -63,7 +67,7 @@ export class DependencyFetcher {
     packages: Record<string, any>;
     // errors: Record<string, any>;
   }> {
-    const { packages } = await this.packageManager.aggregate(this.input);
+    const { packages } = await this.packageManager.aggregate(this.pkgFile);
     return {
       packages: this.transformPackagesToObject(packages),
       // errors: Object.fromEntries(errors),
@@ -71,7 +75,7 @@ export class DependencyFetcher {
   }
 
   async fetchOrAggregate() {
-    // const exists = await this.packageManager.exists(this.input);
+    // const exists = await this.packageManager.exists(this.pkgFile);
     // if (exists) {
     //   return this.fetch();
     // } else {
@@ -79,5 +83,23 @@ export class DependencyFetcher {
     // }
 
     return this.aggregate();
+  }
+
+  static async fetchPackageFile(pkgName: string, packageManagerName: typeof PackageManagerNames[number]) {
+    const packageManager = this.getPackageManagerByName(packageManagerName);
+    return packageManager.fetchPackageFile(pkgName);
+  }
+
+  static getPackageManagerByName(name: typeof PackageManagerNames[number]) {
+    switch (name) {
+      case 'npm':
+        return NpmPackageManager;
+      // case 'composer':
+      //   return ComposerPackageManager;
+      // case 'maven':
+      //   return MavenPackageManager;
+      default:
+        throw new Error('Invalid package manager name. No package manager found.');
+    }
   }
 }
