@@ -23,7 +23,7 @@ describe('parse json', () => {
   });
 
   it('throws an error whenever no dev- and dependencies key is present in the package.json', () => {
-    const clone: Record<string, unknown> = Object.assign({}, validJSON);
+    const clone: Record<string, unknown> = { ...validJSON};
     delete clone.dependencies;
     delete clone.devDependencies;
 
@@ -43,7 +43,7 @@ describe('parse json', () => {
   });
 
   it('throws Invalid JSON object error when both the JSON syntax is wrong and no dev- and dependency key is present', () => {
-    const clone: Record<string, unknown> = Object.assign({}, validJSON);
+    const clone: Record<string, unknown> = { ...validJSON};
     delete clone.dependencies;
     delete clone.devDependencies;
 

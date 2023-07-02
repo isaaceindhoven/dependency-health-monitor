@@ -33,7 +33,7 @@ export default defineEventHandler(async (event) => {
     });
   }
 
-  const packageName = body.packageName;
+  const {packageName} = body;
   const financialHealthReport = await calculateFinancialHealthScore(
     packageName,
     gitHubAccessToken,

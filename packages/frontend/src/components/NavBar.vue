@@ -2,7 +2,7 @@
 import Menubar from 'primevue/menubar/Menubar.vue';
 import type { MenuItem } from 'primevue/menuitem';
 
-let items: MenuItem[] = [
+const items: MenuItem[] = [
   {
     label: 'Run report',
     to: '/run-report',

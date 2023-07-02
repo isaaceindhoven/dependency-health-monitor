@@ -1,5 +1,5 @@
 import { Package } from './Package/PackageModel.js';
-import NpmPackageManager from './PackageManager/npm/NpmIoPackageManager';
+import { NpmPackageManager } from './PackageManager/npm/NpmIoPackageManager';
 
 const PackageManagerNames = ['npm'] as const;
 
@@ -9,11 +9,11 @@ export class DependencyFetcher {
   private packageManager;
 
   constructor(pkgFile: string, fileName?: string) {
-    const packageManager = fileName
+    const PackageManager = fileName
       ? this.getPackageManagerByFileName(fileName)
       : this.getPackageManagerByPkgFile(pkgFile);
     this.pkgFile = pkgFile;
-    this.packageManager = new packageManager(pkgFile);
+    this.packageManager = new PackageManager(pkgFile);
   }
 
   getPackageManagerByPkgFile(pkgFile: string) {
@@ -43,16 +43,17 @@ export class DependencyFetcher {
   }
 
   transformPackagesToObject(packages: Map<string, Package>): Record<string, Package> {
-    return [...packages].reduce((acc, [key, value]) => {
-      return {
+    return [...packages].reduce(
+      (acc, [key, value]) => ({
         ...acc,
         [key]: {
           ...value,
           dependents: [...value.dependents],
           dependencies: [...value.dependencies],
         },
-      };
-    }, {} as Record<string, any>);
+      }),
+      {} as Record<string, any>,
+    );
   }
 
   async fetch() {

@@ -10,7 +10,9 @@ module.exports = {
   ],
   rules: {
     '@typescript-eslint/ban-ts-comment': ['error', { 'ts-ignore': 'allow-with-description' }],
+    'class-methods-use-this': 'off',
     'vue/multi-word-component-names': 'off',
+    'vue/no-multiple-template-root': 'off',
     'import/prefer-default-export': 'off',
     'import/extensions': 'off',
     'import/no-relative-packages': 'off',

@@ -1,5 +1,5 @@
 <template>
-  <DataTable :value="calculationResults" responsiveLayout="scroll">
+  <DataTable :value="calculationResults" responsive-layout="scroll">
     <Column field="topic" header="Topic"></Column>
     <Column field="score" header="Score"></Column>
     <Column field="explanation" header="Explanation">
@@ -55,15 +55,13 @@ onMounted(() => {
 
     return;
   }
-  const data = dialogRef.value.data;
-  const financialHealthReport = data.financialHealthReport;
-  const equityReport = data.equityReport;
+  const { data } = dialogRef.value;
+  const { financialHealthReport } = data;
+  const { equityReport } = data;
   const resultsToText: CalculationResults[] = [];
 
-  for (const scoreKey of Object.keys(financialHealthReport)) {
-    if (scoreKey === 'finalScore') {
-      continue;
-    }
+  Object.keys(financialHealthReport).forEach((scoreKey) => {
+    if (scoreKey === 'finalScore') return;
     const splitScoreKeys = scoreKey.replace(/([A-Z])/g, ' $1');
     const scoreKeyText = splitScoreKeys.charAt(0).toUpperCase() + splitScoreKeys.slice(1);
     resultsToText.push({
@@ -73,7 +71,7 @@ onMounted(() => {
       // @ts-ignore: Object.keys(financialHealthReport) ensures that the key is in the financialHealthReport object
       explanation: financialHealthReport[scoreKey].explanation,
     });
-  }
+  });
 
   resultsToText.push({
     topic: 'Equity score',

@@ -6,7 +6,7 @@ const pathPrefix = '/run-report';
 const gitHubSteps: MenuItem[] = [
   {
     label: 'Select an execution method',
-    to: pathPrefix + '/select',
+    to: `${pathPrefix  }/select`,
   },
   {
     label: 'Log in',
@@ -29,26 +29,26 @@ const gitHubSteps: MenuItem[] = [
 const pasteOrUploadSteps: MenuItem[] = [
   {
     label: 'Select an execution method',
-    to: pathPrefix + '/select',
+    to: `${pathPrefix  }/select`,
   },
   {
     label: 'Paste or upload file',
-    to: pathPrefix + '/paste-or-upload',
+    to: `${pathPrefix  }/paste-or-upload`,
   },
   {
     label: 'Confirm & Execute',
-    to: pathPrefix + '/confirm',
+    to: `${pathPrefix  }/confirm`,
   },
   {
     label: 'View results',
-    to: pathPrefix + '/results',
+    to: `${pathPrefix  }/results`,
   },
 ];
 
 const publicURLSteps: MenuItem[] = [
   {
     label: 'Select an execution method',
-    to: pathPrefix + '/select',
+    to: `${pathPrefix  }/select`,
   },
   {
     label: 'Insert public repository URL',
@@ -70,8 +70,6 @@ const stepsPerExecutionMethod: Record<ExecutionMethod, MenuItem[]> = {
   'Public URL': publicURLSteps,
 };
 
-const getStepsForExecutionMethod = (method: ExecutionMethod) => {
-  return stepsPerExecutionMethod[method];
-};
+const getStepsForExecutionMethod = (method: ExecutionMethod) => stepsPerExecutionMethod[method];
 
 export { getStepsForExecutionMethod };

@@ -5,20 +5,20 @@
     </TabPanel>
     <TabPanel header="By text input">
       <span>Paste your package.json here</span>
-      <TextArea @blur="onBlur" class="package-json-input" v-model="inputValue" rows="30" />
+      <TextArea v-model="inputValue" class="package-json-input" rows="30" @blur="onBlur" />
     </TabPanel>
     <TabPanel header="By upload">
       <span>Paste or upload package.json file</span>
       <FileUpload
         ref="fileUploadRef"
         mode="basic"
+        :file-limit="1"
+        :custom-upload="true"
+        :auto="true"
+        choose-label="Upload"
+        accept=".json"
         @uploader="customUpload"
         @clear="resetUploadedFileCount"
-        :fileLimit="1"
-        :customUpload="true"
-        :auto="true"
-        chooseLabel="Upload"
-        accept=".json"
       />
     </TabPanel>
   </TabView>
@@ -30,19 +30,17 @@ import type { FileUploadUploaderEvent } from 'primevue/fileupload';
 import TextArea from 'primevue/textarea/Textarea.vue';
 import FileUpload from 'primevue/fileupload/FileUpload.vue';
 import { parsePackageJSONStringToObject } from '@/helpers/json-parser';
-import { useRouter } from 'vue-router';
 import { useFinancialReportState } from '@/composables/financial-report';
 
 import TabView from 'primevue/tabview';
 import TabPanel from 'primevue/tabpanel';
 
-const router = useRouter();
 const financialReportState = useFinancialReportState();
 const allowAdvance = ref(false);
 const fileUploadRef = ref();
 
-let inputValue = ref(JSON.stringify(financialReportState.value.packageJSON, undefined, 2));
-let pasteOrUploadError = ref('');
+const inputValue = ref(JSON.stringify(financialReportState.value.packageJSON, undefined, 2));
+const pasteOrUploadError = ref('');
 
 onMounted(() => {
   if (financialReportState.value.packageJSON && Object.keys(financialReportState.value.packageJSON).length > 0) {
@@ -56,7 +54,7 @@ const customUpload = (uploadEvent: FileUploadUploaderEvent) => {
   if (uploadEvent.files instanceof File) {
     file = uploadEvent.files;
   } else {
-    file = uploadEvent.files[0];
+    [file] = uploadEvent.files;
   }
 
   file
@@ -90,10 +88,6 @@ const onBlur = () => {
     pasteOrUploadError.value = error;
     allowAdvance.value = false;
   }
-};
-
-const advanceToResultsView = () => {
-  router.push('/run-report/results');
 };
 </script>
 

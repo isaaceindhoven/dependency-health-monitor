@@ -9,7 +9,7 @@ export const parsePackageJSONStringToObject = (stringToParse: string) => {
     return result;
   } catch (error: any) {
     if (error instanceof SyntaxError) {
-      throw new Error('Invalid JSON object, please verify object.');
+      throw new TypeError('Invalid JSON object, please verify object.');
     } else {
       throw error;
     }

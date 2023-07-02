@@ -5,7 +5,8 @@ export default defineEventHandler(async (event) => {
     const body = await useBody(event);
     const bodyAsString = typeof body === 'string' ? body : JSON.stringify(body);
     const dependencyFetcher = new DependencyFetcher(bodyAsString);
-    return dependencyFetcher.fetchOrAggregate();
+    const result = await dependencyFetcher.fetchOrAggregate();
+    return result;
   } catch (error) {
     if (error.statusCode) {
       return createError({ statusCode: error.statusCode, message: error.message });

@@ -1,3 +1,5 @@
+/* eslint-disable class-methods-use-this, consistent-return */
+
 import { db, Prisma } from '@dependency-health-monitor/database';
 import { NpmsIO } from 'npms.io';
 import { formatDuration, intervalToDuration } from 'date-fns';
@@ -14,10 +16,13 @@ type Manifest = {
   devDependencies?: { [key: string]: string };
 };
 
-export default class NpmPackageManager {
+export class NpmPackageManager {
   private iterationDepth = 3;
+
   private concurrency = 50;
+
   protected pkgFile: string;
+
   protected packages: Map<string, Package>;
 
   public static npmsIO = new NpmsIO();
@@ -58,7 +63,7 @@ export default class NpmPackageManager {
     } catch (error) {
       console.error(error);
       // this.packageErrors.set(name, error);
-      return;
+      
     }
   }
 
@@ -128,12 +133,10 @@ export default class NpmPackageManager {
         (name) => !existingRelations.find(({ dependencyName }) => dependencyName === name),
       );
 
-      const data = newDependencies.map((dependencyName) => {
-        return {
+      const data = newDependencies.map((dependencyName) => ({
           dependentName: rootPackage.name,
           dependencyName,
-        };
-      });
+        }));
 
       await db.packageRelations.createMany({ data });
     }
@@ -142,11 +145,7 @@ export default class NpmPackageManager {
   async getPackagesDataFromRegistry(pkgs: string[]) {
     return NpmPackageManager.npmsIO.api.package
       .multiPackageInfo(pkgs)
-      .then((data) => {
-        return Object.values(data).map((pkgData) => {
-          return pkgData.collected.metadata as any;
-        });
-      })
+      .then((data) => Object.values(data).map((pkgData) => pkgData.collected.metadata as any))
       .catch((error) => {
         console.error(error);
       });
