@@ -3,11 +3,11 @@
     <TabPanel header="By package name">
       <RunReportByPackageNameForm />
     </TabPanel>
-    <TabPanel header="By text input">
+    <TabPanel header="By text input" :disabled="true">
       <span>Paste your package.json here</span>
       <TextArea v-model="inputValue" class="package-json-input" rows="30" @blur="onBlur" />
     </TabPanel>
-    <TabPanel header="By upload">
+    <TabPanel header="By upload" :disabled="true">
       <span>Paste or upload package.json file</span>
       <FileUpload
         ref="fileUploadRef"
