@@ -1,12 +1,15 @@
 import {
   AggregatePackagesOptions,
   DependencyFetcher,
+  Logger,
   mapPackageToPackageRaw,
 } from '@dependency-health-monitor/dependency-fetcher';
 import { z } from 'zod';
 
+const logger = new Logger({ name: '[name].get.ts' });
+
 async function aggregatePackages({ pkg, depth }: AggregatePackagesOptions) {
-  console.log(
+  logger.log(
     '[name].get',
     `Aggregating packages via queue at depth ${depth.toString().padStart(1, '0')} for ${pkg.name}`,
   );
@@ -25,7 +28,7 @@ async function aggregatePackages({ pkg, depth }: AggregatePackagesOptions) {
       body,
     });
   } catch (error) {
-    console.error('[name].get', error);
+    logger.error('[name].get', error);
   }
 }
 
@@ -50,7 +53,7 @@ export default defineEventHandler(async (event) => {
     await dependencyFetcher.aggregate();
     return new Response(undefined, { status: 202 });
   } catch (error) {
-    console.error(error);
+    logger.error(error);
     if (error instanceof z.ZodError) {
       return createError({
         statusCode: 400,

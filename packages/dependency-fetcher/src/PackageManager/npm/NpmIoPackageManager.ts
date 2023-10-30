@@ -7,6 +7,7 @@ import { PackageRelation } from '../../PackageRelation/PackageRelationModel.js';
 import { PackageRelationRepository } from '../../PackageRelation/PackageRelationRepository.js';
 import { PackageRepository } from '../../Package/PackageRepository.js';
 import { NpmIoPackageManagerParser } from './NpmIoPackageManagerParser.js';
+import { Logger } from '../../Logger/Logger.js';
 
 export type AggregatePackagesOptions = {
   pkg: Package;
@@ -27,10 +28,12 @@ export type AggregateOptions = {
 export class NpmIoPackageManager {
   public static npmsIO = new NpmsIO();
 
+  private static logger = new Logger({ name: 'NpmIoPackageManager' });
+
   public static parser = NpmIoPackageManagerParser;
 
   static async aggregatePackages({ pkg, options, depth }: RequiredAggregatePackagesOptions) {
-    console.log(`Aggregating packages at depth ${depth.toString().padStart(1, '0')} for ${pkg.name}`);
+    this.logger.log(`Aggregating packages at depth ${depth.toString().padStart(1, '0')} for ${pkg.name}`);
     const newPkgs = await this.createPackages(pkg);
     await this.createPackageRelations(pkg);
     if (newPkgs && depth < options.maxDepth) {

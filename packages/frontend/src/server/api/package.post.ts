@@ -2,6 +2,7 @@ import { z } from 'zod';
 import pMap from 'p-map';
 import {
   DependencyFetcher,
+  Logger,
   PackageManagerNames,
   PackageManagerNamesModel,
   PackageModelRaw,
@@ -14,6 +15,8 @@ export const FETCH_CONCURRENCY = 50;
 export const ITERATION_DEPTH = 3;
 export const QUEUE_SERVICE_API_RUNNER_BASE_URL = 'http://localhost:4001/api/v1/api-runner';
 export const POST_PACKAGE_URL = 'http://localhost:3000/api/package';
+
+const logger = new Logger({ name: 'package.post.ts' });
 
 const bodyModel = z.object({
   package: PackageModelRaw,
@@ -57,8 +60,7 @@ export default defineEventHandler(async (event) => {
     const body = await readBody(event);
     const parsedBody = bodyModel.parse(body);
 
-    console.debug(
-      '[API] ',
+    logger.log(
       `Aggregating packages at depth ${parsedBody.depth.toString().padStart(1, '0')} for ${parsedBody.package.name}`,
     );
 
@@ -68,7 +70,7 @@ export default defineEventHandler(async (event) => {
     await packageManager.createPackageRelations(rootPackage);
 
     if (!newPkgs || newPkgs.length === 0) {
-      console.log('[API]', `No new dependencies found for ${parsedBody.package.name}`);
+      logger.log('[API]', `No new dependencies found for ${parsedBody.package.name}`);
     }
 
     if (newPkgs && parsedBody.depth < ITERATION_DEPTH) {
@@ -88,7 +90,7 @@ export default defineEventHandler(async (event) => {
 
     return `Successfully processed package ${parsedBody.package.name}`;
   } catch (error) {
-    console.error(error);
+    logger.error(error);
     if (error instanceof z.ZodError) {
       return createError({
         statusCode: 400,
