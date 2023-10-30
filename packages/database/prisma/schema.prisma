@@ -18,6 +18,7 @@ generator zod {
   modelSuffix           = "Model"
   useDecimalJs          = true
   prismaJsonNullability = true
+  includeJSExtension   = true
 }
 
 model Package {

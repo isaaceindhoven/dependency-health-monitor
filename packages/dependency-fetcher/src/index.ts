@@ -1,4 +1,5 @@
-export * from './DependencyFetcher';
-export * from './Package';
-export * from './PackageManager';
-export * from './PackageRelation';
+export * from './DependencyFetcher.js';
+export * from './Package/index.js';
+export * from './PackageManager/index.js';
+export * from './PackageRelation/index.js';
+// export * from './PackageAggregator/index.js';

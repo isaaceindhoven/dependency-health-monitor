@@ -1,24 +1,40 @@
-import { Package } from './Package/PackageModel.js';
-import { NpmPackageManager } from './PackageManager/npm/NpmIoPackageManager';
+import { z } from 'zod';
+import { Package, PackageRawWithCount, PackageWithCount, mapPackageWithCountToPackageRawWithCount } from './Package/PackageModel.js';
+import { AggregateOptions, NpmIoPackageManager } from './PackageManager/npm/NpmIoPackageManager.js';
 
-const PackageManagerNames = ['npm'] as const;
+export const PackageManagerNamesModel = z.literal('npm');
+export type PackageManagerNames = z.infer<typeof PackageManagerNamesModel>;
+
+type DependencyFetcherOptions = {
+  pkgFile: string;
+  fileName?: string;
+  config?: {
+    aggregate?: AggregateOptions;
+  };
+};
 
 export class DependencyFetcher {
-  private pkgFile: string;
+  public pkg: Package;
 
-  private packageManager;
+  private options: DependencyFetcherOptions;
 
-  constructor(pkgFile: string, fileName?: string) {
-    const PackageManager = fileName
-      ? this.getPackageManagerByFileName(fileName)
-      : this.getPackageManagerByPkgFile(pkgFile);
-    this.pkgFile = pkgFile;
-    this.packageManager = new PackageManager(pkgFile);
+  public packageManager;
+
+  constructor(options: DependencyFetcherOptions) {
+    this.packageManager = options.fileName
+      ? this.getPackageManagerByFileName(options.fileName)
+      : this.getPackageManagerByPkgFile(options.pkgFile);
+
+    const pkg = this.packageManager.parser.getManifestFromPkgFileString(options.pkgFile);
+
+    if (pkg instanceof Error) throw pkg;
+    this.pkg = pkg;
+    this.options = options;
   }
 
   getPackageManagerByPkgFile(pkgFile: string) {
-    if (NpmPackageManager.validateIfNpmByPkgFile(pkgFile)) {
-      return NpmPackageManager;
+    if (NpmIoPackageManager.parser.validateIfNpmByPkgFile(pkgFile)) {
+      return NpmIoPackageManager;
     }
     // if (ComposerPackageManager.validateIfNpmByPkgFile(pkgFile)) {
     //   return ComposerPackageManager;
@@ -32,7 +48,7 @@ export class DependencyFetcher {
   getPackageManagerByFileName(fileName: string) {
     switch (fileName) {
       case 'package.json':
-        return NpmPackageManager;
+        return NpmIoPackageManager;
       // case 'composer.json':
       //   return ComposerPackageManager;
       // case 'pom.xml':
@@ -42,59 +58,42 @@ export class DependencyFetcher {
     }
   }
 
-  transformPackagesToObject(packages: Map<string, Package>): Record<string, Package> {
+  transformPackagesToObject(packages: Map<string, PackageWithCount>) {
     return [...packages].reduce(
       (acc, [key, value]) => ({
         ...acc,
-        [key]: {
-          ...value,
-          dependents: [...value.dependents],
-          dependencies: [...value.dependencies],
-        },
+        [key]: mapPackageWithCountToPackageRawWithCount(value),
       }),
-      {} as Record<string, any>,
+      {} as Record<string, PackageRawWithCount>,
     );
   }
 
   async fetch() {
-    const { packages } = await this.packageManager.fetch(this.pkgFile);
+    const { packages } = await this.packageManager.fetch(this.pkg);
     return {
       packages: this.transformPackagesToObject(packages),
       // errors: Object.fromEntries(errors),
     };
   }
 
-  async aggregate(): Promise<{
-    packages: Record<string, any>;
-    // errors: Record<string, any>;
-  }> {
-    const { packages } = await this.packageManager.aggregate(this.pkgFile);
-    return {
-      packages: this.transformPackagesToObject(packages),
-      // errors: Object.fromEntries(errors),
-    };
+  async aggregate(): Promise<void> {
+    await this.packageManager.aggregate(this.pkg, this.options.config?.aggregate);
   }
 
-  async fetchOrAggregate() {
-    // const exists = await this.packageManager.exists(this.pkgFile);
-    // if (exists) {
-    //   return this.fetch();
-    // } else {
-
-    // }
-
-    return this.aggregate();
-  }
-
-  static async fetchPackageFile(pkgName: string, packageManagerName: typeof PackageManagerNames[number]) {
+  static async fetchPackageFile(pkgName: string, packageManagerName: PackageManagerNames) {
     const packageManager = this.getPackageManagerByName(packageManagerName);
     return packageManager.fetchPackageFile(pkgName);
   }
 
-  static getPackageManagerByName(name: typeof PackageManagerNames[number]) {
+  static async getManifestByName(pkgName: string, packageManagerName: PackageManagerNames) {
+    const packageManager = this.getPackageManagerByName(packageManagerName);
+    return packageManager.getManifestByName(pkgName);
+  }
+
+  static getPackageManagerByName(name: PackageManagerNames) {
     switch (name) {
       case 'npm':
-        return NpmPackageManager;
+        return NpmIoPackageManager;
       // case 'composer':
       //   return ComposerPackageManager;
       // case 'maven':

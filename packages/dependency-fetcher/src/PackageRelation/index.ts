@@ -1,1 +1,2 @@
-export * from './PackageRelationModel';
+export * from './PackageRelationModel.js';
+export * from './PackageRelationRepository.js';

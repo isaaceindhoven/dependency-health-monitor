@@ -1,1 +1,1 @@
-export const CONCURRENCY = 75;
+export const CONCURRENCY = 50;

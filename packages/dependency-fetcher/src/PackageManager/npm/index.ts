@@ -1,1 +1,1 @@
-export * from './NpmIoPackageManager';
+export * from './NpmIoPackageManager.js';

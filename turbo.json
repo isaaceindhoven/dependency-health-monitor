@@ -37,13 +37,16 @@
     },
 
     "push": {
-      "outputs": []
+      "outputs": [],
+      "cache": false
     },
     "push:acceptdataloss": {
-      "outputs": []
+      "outputs": [],
+      "cache": false
     },
     "push:reset": {
-      "outputs": []
+      "outputs": [],
+      "cache": false
     },
     "generate": {
       "outputs": []

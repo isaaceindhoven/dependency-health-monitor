@@ -1,3 +1,3 @@
 export * from '@prisma/client';
-export * from './db';
-export * from './zod';
+export * from './db.js';
+export * from './zod/index.js';

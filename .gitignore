@@ -37,3 +37,6 @@ build
 local.settings.json
 .env
 .env.*
+
+# Docker
+.docker
