@@ -7,12 +7,12 @@
     },
     "test:e2e": {
       "dependsOn": ["^build"],
-      "inputs": ["**/src/**/*.ts", "**/src/**/*.vue", "**/cypress/**/*.ts", "**/cypress/**/*.json"],
+      "inputs": ["**/src/**/*.ts", "**/src/**/*.vue"],
       "outputs": []
     },
     "test:e2e:watch": {
       "dependsOn": ["^dev"],
-      "inputs": ["**/src/**/*.ts", "**/src/**/*.vue", "**/cypress/**/*.ts", "**/cypress/**/*.json"],
+      "inputs": ["**/src/**/*.ts", "**/src/**/*.vue"],
       "outputs": []
     },
     "test:unit": {

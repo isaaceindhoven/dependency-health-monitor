@@ -4,7 +4,6 @@
 		"module": "ESNext",
 		"strict": true,
 		"noEmit": true,
-		"resolveJsonModule": true,
 		"forceConsistentCasingInFileNames": true
 	}
 }

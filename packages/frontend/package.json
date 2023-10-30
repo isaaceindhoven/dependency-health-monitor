@@ -8,8 +8,6 @@
     "preview": "npx @azure/static-web-apps-cli start .output/public --api-location .output/server -p 5050",
     "test:lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --ignore-path ../../.gitignore --fix",
     "test:unit": "vitest run --environment jsdom",
-    "test:e2e": "start-server-and-test preview http://127.0.0.1:5050/ 'cypress run'",
-    "test:e2e:watch": "start-server-and-test 'npm run dev -- --port 5050' http://127.0.0.1:5050/ 'cypress open'",
     "typecheck": "vue-tsc --noEmit -p tsconfig.vitest.json --composite false"
   },
   "devDependencies": {
