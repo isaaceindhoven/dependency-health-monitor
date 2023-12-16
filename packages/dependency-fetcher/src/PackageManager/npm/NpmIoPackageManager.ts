@@ -25,6 +25,8 @@ export type AggregateOptions = {
   aggregatePackages: (options: AggregatePackagesOptions) => Promise<void>;
 };
 
+export type Metadata = PackageInfo['collected']['metadata'];
+
 export class NpmIoPackageManager {
   public static npmsIO = new NpmsIO();
 
@@ -43,12 +45,14 @@ export class NpmIoPackageManager {
     }
   }
 
-  static async createPackages(rootPackage: Package) {
+  static async createPackages(rootPackage: Package): Promise<Package[]> {
     const existingPackages = await PackageRepository.findManyByDependencies(rootPackage.dependencies);
 
     const newDependencies = [...rootPackage.dependencies].filter(
       (dep) => !existingPackages.find(({ name }) => name === dep),
     );
+
+    console.log(this.parser)
 
     if (newDependencies.length > 0) {
       const pkgsDataFromRegistry = await this.getPackagesDataFromRegistry(newDependencies);
@@ -66,7 +70,7 @@ export class NpmIoPackageManager {
 
       if (pkgsData) {
         await PackageRepository.createMany(pkgsData);
-        return pkgsData as Package[];
+        return pkgsData;
       }
     }
 
@@ -93,12 +97,12 @@ export class NpmIoPackageManager {
     }
   }
 
-  static async getPackagesDataFromRegistry(pkgs: string[]): Promise<PackageInfo['collected']['metadata'][]> {
+  static async getPackagesDataFromRegistry(pkgs: string[]): Promise<Metadata[]> {
     return NpmIoPackageManager.npmsIO.api.package
       .multiPackageInfo(pkgs)
       .then((data) => Object.values(data).map((pkgData) => pkgData.collected.metadata))
       .catch((error) => {
-        console.error(error);
+        this.logger.error(error);
         return [];
       });
   }
